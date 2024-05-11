@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/TilingBG.gd" type="Script" id=1]
+[ext_resource path="res://levels/Tile.tscn" type="PackedScene" id=2]
+
+[node name="TilingBG" type="Spatial"]
+script = ExtResource( 1 )
+tile_scene = ExtResource( 2 )
+
+[node name="Pivot" type="Spatial" parent="."]
+
+[node name="Tile" parent="Pivot" instance=ExtResource( 2 )]
+
+[node name="Tile2" parent="Pivot" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -4.8 )
+
+[connection signal="offscreen" from="Pivot/Tile" to="." method="spawn_new_tile"]
+[connection signal="offscreen" from="Pivot/Tile2" to="." method="spawn_new_tile"]
