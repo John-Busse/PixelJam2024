@@ -1,22 +1,21 @@
-extends KinematicBody
+extends Spatial
 
-signal hit
-export var move_speed: int = 5 #velocity in m/s
-var velocity: Vector3 = Vector3.ZERO
+export var bullet_scene: PackedScene
+var can_fire: bool = true
 
 
-func _physics_process(delta):
-	var direction: Vector3 = Vector3.FORWARD
-	
-	#check for input, update direction
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	
-	#rotate the player in the direction we're moving
-	$Pivot.look_at(translation + direction, Vector3.UP)
-	
-	velocity.x = direction.x * move_speed
-	
-	velocity = move_and_slide(velocity, Vector3.UP)
+func _process(_delta):
+	if Input.is_action_pressed("fire") and can_fire:
+		can_fire = false
+		var bullet = bullet_scene.instance()
+		
+		var spawn_loc: Vector3 = $Surfer.translation
+		
+		bullet.init(spawn_loc)
+		add_child(bullet)
+		
+		$FireRateTimer.start()
+
+
+func _on_FireRateTimer_timeout():
+	can_fire = true

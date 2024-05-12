@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://enemies/Enemy.gd"
+} ]
+_global_script_class_icons={
+"Enemy": ""
+}
+
 [application]
 
 config/name="PixelJam"
@@ -57,4 +67,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+quality/filters/anisotropic_filter_level=1
 environment/default_environment="res://default_env.tres"

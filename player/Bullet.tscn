@@ -9,6 +9,9 @@ extents = Vector3( 0.05, 1, 0.08 )
 [node name="Bullet" type="KinematicBody"]
 collision_mask = 2
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 bullet_speed = 5
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

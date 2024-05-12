@@ -9,13 +9,13 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+tile_name = "tile"
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 frames = ExtResource( 1 )
 animation = "tile"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 aabb = AABB( -0.25, -2.4, -0.25, 0.5, 4.8, 0.5 )
 
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
