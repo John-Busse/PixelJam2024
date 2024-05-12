@@ -6,9 +6,18 @@
 
 [node name="Stage" type="Node"]
 script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "Y-layers:
+0- tile background
+1- wave bottom
+2- ground enemies, player
+3- wave top
+4- building tops, flying enemies
+5- camera"
+}
 
 [node name="Surfer" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2 )
 
 [node name="TilingBG" parent="." instance=ExtResource( 1 )]
 

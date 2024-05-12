@@ -14,6 +14,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
 	
+	#rotate the player in the direction we're moving
 	$Pivot.look_at(translation + direction, Vector3.UP)
 	
 	velocity.x = direction.x * move_speed
