@@ -1,0 +1,3 @@
+256x224
+48frames long 
+24fps
