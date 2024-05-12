@@ -15,7 +15,7 @@ frames = ExtResource( 1 )
 animation = "tile"
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
-transform = Transform( 0.99974, 0.00556135, 0.0221377, -0.00575299, 0.999946, 0.00860255, -0.0220886, -0.00872766, 0.999718, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 aabb = AABB( -0.25, -2.4, -0.25, 0.5, 4.8, 0.5 )
 
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
