@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/0072.png-d5c433f2707c897a90b8643a1b70a15e.s3tc.stex"
-path.etc="res://.import/0072.png-d5c433f2707c897a90b8643a1b70a15e.etc.stex"
+path="res://.import/0072.png-d5c433f2707c897a90b8643a1b70a15e.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/Wave/water_frames/0072.png"
-dest_files=[ "res://.import/0072.png-d5c433f2707c897a90b8643a1b70a15e.s3tc.stex", "res://.import/0072.png-d5c433f2707c897a90b8643a1b70a15e.etc.stex" ]
+dest_files=[ "res://.import/0072.png-d5c433f2707c897a90b8643a1b70a15e.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
@@ -25,9 +23,9 @@ flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
-process/fix_alpha_border=true
-process/premult_alpha=false
+flags/srgb=1
+process/fix_alpha_border=false
+process/premult_alpha=true
 process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false

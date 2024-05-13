@@ -2,36 +2,34 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.s3tc.stex"
-path.etc="res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.etc.stex"
+path="res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://art/carWIP.png"
-dest_files=[ "res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.s3tc.stex", "res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.etc.stex" ]
+dest_files=[ "res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0
