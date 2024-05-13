@@ -3,16 +3,18 @@ extends Node
 ### HANDLE ENEMY SPAWNS IN THIS SCRIPT
 export var car_scene: PackedScene
 export var ped_scene: PackedScene
-export var surf_speed: int = 4
+onready var player_stats = get_node("/root/PlayerStats")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$TilingBG.set_speed(surf_speed)
 	randomize() #Seed the random generator
+	$TilingBG.set_speed(player_stats.get_surf_speed())
+	$GameUI.init(player_stats.get_wave_height(), player_stats.get_max_health())
 
 
 func _process(_delta):
 	$GameUI.set_dist($TilingBG.get_pivot_dist())
+	$GameUI.set_health(player_stats.get_health())
 
 
 func spawn_enemy(this_enemy: PackedScene, path_node: String):
@@ -34,29 +36,45 @@ func spawn_enemy(this_enemy: PackedScene, path_node: String):
 	add_child(mob)
 
 
+func stop_surfer():
+	#Stop the wave
+	player_stats.set_surf_speed(0)
+	$TilingBG.set_speed(player_stats.get_surf_speed()) 
+	$CarSpawnTimer.set_paused(true)
+	$PedSpawnTimer.set_paused(true)
+
+
+func player_die():
+	stop_surfer()
+	## Wave starts to slide up the screen
+
+
 func game_over():
-	surf_speed = 0
-	$TilingBG.set_speed(surf_speed) #Stop the player
-	# Player crashes into the wave
-	# Wave slides up the screen
-	# Game Over text appears with button
+	$GameUI.game_over()
+
+
+func height_zero():
+	stop_surfer()
+	##Wave slides down the screen
+	$Player.height_zero()
 
 
 func game_win():
-	surf_speed = 0
-	$TilingBG.set_speed(surf_speed)
-	#Wave slides down the screen
-	#Player moves up the screen and beams out
-	# Victory text appears with button
-	pass
+	$GameUI.game_win()
 
-
+#spawn a car when this timer ends
 func _on_CarSpawnTimer_timeout():
 	spawn_enemy(car_scene, "RoadPath/PathFollow")
 	$CarSpawnTimer.set_wait_time(2.0)
 	pass # Replace with function body.
 
-
+#Spawn a pedestrian when this timer ends
 func _on_PedSpawnTimer_timeout():
 	#spawn_enemy(ped_scene)
 	pass # Replace with function body.
+
+#When an active mob enters the wave
+func _on_WaveArea_body_entered(body):
+	#Deal damage to the wave
+	$GameUI.set_height(body._get_damage_value() * -1)
+	body._destroyed()	#destroy the mob

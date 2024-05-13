@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.s3tc.stex"
-path.etc="res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.etc.stex"
+path.s3tc="res://.import/surferSpriteWIP1.png-e5468ecf18891e4140f8046909882da1.s3tc.stex"
+path.etc="res://.import/surferSpriteWIP1.png-e5468ecf18891e4140f8046909882da1.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/carWIP.png"
-dest_files=[ "res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.s3tc.stex", "res://.import/carWIP.png-67611b824ed6ed9dcc95ad541483d446.etc.stex" ]
+source_file="res://art/surferSpriteWIP1.png"
+dest_files=[ "res://.import/surferSpriteWIP1.png-e5468ecf18891e4140f8046909882da1.s3tc.stex", "res://.import/surferSpriteWIP1.png-e5468ecf18891e4140f8046909882da1.etc.stex" ]
 
 [params]
 

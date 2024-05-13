@@ -1,33 +1,48 @@
 extends Control
 
-signal game_over
 signal height_zero
 var distance_value: float = 0.0
-var height_value: int
+var height_value: float
+var height_drop_rate: float = 0.5
 var speed: int
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$GameGrid.set_visible(true)
+	$GameOver.set_visible(false)
+	$GameWon.set_visible(false)
 
 
-func init(height: int):
+func _process(delta):	
+	if height_value > 0.0:
+		var change: float = height_drop_rate * delta * -1.0
+		set_height(change)
+
+
+func init(height: int, health: int):
 	height_value = height
 	distance_value = 0.0
-
-
-#func _process(delta):
-#	distance_value += speed * delta
-#	print("distance is ", distance_value)
-#
-#	var dist: String = String(distance_value as int)
-#
-#	$GridContainer/DistValue.text = str(dist + " m")
+	$GameGrid/HealthBar.set_max(health)
+	$GameGrid/HealthBar.set_value(health)
 
 
 func set_speed(new_speed: int):
 	speed = new_speed
+
+
+func set_height(change: float):
+	height_value += change
+	
+	if height_value <= 0.0:
+		height_value = 0.0
+		emit_signal("height_zero")
+	
+	var height: String = String(height_value as int)
+	
+	$GameGrid/HeightValue.set_text(str(height + " m"))
+
+func set_health(health: int):
+	$GameGrid/HealthBar.set_value(health)
 
 #Set the distance, based on distance from the tile origin
 func set_dist(origin: float):
@@ -35,4 +50,16 @@ func set_dist(origin: float):
 	
 	var dist: String = String(origin as int)
 	
-	$GridContainer/DistValue.text = str(dist + " m")
+	$GameGrid/DistValue.set_text(str(dist + " m"))
+
+
+func game_over():
+	#$GameGrid.set_visible(false)	#disable the game UI
+	$GameOver.set_visible(true)	#enable game over
+	pass
+
+
+func game_win():
+	#$GameGrid.set_visible(false)	#disable game UI
+	$GameWon.set_visible(true)	#enable game won
+	pass

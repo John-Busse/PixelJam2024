@@ -21,7 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="PixelJam"
+run/main_scene="res://levels/Stage.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PlayerStats="*res://player/PlayerStats.gd"
 
 [display]
 
@@ -35,8 +40,25 @@ common/drop_mouse_on_gui_input_disabled=true
 [importer_defaults]
 
 texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 1.0,
+"compress/mode": 2,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
 "flags/filter": false,
-"process/fix_alpha_border": false
+"flags/mipmaps": false,
+"flags/repeat": true,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": false,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
 }
 texture_3d={
 "flags/filter": false,

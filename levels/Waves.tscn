@@ -12,13 +12,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3 )
 axis = 1
 frames = ExtResource( 1 )
 animation = "shadow"
-frame = 30
+frame = 35
 playing = true
 
-[node name="BottomWave" type="AnimatedSprite3D" parent="."]
+[node name="WaveBottom" type="AnimatedSprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.3 )
 axis = 1
 frames = ExtResource( 2 )
 animation = "wave"
-frame = 38
+frame = 43
 playing = true

@@ -1,17 +1,14 @@
 extends KinematicBody
 
-## How fast the bullet travels
-export var bullet_speed: int = 10
-## How much damage the bullet does
-export var bullet_damage: int = 2
 var velocity: Vector3 = Vector3.ZERO
+onready var player_stats = get_node("/root/PlayerStats")
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 
-func init(player_pos: Vector3):
+func init(player_pos: Vector3, bullet_speed: float):
 	# Set the bullet's position
 	translation = player_pos
 	# and its velocity
@@ -20,4 +17,12 @@ func init(player_pos: Vector3):
 
 func _on_VisibilityNotifier_screen_exited():
 	#despawn the bullet when it leaves the screen
+	queue_free()
+
+
+func _on_MobDetector_body_entered(body: Node):
+	player_stats.bullet_hit()
+	#deal damage to the enemy
+	body._take_damage(player_stats.get_bullet_damage())
+	#despawn this bullet
 	queue_free()

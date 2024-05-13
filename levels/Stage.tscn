@@ -91,7 +91,7 @@ autostart = true
 [node name="GameUI" parent="." instance=ExtResource( 5 )]
 
 [node name="WaveArea" type="Area" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2.1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2.2 )
 collision_layer = 4
 collision_mask = 0
 
@@ -101,5 +101,10 @@ shape = SubResource( 3 )
 [node name="Waves" parent="." instance=ExtResource( 6 )]
 transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 2, 0 )
 
+[connection signal="die" from="Player" to="." method="player_die"]
+[connection signal="game_over" from="Player" to="." method="game_over"]
+[connection signal="win" from="Player" to="." method="game_win"]
 [connection signal="timeout" from="CarSpawnTimer" to="." method="_on_CarSpawnTimer_timeout"]
 [connection signal="timeout" from="PedSpawnTimer" to="." method="_on_PedSpawnTimer_timeout"]
+[connection signal="height_zero" from="GameUI" to="." method="height_zero"]
+[connection signal="body_entered" from="WaveArea" to="." method="_on_WaveArea_body_entered"]
