@@ -24,6 +24,7 @@ func init(height: int, health: int):
 	distance_value = 0.0
 	$GameGrid/HealthBar.set_max(health)
 	$GameGrid/HealthBar.set_value(health)
+	$GameGrid/HealthBar.set_custom_minimum_size(Vector2(health * 2, 10))
 
 
 func set_speed(new_speed: int):
@@ -51,6 +52,10 @@ func set_dist(origin: float):
 	var dist: String = String(origin as int)
 	
 	$GameGrid/DistValue.set_text(str(dist + " m"))
+
+
+func get_height() -> float :
+	return height_value
 
 
 func game_over():

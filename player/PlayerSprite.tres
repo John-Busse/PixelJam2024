@@ -1,17 +1,19 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=2]
+[gd_resource type="SpriteFrames" load_steps=6 format=2]
 
-[ext_resource path="res://art/surferSpriteWIP.png" type="Texture" id=1]
-[ext_resource path="res://art/surferSpriteWIP2.png" type="Texture" id=2]
-[ext_resource path="res://art/surferSpriteWIP1.png" type="Texture" id=3]
+[ext_resource path="res://art/MeepMorp/MeepMorp1.png" type="Texture" id=1]
+[ext_resource path="res://art/MeepMorp/MeepMorp2.png" type="Texture" id=2]
+[ext_resource path="res://art/MeepMorp/MeepMorp1c.png" type="Texture" id=3]
+[ext_resource path="res://art/MeepMorp/MeepMorp1b.png" type="Texture" id=4]
+[ext_resource path="res://art/MeepMorp/MeepMorp1a.png" type="Texture" id=5]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 4 ) ],
 "loop": false,
 "name": "game_over",
 "speed": 9.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": false,
 "name": "game_win",
 "speed": 16.0

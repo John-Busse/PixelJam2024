@@ -15,6 +15,7 @@ func _ready():
 func _process(_delta):
 	$GameUI.set_dist($TilingBG.get_pivot_dist())
 	$GameUI.set_health(player_stats.get_health())
+	$Waves.move_shadow($GameUI.get_height())
 
 
 func spawn_enemy(this_enemy: PackedScene, path_node: String):

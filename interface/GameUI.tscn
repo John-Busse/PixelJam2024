@@ -69,8 +69,8 @@ rect_min_size = Vector2( 50, 10 )
 input_pass_on_modal_close_click = false
 size_flags_horizontal = 6
 theme = ExtResource( 1 )
-max_value = 20.0
-value = 20.0
+max_value = 50.0
+value = 50.0
 rounded = true
 percent_visible = false
 
