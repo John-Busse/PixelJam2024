@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="MenuUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MenuBG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MainMenu" type="Control" parent="MenuBG"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Credits" type="Control" parent="MenuBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="MenuBG/Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 20.0
+margin_right = -40.0
+margin_bottom = -20.0
+text = "Credits
+John Busse: Programmer/Designer
+Matheus: Music
+Sheepy: Art
+
+External Assets:"
+align = 1
