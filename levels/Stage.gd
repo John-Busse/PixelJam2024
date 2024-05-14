@@ -26,11 +26,11 @@ func spawn_enemy(this_enemy: PackedScene, path_node: String):
 	#Choose a spawn location along the path
 	mob_path_node.unit_offset = randf()
 	var spawn_loc: Vector3 = mob_path_node.translation
-	spawn_loc.y = 2.0	#update the y-value
+	spawn_loc.y = $RoadPath.translation.y	#update the y-value
 	#choose a destination location along the path
 	mob_path_node.unit_offset = randf()
 	var dest_loc: Vector3 = mob_path_node.translation
-	dest_loc.y = 2.0	#Update the y-value
+	dest_loc.y = $RoadPath.translation.y	#Update the y-value
 	
 	mob._initialize(spawn_loc, dest_loc)
 	

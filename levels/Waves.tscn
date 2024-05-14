@@ -7,18 +7,19 @@
 [node name="Waves" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="WaveShadow" type="AnimatedSprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3 )
-axis = 1
-frames = ExtResource( 1 )
-animation = "shadow"
-frame = 46
-playing = true
-
-[node name="WaveBottom" type="AnimatedSprite3D" parent="."]
+[node name="WaveTop" type="AnimatedSprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.3 )
 axis = 1
 frames = ExtResource( 2 )
 animation = "wave"
-frame = 5
+frame = 18
+playing = true
+
+[node name="WaveShadow" type="AnimatedSprite3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3 )
+modulate = Color( 1, 1, 1, 0.75 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "shadow"
+frame = 41
 playing = true

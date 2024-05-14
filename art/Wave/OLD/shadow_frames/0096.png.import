@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/0096.png-99d2357853e64e9dd40af3d0c57edf1a.s3tc.stex"
-path.etc="res://.import/0096.png-99d2357853e64e9dd40af3d0c57edf1a.etc.stex"
+path.s3tc="res://.import/0096.png-9d446d76272cb9dcacf560149dc1f02b.s3tc.stex"
+path.etc="res://.import/0096.png-9d446d76272cb9dcacf560149dc1f02b.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://art/Wave/shadow_frames/0096.png"
-dest_files=[ "res://.import/0096.png-99d2357853e64e9dd40af3d0c57edf1a.s3tc.stex", "res://.import/0096.png-99d2357853e64e9dd40af3d0c57edf1a.etc.stex" ]
+source_file="res://art/Wave/OLD/shadow_frames/0096.png"
+dest_files=[ "res://.import/0096.png-9d446d76272cb9dcacf560149dc1f02b.s3tc.stex", "res://.import/0096.png-9d446d76272cb9dcacf560149dc1f02b.etc.stex" ]
 
 [params]
 

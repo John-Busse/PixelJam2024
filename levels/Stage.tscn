@@ -12,9 +12,9 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 0.1
 
-[sub_resource type="Curve3D" id=2]
+[sub_resource type="Curve3D" id=4]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -1.4961, 0, -2.49685, 0, 0, 0, 0, 0, 0, 1.51024, 0, -2.48653, 0, 0, 0, 0, 0, 0, -1.4961, 0, -2.49685 ),
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.900082, 0, -2.49446, 0, 0, 0, 0, 0, 0, 0.901504, 0, -2.48983, 0, 0, 0, 0, 0, 0, -0.900082, 0, -2.49446 ),
 "tilts": PoolRealArray( 0, 0, 0 )
 }
 
@@ -51,18 +51,16 @@ size = 4.8
 far = 10.0
 
 [node name="StreetEdges" type="Spatial" parent="."]
-visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="StreetEdges"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0, -2.5 )
 mesh = SubResource( 1 )
 
 [node name="MeshInstance2" type="MeshInstance" parent="StreetEdges"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -2.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, -2.5 )
 mesh = SubResource( 1 )
 
 [node name="Sidewalks" type="Spatial" parent="."]
-visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Sidewalks"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -2.5 )
@@ -74,10 +72,10 @@ mesh = SubResource( 1 )
 
 [node name="RoadPath" type="Path" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
-curve = SubResource( 2 )
+curve = SubResource( 4 )
 
 [node name="PathFollow" type="PathFollow" parent="RoadPath"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4961, 0, -2.49685 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.902576, 0, -2.50024 )
 
 [node name="CarSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
