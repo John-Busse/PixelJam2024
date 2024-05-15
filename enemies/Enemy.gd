@@ -14,7 +14,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _initialize(start_pos: Vector3, end_pos: Vector3):
+func _initialize(start_pos: Vector3, surf_speed: int):
 	pass
 
 
@@ -27,4 +27,7 @@ func _take_damage(damage: int):
 
 
 func _destroyed():
+	pass
+
+func _calculate_speed():
 	pass

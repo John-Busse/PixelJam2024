@@ -17,6 +17,7 @@ var wave_height: int = 21
 var enemies_defeated: int = 0
 var bullets_fired: int = 0
 var bullets_hit: int = 0
+var currency: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -81,6 +82,24 @@ func get_max_health() -> int:
 	return max_health as int
 
 
+func get_bullets_fired() -> int:
+	return bullets_fired
+
+
+func get_bullets_hit() -> int:
+	return bullets_hit
+
+func get_enemies() -> int:
+	return enemies_defeated
+
+func get_currency() -> int:
+	return currency
+
+func get_accuracy() -> int:
+	var accuracy: float = float(bullets_hit) / float(bullets_fired)
+	accuracy *= 100
+	return accuracy as int
+
 # SETTERS
 func bullet_fired():
 	bullets_fired += 1
@@ -96,3 +115,7 @@ func enemy_destroyed():
 
 func set_surf_speed(new_speed: int):
 	surf_speed = new_speed
+
+
+func add_currency(extra: int):
+	currency += extra

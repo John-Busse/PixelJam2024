@@ -1,12 +1,13 @@
 extends Node
 
-### HANDLE ENEMY SPAWNS IN THIS SCRIPT
+signal game_end
 export var car_scene: PackedScene
 export var ped_scene: PackedScene
 onready var player_stats = get_node("/root/PlayerStats")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player_stats.new_stage()
 	randomize() #Seed the random generator
 	$TilingBG.set_speed(player_stats.get_surf_speed())
 	$GameUI.init(player_stats.get_wave_height(), player_stats.get_max_health())
@@ -32,7 +33,9 @@ func spawn_enemy(this_enemy: PackedScene, path_node: String):
 	var dest_loc: Vector3 = mob_path_node.translation
 	dest_loc.y = $RoadPath.translation.y	#Update the y-value
 	
-	mob._initialize(spawn_loc, dest_loc)
+	mob._initialize(spawn_loc, player_stats.get_surf_speed())
+	#if the game ends, we need to update the mob speed
+	connect("game_end", mob, "_calculate_speed")
 	
 	add_child(mob)
 
@@ -43,6 +46,7 @@ func stop_surfer():
 	$TilingBG.set_speed(player_stats.get_surf_speed()) 
 	$CarSpawnTimer.set_paused(true)
 	$PedSpawnTimer.set_paused(true)
+	emit_signal("game_end")
 
 
 func player_die():

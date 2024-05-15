@@ -11,6 +11,7 @@ func _ready():
 	$GameGrid.set_visible(true)
 	$GameOver.set_visible(false)
 	$GameWon.set_visible(false)
+	$EndgameStats.set_visible(false)
 
 
 func _process(delta):	
@@ -47,9 +48,9 @@ func set_health(health: int):
 
 #Set the distance, based on distance from the tile origin
 func set_dist(origin: float):
-	origin *= 100.0 / 4.8
+	distance_value = origin * 100.0 / 4.8
 	
-	var dist: String = String(origin as int)
+	var dist: String = String(distance_value as int)
 	
 	$GameGrid/DistValue.set_text(str(dist + " m"))
 
@@ -59,12 +60,30 @@ func get_height() -> float :
 
 
 func game_over():
-	#$GameGrid.set_visible(false)	#disable the game UI
+	end_game()
 	$GameOver.set_visible(true)	#enable game over
 	pass
 
 
 func game_win():
-	#$GameGrid.set_visible(false)	#disable game UI
+	end_game()
 	$GameWon.set_visible(true)	#enable game won
 	pass
+
+
+func end_game():
+	$EndgameStats.set_visible(true)
+	#Display the various stats
+	var text: String
+	text = "Shots fired: " + str(PlayerStats.get_bullets_fired())
+	$EndgameStats/PanelContainer/VBoxContainer/ShotsFiredLabel.set_text(text)
+	text = "Shots hit: " + str(PlayerStats.get_bullets_hit())
+	$EndgameStats/PanelContainer/VBoxContainer/ShotsHitLabel.set_text(text)
+	text = "Accuracy: " + str(PlayerStats.get_accuracy()) + " %"
+	$EndgameStats/PanelContainer/VBoxContainer/AccuracyLabel.set_text(text)
+	text = "Enemies Defeated " + str(PlayerStats.get_enemies())
+	$EndgameStats/PanelContainer/VBoxContainer/EnemiesLabel.set_text(text)
+	var new_currency: int = distance_value / 100 + PlayerStats.get_enemies() * 5
+	text = "Materials gained: " + str(new_currency)
+	PlayerStats.add_currency(new_currency)
+	$EndgameStats/PanelContainer/VBoxContainer/CurrencyLabel.set_text(text)
