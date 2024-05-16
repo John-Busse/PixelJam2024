@@ -22,7 +22,7 @@ func set_speed(new_speed: int):
 # Instantiate a new tile, spawn it above the previous tile
 func spawn_new_tile():
 	var new_tile: Node = tile_scene.instance()
-	var tile_location: Vector3 = last_node.translation + Vector3(0.0, 0.0, -6.4)
+	var tile_location: Vector3 = last_node.translation + Vector3(0.0, 0.0, -4.8)
 	$Pivot.add_child(new_tile)
 	new_tile.translation = tile_location
 	#new_tile.init()
