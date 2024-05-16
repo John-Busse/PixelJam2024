@@ -52,42 +52,40 @@ func take_damage(damage: int):
 		health = 0.0
 
 # GETTERS
+func get_fire_rate() -> float:
+	return fire_rate
+
 func get_bullet_damage() -> int:
 	return bullet_damage
 
 func get_bullet_speed() -> int:
 	return bullet_speed
 
-func get_surf_speed() -> int:
-	return surf_speed
+func get_health() -> int:
+	return health as int
 
-func get_wave_height() -> int:
-	return wave_height
+func get_max_health() -> int:
+	return max_health as int
 
 func get_move_speed() -> int:
 	return move_speed
 
-func get_fire_rate() -> float:
-	return fire_rate
+func get_surf_speed() -> int:
+	return surf_speed
 
-func get_health() -> int:
-	return health as int
+#func get_heal_rate
 
+func get_wave_height() -> int:
+	return wave_height
 
-func get_max_health() -> int:
-	return max_health as int
+func get_enemies() -> int:
+	return enemies_defeated
 
 func get_bullets_fired() -> int:
 	return bullets_fired
 
 func get_bullets_hit() -> int:
 	return bullets_hit
-
-func get_enemies() -> int:
-	return enemies_defeated
-
-func get_currency() -> int:
-	return currency
 
 func get_accuracy() -> int:
 	var accuracy: float = float(bullets_hit) / float(bullets_fired)
@@ -96,6 +94,11 @@ func get_accuracy() -> int:
 
 func get_materials() -> int:
 	return currency
+
+func get_hydrant_timer() -> float:
+	return hydrant_timer
+
+# get assistant timer
 
 func get_enemy_timer() -> float:
 	return enemy_timer

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://enemies/PedMob.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://enemies/PedMob.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.153537, 2.1, 0.239725 )
+
+[node name="PedMob" type="KinematicBody"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 2 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Spatial"]
+transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "human"
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+aabb = AABB( -0.156502, -1, -0.239725, 0.313004, 2, 0.47945 )
+
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

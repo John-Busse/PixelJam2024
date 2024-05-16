@@ -85,9 +85,9 @@ func _on_PedSpawnTimer_timeout():
 	var offset: Vector3 = Vector3.ZERO
 	var num_peds = randi() % 3
 	if ped_side:
-		mob_path_node = get_node("SpawnRef/Sidewalks/PedSpawn0")
+		mob_path_node = get_node("Sidewalks/PedSpawn0")
 	else:
-		mob_path_node = get_node("SpawnRef/Sidewalks/PedSpawn1")
+		mob_path_node = get_node("Sidewalks/PedSpawn1")
 	
 	for i in num_peds:
 		offset.x = rand_range(-0.25, 0.25)
