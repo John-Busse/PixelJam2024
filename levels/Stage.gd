@@ -3,6 +3,8 @@ extends Node
 signal game_end
 export var car_scene: PackedScene
 export var ped_scene: PackedScene
+var car_side: bool
+var ped_side: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,6 +12,11 @@ func _ready():
 	randomize() #Seed the random generator
 	$TilingBG.set_speed(PlayerStats.get_surf_speed())
 	$GameUI.init(PlayerStats.get_wave_height(), PlayerStats.get_max_health())
+	car_side = randi() % 2
+	ped_side = randi() % 2
+	
+	if PlayerStats.get_hydrant_timer() == 0.0:
+		$HydrantSpawnTimer.set_paused(true)
 
 
 func _process(_delta):
@@ -18,21 +25,12 @@ func _process(_delta):
 	$Waves.move_shadow($GameUI.get_height())
 
 
-func spawn_enemy(this_enemy: PackedScene, path_node: String):
+func spawn_enemy(this_enemy: PackedScene, spawn_point: Vector3):
 	var mob: Node = this_enemy.instance()
 	
-	#Get the path node
-	var mob_path_node: Node = get_node(path_node)
-	#Choose a spawn location along the path
-	mob_path_node.unit_offset = randf()
-	var spawn_loc: Vector3 = mob_path_node.translation
-	spawn_loc.y = $RoadPath.translation.y	#update the y-value
-	#choose a destination location along the path
-	mob_path_node.unit_offset = randf()
-	var dest_loc: Vector3 = mob_path_node.translation
-	dest_loc.y = $RoadPath.translation.y	#Update the y-value
+	spawn_point.y = $RoadPath.translation.y	#Update the y-value
 	
-	mob._initialize(spawn_loc, PlayerStats.get_surf_speed())
+	mob._initialize(spawn_point, PlayerStats.get_surf_speed())
 	#if the game ends, we need to update the mob speed
 	connect("game_end", mob, "_calculate_speed")
 	
@@ -68,14 +66,34 @@ func game_win():
 
 #spawn a car when this timer ends
 func _on_CarSpawnTimer_timeout():
-	spawn_enemy(car_scene, "RoadPath/PathFollow")
-	$CarSpawnTimer.set_wait_time(2.0)
-	pass # Replace with function body.
+	#Get the path node
+	var mob_path_node: Node = get_node("RoadPath/PathFollow")
+	#Find a random spawn point
+	var offset: float = randf() / 2.0
+	if car_side:	# this makes the cars alternate between the left and right sides
+		offset += 0.5
+	
+	car_side = !car_side	#flip the bool
+	#set the spawn point
+	mob_path_node.unit_offset = offset
+	spawn_enemy(car_scene, mob_path_node.translation)
+	$CarSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer())
 
 #Spawn a pedestrian when this timer ends
 func _on_PedSpawnTimer_timeout():
-	#spawn_enemy(ped_scene)
-	pass # Replace with function body.
+	var mob_path_node: Node
+	var offset: Vector3 = Vector3.ZERO
+	var num_peds = randi() % 3
+	if ped_side:
+		mob_path_node = get_node("SpawnRef/Sidewalks/PedSpawn0")
+	else:
+		mob_path_node = get_node("SpawnRef/Sidewalks/PedSpawn1")
+	
+	for i in num_peds:
+		offset.x = rand_range(-0.25, 0.25)
+		spawn_enemy(ped_scene, mob_path_node.translation + offset)
+	
+	$PedSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer() / 2.0)
 
 #When an active mob enters the wave
 func _on_WaveArea_body_entered(body):
