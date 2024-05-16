@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://interface/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/GameUI.gd" type="Script" id=2]
+[ext_resource path="res://interface/theme/LogoFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interface/MenuItem.gd" type="Script" id=5]
 
 [node name="GameUI" type="Control"]
 anchor_right = 1.0
@@ -20,7 +23,7 @@ columns = 3
 
 [node name="DistanceText" type="Label" parent="GameGrid"]
 margin_right = 211.0
-margin_bottom = 11.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource( 1 )
@@ -30,7 +33,7 @@ align = 1
 [node name="BalanceText" type="Label" parent="GameGrid"]
 margin_left = 215.0
 margin_right = 426.0
-margin_bottom = 11.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Balance"
@@ -39,16 +42,16 @@ align = 1
 [node name="HeightText" type="Label" parent="GameGrid"]
 margin_left = 430.0
 margin_right = 640.0
-margin_bottom = 11.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "Wave Height"
 align = 1
 
 [node name="DistValue" type="Label" parent="GameGrid"]
-margin_top = 15.0
+margin_top = 20.0
 margin_right = 211.0
-margin_bottom = 26.0
+margin_bottom = 36.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "3860"
@@ -56,9 +59,9 @@ align = 1
 
 [node name="HealthBar" type="ProgressBar" parent="GameGrid"]
 margin_left = 295.0
-margin_top = 15.0
+margin_top = 20.0
 margin_right = 345.0
-margin_bottom = 25.0
+margin_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 50, 10 )
@@ -72,16 +75,15 @@ percent_visible = false
 
 [node name="HeightValue" type="Label" parent="GameGrid"]
 margin_left = 430.0
-margin_top = 15.0
+margin_top = 20.0
 margin_right = 640.0
-margin_bottom = 26.0
+margin_bottom = 36.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "200"
 align = 1
 
 [node name="GameOver" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.3, 0.3, 0.3, 0.5 )
@@ -89,11 +91,13 @@ color = Color( 0.3, 0.3, 0.3, 0.5 )
 [node name="GameOverLabel" type="Label" parent="GameOver"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
+margin_left = -144.0
 margin_top = 50.0
-margin_right = 49.5
-margin_bottom = 11.0
+margin_right = 144.0
+margin_bottom = 32.0
 theme = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "GAME OVER"
 align = 1
 
@@ -106,60 +110,126 @@ color = Color( 0.3, 0.3, 0.3, 0.5 )
 [node name="VictoryLabel" type="Label" parent="GameWon"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -71.0
+margin_left = -208.0
 margin_top = 50.0
-margin_right = 71.0
-margin_bottom = 14.0
+margin_right = 208.0
+margin_bottom = 32.0
 theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "You Survived!"
 align = 1
 
 [node name="EndgameStats" type="Control" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="PanelContainer" type="PanelContainer" parent="EndgameStats"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -111.5
-margin_top = -42.5
-margin_right = 111.5
-margin_bottom = 42.5
+margin_left = -320.0
+margin_top = -240.0
+margin_right = 320.0
+margin_bottom = 240.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndgameStats/PanelContainer"]
+[node name="EndgamePanel" type="PanelContainer" parent="EndgameStats"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.0
+margin_top = -85.0
+margin_right = 207.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 0, 170 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndgameStats/EndgamePanel"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 216.0
-margin_bottom = 78.0
+margin_right = 407.0
+margin_bottom = 183.0
 
-[node name="ShotsFiredLabel" type="Label" parent="EndgameStats/PanelContainer/VBoxContainer"]
-margin_right = 209.0
-margin_bottom = 11.0
+[node name="ShotsFiredLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 16.0
 text = "Shots Fired: "
 
-[node name="ShotsHitLabel" type="Label" parent="EndgameStats/PanelContainer/VBoxContainer"]
-margin_top = 15.0
-margin_right = 209.0
-margin_bottom = 26.0
+[node name="ShotsHitLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 20.0
+margin_right = 400.0
+margin_bottom = 36.0
 text = "Shots Hit: "
 
-[node name="AccuracyLabel" type="Label" parent="EndgameStats/PanelContainer/VBoxContainer"]
-margin_top = 30.0
-margin_right = 209.0
-margin_bottom = 41.0
+[node name="AccuracyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 40.0
+margin_right = 400.0
+margin_bottom = 56.0
 text = "Accuracy: "
 
-[node name="EnemiesLabel" type="Label" parent="EndgameStats/PanelContainer/VBoxContainer"]
-margin_top = 45.0
-margin_right = 209.0
-margin_bottom = 56.0
-text = "Obstacles Removed: "
-
-[node name="CurrencyLabel" type="Label" parent="EndgameStats/PanelContainer/VBoxContainer"]
+[node name="EnemiesLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
 margin_top = 60.0
-margin_right = 209.0
-margin_bottom = 71.0
+margin_right = 400.0
+margin_bottom = 76.0
+text = "Obstacles Removed:"
+
+[node name="EnemyReward" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 80.0
+margin_right = 400.0
+margin_bottom = 96.0
+text = "Reward:"
+
+[node name="DistanceLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 116.0
+text = "Distance Traveled: 3860 m"
+
+[node name="RewardLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 120.0
+margin_right = 400.0
+margin_bottom = 136.0
+text = "Reward:"
+
+[node name="PenaltyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 140.0
+margin_right = 400.0
+margin_bottom = 156.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Penalty: 1/2 Materials"
+
+[node name="CurrencyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 160.0
+margin_right = 400.0
+margin_bottom = 176.0
 text = "Materials Gained:"
+
+[node name="EndgameTimer" type="Timer" parent="EndgameStats"]
+one_shot = true
+
+[node name="EndRun" type="Control" parent="EndgameStats"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="EndRunContainer" type="VBoxContainer" parent="EndgameStats/EndRun"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 140.0
+margin_top = 345.0
+margin_right = 460.0
+margin_bottom = 361.0
+
+[node name="ReturnLabel" type="Label" parent="EndgameStats/EndRun/EndRunContainer"]
+margin_right = 320.0
+margin_bottom = 16.0
+text = "Return to Mothership"
+align = 1
+script = ExtResource( 5 )
+
+[node name="MenuCursor" parent="EndgameStats/EndRun" instance=ExtResource( 4 )]
+margin_left = 123.0
+margin_top = 357.0
+margin_right = 155.0
+margin_bottom = 389.0
+menu_container_path = NodePath("../EndRunContainer")
+
+[connection signal="timeout" from="EndgameStats/EndgameTimer" to="." method="endgame_timer"]
+[connection signal="cursor_selected" from="EndgameStats/EndRun/EndRunContainer/ReturnLabel" to="." method="exit_level"]

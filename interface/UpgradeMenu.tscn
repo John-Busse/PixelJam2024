@@ -1,0 +1,289 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/MenuItem.gd" type="Script" id=3]
+[ext_resource path="res://interface/UpgradeMenu.gd" type="Script" id=4]
+[ext_resource path="res://interface/theme/LogoFont.tres" type="DynamicFont" id=5]
+
+[node name="UpgradeMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MaterialContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_left = 15.0
+margin_top = 20.0
+margin_right = -15.0
+margin_bottom = 16.0
+
+[node name="MatLabel" type="Label" parent="MaterialContainer"]
+margin_right = 160.0
+margin_bottom = 16.0
+text = "MATERIALS:"
+
+[node name="MatCountLabel" type="Label" parent="MaterialContainer"]
+margin_left = 164.0
+margin_right = 264.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 100, 0 )
+text = "387000"
+align = 2
+
+[node name="CantAffordLabel" type="Label" parent="MaterialContainer"]
+visible = false
+margin_left = 268.0
+margin_right = 610.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Cannot afford!"
+align = 2
+
+[node name="CantAffordTimer" type="Timer" parent="MaterialContainer/CantAffordLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="PurchasedLabel" type="Label" parent="MaterialContainer"]
+visible = false
+margin_left = 268.0
+margin_right = 610.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "Upgrade Purchased!"
+align = 2
+
+[node name="PurchasedTimer" type="Timer" parent="MaterialContainer/PurchasedLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="AssistLabel" type="Label" parent="."]
+visible = false
+margin_left = 418.5
+margin_top = 90.0
+margin_right = 607.5
+margin_bottom = 147.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "assistant	"
+align = 1
+script = ExtResource( 3 )
+
+[node name="BeachLabel" type="Label" parent="."]
+visible = false
+margin_left = 418.5
+margin_top = 212.0
+margin_right = 607.5
+margin_bottom = 269.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "
+beach
+advert"
+align = 1
+script = ExtResource( 3 )
+
+[node name="UpgradeGrid" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -287.5
+margin_top = -150.0
+margin_right = 287.5
+margin_bottom = 90.0
+rect_min_size = Vector2( 550, 200 )
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+columns = 3
+
+[node name="MeteorLabel" type="Label" parent="UpgradeGrid"]
+margin_right = 189.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "meteor
+size"
+align = 1
+script = ExtResource( 3 )
+
+[node name="HydrantLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 193.0
+margin_right = 382.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "fire
+hydrant"
+align = 1
+script = ExtResource( 3 )
+
+[node name="NextRunLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 386.0
+margin_right = 575.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "
+next run"
+align = 1
+script = ExtResource( 3 )
+
+[node name="DamageLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 82.0
+margin_right = 189.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster
+width"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SpeedLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 193.0
+margin_top = 82.0
+margin_right = 382.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster
+length"
+align = 1
+script = ExtResource( 3 )
+
+[node name="RateLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 386.0
+margin_top = 82.0
+margin_right = 575.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster
+reciever"
+align = 1
+script = ExtResource( 3 )
+
+[node name="BoardLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 163.0
+margin_right = 189.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard
+deck"
+align = 1
+script = ExtResource( 3 )
+
+[node name="FinsLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 193.0
+margin_top = 163.0
+margin_right = 382.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard
+fins"
+align = 1
+script = ExtResource( 3 )
+
+[node name="BalanceLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 386.0
+margin_top = 163.0
+margin_right = 575.0
+margin_bottom = 240.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard
+rails"
+align = 1
+script = ExtResource( 3 )
+
+[node name="UpgradeDescContainer" type="PanelContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -150.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDescContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 633.0
+margin_bottom = 143.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeDescContainer/VBoxContainer"]
+margin_right = 626.0
+margin_bottom = 67.0
+
+[node name="ItemNameLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
+margin_right = 494.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 0, 67 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "SURFBOARD
+DURABILITY"
+align = 1
+valign = 1
+
+[node name="ItemCostLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
+margin_left = 498.0
+margin_top = 17.0
+margin_right = 626.0
+margin_bottom = 49.0
+rect_min_size = Vector2( 128, 32 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+align = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UpgradeDescContainer/VBoxContainer"]
+margin_top = 71.0
+margin_right = 626.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="ItemDescLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer"]
+margin_top = 75.0
+margin_right = 626.0
+margin_bottom = 136.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+text = "throw a bigger rock into the ocean.
+increases initial wave height"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MenuCursor" parent="." instance=ExtResource( 2 )]
+margin_left = 9.0
+margin_top = 133.0
+margin_right = 41.0
+margin_bottom = 165.0
+menu_container_path = NodePath("../UpgradeGrid")
+cursor_offset = Vector2( 10, 15 )
+
+[connection signal="timeout" from="MaterialContainer/CantAffordLabel/CantAffordTimer" to="." method="broke_timer"]
+[connection signal="timeout" from="MaterialContainer/PurchasedLabel/PurchasedTimer" to="." method="purchase_timer"]
+[connection signal="cursor_selected" from="UpgradeGrid/MeteorLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/NextRunLabel" to="." method="start_run"]
+[connection signal="cursor_selected" from="UpgradeGrid/DamageLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/SpeedLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/RateLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/BoardLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/FinsLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/BalanceLabel" to="." method="buy_item"]
+[connection signal="cursor_moved" from="MenuCursor" to="." method="update_desc"]

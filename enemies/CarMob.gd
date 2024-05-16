@@ -38,19 +38,19 @@ func _take_damage(damage: int):
 
 # When the enemy is destroyed (either by a bullet or the wave
 func _destroyed():
-	var player_stats = get_node("/root/PlayerStats")
 	# health can only be <= 0 if shot by the player
 	if health <= 0:
 		#mark the enemy as destroyed
-		player_stats.enemy_destroyed()
+		PlayerStats.enemy_destroyed()
+		health = 0
 	
 	damage_value = 0	#No longer deal damage
-	velocity = Vector3.BACK * player_stats.get_surf_speed()	#stop moving
+	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
 	$CollisionShape.set_disabled(true)
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
 
 
 func _calculate_speed():
-	var surf_speed: int = get_node("/root/PlayerStats").get_surf_speed()
 	#Speed relative to the wave
-	velocity = Vector3.FORWARD * (speed - surf_speed)
+	if health != 0:	#only if the enemy hasn't been destroyed
+		velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())

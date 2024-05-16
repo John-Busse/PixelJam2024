@@ -1,5 +1,6 @@
 extends TextureRect
 
+signal cursor_moved
 ## The path to the node with the container
 export var menu_container_path : NodePath
 ## Location of the cursor
@@ -8,9 +9,6 @@ export var cursor_offset: Vector2 = Vector2(20.0, 0.0)
 onready var menu_container := get_node(menu_container_path)
 
 var current_item: int = 0
-
-func _ready():
-	pass
 
 func _process(delta):
 	var input: Vector2 = Vector2.ZERO
@@ -28,8 +26,9 @@ func _process(delta):
 		set_cursor_pos(current_item + input.y)
 	elif menu_container is GridContainer:
 		set_cursor_pos(current_item + input.x + input.y * menu_container.columns)
+		emit_signal("cursor_moved")
 	
-	if Input.is_action_just_pressed("ui_select"):
+	if Input.is_action_just_pressed("ui_accept"):
 		var current_menu_item = get_menu_item(current_item)
 		
 		if current_menu_item != null:
@@ -66,4 +65,17 @@ func set_cursor_pos(index: int) -> void:
 	rect_global_position = Vector2(position.x, position.y + size.y / 2.0) 
 	rect_global_position -= (rect_size / 2.0) + cursor_offset
 	
+		# if the index is above the child count
+	if index >= menu_container.get_child_count():
+		#cycle it around
+		index -= menu_container.get_child_count()
+	# if the index is below zero
+	if index < 0:
+		#cycle it around
+		index += menu_container.get_child_count()
+	
 	current_item = index
+
+
+func get_index() -> int:
+	return current_item

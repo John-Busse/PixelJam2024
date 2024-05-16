@@ -3,19 +3,18 @@ extends Node
 signal game_end
 export var car_scene: PackedScene
 export var ped_scene: PackedScene
-onready var player_stats = get_node("/root/PlayerStats")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player_stats.new_stage()
+	PlayerStats.new_stage()
 	randomize() #Seed the random generator
-	$TilingBG.set_speed(player_stats.get_surf_speed())
-	$GameUI.init(player_stats.get_wave_height(), player_stats.get_max_health())
+	$TilingBG.set_speed(PlayerStats.get_surf_speed())
+	$GameUI.init(PlayerStats.get_wave_height(), PlayerStats.get_max_health())
 
 
 func _process(_delta):
 	$GameUI.set_dist($TilingBG.get_pivot_dist())
-	$GameUI.set_health(player_stats.get_health())
+	$GameUI.set_health(PlayerStats.get_health())
 	$Waves.move_shadow($GameUI.get_height())
 
 
@@ -33,7 +32,7 @@ func spawn_enemy(this_enemy: PackedScene, path_node: String):
 	var dest_loc: Vector3 = mob_path_node.translation
 	dest_loc.y = $RoadPath.translation.y	#Update the y-value
 	
-	mob._initialize(spawn_loc, player_stats.get_surf_speed())
+	mob._initialize(spawn_loc, PlayerStats.get_surf_speed())
 	#if the game ends, we need to update the mob speed
 	connect("game_end", mob, "_calculate_speed")
 	
@@ -42,8 +41,8 @@ func spawn_enemy(this_enemy: PackedScene, path_node: String):
 
 func stop_surfer():
 	#Stop the wave
-	player_stats.set_surf_speed(0)
-	$TilingBG.set_speed(player_stats.get_surf_speed()) 
+	PlayerStats.set_surf_speed(0)
+	$TilingBG.set_speed(PlayerStats.get_surf_speed()) 
 	$CarSpawnTimer.set_paused(true)
 	$PedSpawnTimer.set_paused(true)
 	emit_signal("game_end")

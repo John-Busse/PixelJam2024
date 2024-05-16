@@ -7,7 +7,7 @@ var velocity: Vector3 = Vector3.ZERO
 var start_pos: Vector3
 var game_lost: bool
 var game_won: bool
-onready var player_stats = get_node("/root/PlayerStats")
+#onready var PlayerStats = get_node("/root/PlayerStats")
 
 func _ready():
 	game_lost = false
@@ -33,7 +33,7 @@ func _physics_process(delta):
 		#rotate the player in the direction we're moving
 		$Pivot.look_at(global_translation + direction, Vector3.UP)
 		
-		velocity.x = direction.x * player_stats.get_move_speed()
+		velocity.x = direction.x * PlayerStats.get_move_speed()
 		#making sure we don't move vertically or upward in case of collisions
 		translation.y = start_pos.y
 		translation.z = start_pos.z

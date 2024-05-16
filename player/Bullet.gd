@@ -1,7 +1,6 @@
 extends KinematicBody
 
 var velocity: Vector3 = Vector3.ZERO
-onready var player_stats = get_node("/root/PlayerStats")
 
 
 func _physics_process(_delta):
@@ -21,8 +20,8 @@ func _on_VisibilityNotifier_screen_exited():
 
 
 func _on_MobDetector_body_entered(body: Node):
-	player_stats.bullet_hit()
+	PlayerStats.bullet_hit()
 	#deal damage to the enemy
-	body._take_damage(player_stats.get_bullet_damage())
+	body._take_damage(PlayerStats.get_bullet_damage())
 	#despawn this bullet
 	queue_free()

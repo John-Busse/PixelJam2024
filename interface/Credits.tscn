@@ -1,14 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=1]
-[ext_resource path="res://interface/TextFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://interface/LogoFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://interface/theme/LogoFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://interface/TitleScreen.png" type="Texture" id=4]
 [ext_resource path="res://interface/MenuItem.gd" type="Script" id=5]
+[ext_resource path="res://interface/GoToMainMenu.gd" type="Script" id=6]
+[ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=7]
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="MenuBG" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -33,7 +36,6 @@ margin_bottom = -10.0
 [node name="ReturnToMenu" type="Label" parent="ReturnContainer"]
 margin_right = 324.0
 margin_bottom = 16.0
-custom_fonts/font = ExtResource( 2 )
 text = "Return to main menu!"
 align = 1
 valign = 1
@@ -58,7 +60,6 @@ autowrap = true
 margin_top = 146.0
 margin_right = 640.0
 margin_bottom = 238.0
-custom_fonts/font = ExtResource( 2 )
 text = "
 John Busse: Programming & Design
 Matheus: Music & Sound Design
@@ -80,7 +81,6 @@ autowrap = true
 margin_top = 278.0
 margin_right = 640.0
 margin_bottom = 370.0
-custom_fonts/font = ExtResource( 2 )
 text = "
 Font: PublicPixel by GGBotNet
 Licensed under Creative Commons Zero v1.0 Universal
@@ -89,8 +89,10 @@ align = 1
 autowrap = true
 
 [node name="CreditsMenuCursor" parent="." instance=ExtResource( 1 )]
-margin_left = 127.0
-margin_top = 358.0
-margin_right = 159.0
-margin_bottom = 390.0
+margin_left = 122.0
+margin_top = 441.0
+margin_right = 154.0
+margin_bottom = 473.0
 menu_container_path = NodePath("../ReturnContainer")
+
+[connection signal="cursor_selected" from="ReturnContainer/ReturnToMenu" to="." method="main_menu"]
