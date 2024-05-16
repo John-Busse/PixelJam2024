@@ -8,6 +8,10 @@ extents = Vector3( 0.075, 1, 0.275 )
 
 [node name="Surfer" type="KinematicBody"]
 collision_mask = 2
+axis_lock_motion_y = true
+axis_lock_motion_z = true
+move_lock_y = true
+move_lock_z = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

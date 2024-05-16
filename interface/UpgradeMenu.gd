@@ -17,7 +17,7 @@ var item_names: Array = [
 
 var base_prices: Array = [
 	200, 200, 1000,
-	500, 50, 200,
+	250, 50, 200,
 	100, 250, 500,
 	500, 0
 ]
@@ -35,7 +35,7 @@ var item_description: Array = [
 	#"Some friends will occasionally fly in to help your run!",
 	"Enough shopping, it's time for surfing!",
 	"Increase your blaster's barrel width.\nIncrease blaster damage!",
-	"Increase your blaster's barrel width.\nIncrease projectile speed!",
+	"Increase your blaster's barrel length.\nIncrease projectile speed!",
 	"Upgrade your blaster's reciever.\nIncrease rate of fire!",
 	"A better deck increases your maximum balance!",
 	"Better fins increase your horizontal movement speed in water!",
@@ -98,7 +98,7 @@ func update_price():
 
 
 func buy_item():
-	if PlayerStats.get_currency() >= price:
+	if PlayerStats.get_materials() >= price:
 		PlayerStats.buy_item(index, price)
 		update_material_count()
 		$MaterialContainer/PurchasedLabel.set_visible(true)
