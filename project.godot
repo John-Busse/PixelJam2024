@@ -123,8 +123,6 @@ fire={
 3d_physics/layer_1="player"
 3d_physics/layer_2="mobs"
 3d_physics/layer_3="wave"
-3d_physics/layer_4="playerBlockers"
-3d_physics/layer_5="obstacles"
 
 [physics]
 

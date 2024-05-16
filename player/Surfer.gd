@@ -35,8 +35,8 @@ func _physics_process(delta):
 		
 		velocity.x = direction.x * PlayerStats.get_move_speed()
 		#making sure we don't move vertically or upward in case of collisions
-		#translation.y = start_pos.y
-		#translation.z = start_pos.z
+		translation.y = start_pos.y
+		translation.z = start_pos.z
 	
 	velocity = move_and_slide(velocity, Vector3.UP)
 

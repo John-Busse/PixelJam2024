@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/TilingBG.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -6,14 +6,16 @@
 [ext_resource path="res://enemies/CarMob.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interface/GameUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/Waves.tscn" type="PackedScene" id=6]
-[ext_resource path="res://enemies/PedMob.tscn" type="PackedScene" id=7]
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.1
 
 [sub_resource type="Curve3D" id=4]
 _data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.575604, 0, -2.48908, 0, 0, 0, 0, 0, 0, -0.561671, 0, -2.49818 ),
-"tilts": PoolRealArray( 0, 0 )
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.900082, 0, -2.49446, 0, 0, 0, 0, 0, 0, 0.901504, 0, -2.48983, 0, 0, 0, 0, 0, 0, -0.900082, 0, -2.49446 ),
+"tilts": PoolRealArray( 0, 0, 0 )
 }
 
 [sub_resource type="BoxShape" id=3]
@@ -32,26 +34,9 @@ __meta__ = {
 6- Camera"
 }
 car_scene = ExtResource( 4 )
-ped_scene = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1.25 )
-
-[node name="PlayerBlock0" type="StaticBody" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97785, 0, 0 )
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="Player/PlayerBlock0"]
-shape = SubResource( 5 )
-
-[node name="PlayerBlock1" type="StaticBody" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94686, 0, 0 )
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape" type="CollisionShape" parent="Player/PlayerBlock1"]
-shape = SubResource( 5 )
 
 [node name="TilingBG" parent="." instance=ExtResource( 1 )]
 
@@ -90,17 +75,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 curve = SubResource( 4 )
 
 [node name="PathFollow" type="PathFollow" parent="RoadPath"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.575604, 0, -2.48908 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.900082, 0, -2.49446 )
 
 [node name="CarSpawnTimer" type="Timer" parent="."]
-wait_time = 1.68
-autostart = true
-
-[node name="HydrantSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
 [node name="PedSpawnTimer" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
 autostart = true
 
 [node name="GameUI" parent="." instance=ExtResource( 5 )]
@@ -120,7 +103,6 @@ transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 2, 0 )
 [connection signal="game_over" from="Player" to="." method="game_over"]
 [connection signal="win" from="Player" to="." method="game_win"]
 [connection signal="timeout" from="CarSpawnTimer" to="." method="_on_CarSpawnTimer_timeout"]
-[connection signal="timeout" from="HydrantSpawnTimer" to="." method="_on_CarSpawnTimer_timeout"]
 [connection signal="timeout" from="PedSpawnTimer" to="." method="_on_PedSpawnTimer_timeout"]
 [connection signal="height_zero" from="GameUI" to="." method="height_zero"]
 [connection signal="body_entered" from="WaveArea" to="." method="_on_WaveArea_body_entered"]

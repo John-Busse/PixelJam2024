@@ -19,7 +19,7 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 
 
 func _get_damage_value() -> int:
-	return damage_value
+	return 0
 
 
 func _take_damage(damage: int):

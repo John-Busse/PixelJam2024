@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/0036.png-28d801cfce7b0ed23be92ebadad1095b.s3tc.stex"
-path.etc="res://.import/0036.png-28d801cfce7b0ed23be92ebadad1095b.etc.stex"
+path.s3tc="res://.import/bulletWIP0.png-b9040e4ae393e3e3116ff72bb9ef4cd7.s3tc.stex"
+path.etc="res://.import/bulletWIP0.png-b9040e4ae393e3e3116ff72bb9ef4cd7.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,19 +11,19 @@ metadata={
 
 [deps]
 
-source_file="res://art/Hydrant/0036.png"
-dest_files=[ "res://.import/0036.png-28d801cfce7b0ed23be92ebadad1095b.s3tc.stex", "res://.import/0036.png-28d801cfce7b0ed23be92ebadad1095b.etc.stex" ]
+source_file="res://art/bulletWIP0.png"
+dest_files=[ "res://.import/bulletWIP0.png-b9040e4ae393e3e3116ff72bb9ef4cd7.s3tc.stex", "res://.import/bulletWIP0.png-b9040e4ae393e3e3116ff72bb9ef4cd7.etc.stex" ]
 
 [params]
 
 compress/mode=2
-compress/lossy_quality=1.0
+compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=false
-flags/mipmaps=false
+flags/filter=true
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=false
