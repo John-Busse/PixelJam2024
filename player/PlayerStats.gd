@@ -88,8 +88,11 @@ func get_bullets_hit() -> int:
 	return bullets_hit
 
 func get_accuracy() -> int:
-	var accuracy: float = float(bullets_hit) / float(bullets_fired)
-	accuracy *= 100
+	var accuracy: float = 0.0
+	if bullets_fired > 0:
+		accuracy = float(bullets_hit) / float(bullets_fired)
+		accuracy *= 100
+
 	return accuracy as int
 
 func get_materials() -> int:
@@ -153,7 +156,7 @@ func buy_item(index: int, price: int):
 		0:	#Meteor size (wave height)
 			wave_height += 25
 		1:	#Fire Hydrant
-			hydrant_timer = 0.5
+			hydrant_timer = 5.0
 		2:	#Assistant
 			assistant_timer = 5.0
 		3:	#Blaster Width (bullet_damage)
@@ -170,4 +173,3 @@ func buy_item(index: int, price: int):
 			heal_rate += 0.5
 		9:	#beach ads (enemy_timer)
 			enemy_timer -= 2.0
-	pass

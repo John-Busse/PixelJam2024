@@ -42,8 +42,8 @@ func _destroyed():
 	if health <= 0:
 		#mark the enemy as destroyed
 		PlayerStats.enemy_destroyed()
-		health = 0
 	
+	health = 0
 	damage_value = 0	#No longer deal damage
 	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
 	$CollisionShape.set_disabled(true)

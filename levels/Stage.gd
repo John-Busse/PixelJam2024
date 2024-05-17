@@ -3,6 +3,7 @@ extends Node
 signal game_end
 export var car_scene: PackedScene
 export var ped_scene: PackedScene
+export var hydrant_scene: PackedScene
 var car_side: bool
 var ped_side: bool
 
@@ -13,7 +14,6 @@ func _ready():
 	$TilingBG.set_speed(PlayerStats.get_surf_speed())
 	$GameUI.init(PlayerStats.get_wave_height(), PlayerStats.get_max_health())
 	car_side = randi() % 2
-	ped_side = randi() % 2
 	
 	if PlayerStats.get_hydrant_timer() == 0.0:
 		$HydrantSpawnTimer.set_paused(true)
@@ -43,6 +43,7 @@ func stop_surfer():
 	$TilingBG.set_speed(PlayerStats.get_surf_speed()) 
 	$CarSpawnTimer.set_paused(true)
 	$PedSpawnTimer.set_paused(true)
+	$HydrantSpawnTimer.set_paused(true)
 	emit_signal("game_end")
 
 
@@ -84,6 +85,7 @@ func _on_PedSpawnTimer_timeout():
 	var mob_path_node: Node
 	var offset: Vector3 = Vector3.ZERO
 	var num_peds = randi() % 3
+	ped_side = randi() % 2
 	if ped_side:
 		mob_path_node = get_node("Sidewalks/PedSpawn0")
 	else:
@@ -94,6 +96,19 @@ func _on_PedSpawnTimer_timeout():
 		spawn_enemy(ped_scene, mob_path_node.translation + offset)
 	
 	$PedSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer() / 2.0)
+
+
+func _on_HydrantSpawnTimer_timeout():
+	var mob_path_node: Node
+	var side: bool = randi() % 2
+	if side:
+		mob_path_node = get_node("Sidewalks/PedSpawn0")
+	else:
+		mob_path_node = get_node("Sidewalks/PedSpawn1")
+	
+	spawn_enemy(hydrant_scene, mob_path_node.translation)
+	
+	$HydrantSpawnTimer.set_wait_time(PlayerStats.get_hydrant_timer())
 
 #When an active mob enters the wave
 func _on_WaveArea_body_entered(body):

@@ -5,7 +5,7 @@
 [ext_resource path="res://player/Player.gd" type="Script" id=3]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 0.1, 1, 0.3 )
+extents = Vector3( 0.253368, 1, 0.496527 )
 
 [node name="Player" type="Spatial"]
 script = ExtResource( 3 )
