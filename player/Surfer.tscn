@@ -8,6 +8,8 @@ extents = Vector3( 0.202271, 1, 0.312369 )
 
 [node name="Surfer" type="KinematicBody"]
 collision_mask = 16
+axis_lock_motion_y = true
+move_lock_y = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -16,10 +18,14 @@ __meta__ = {
 [node name="Pivot" type="Spatial" parent="."]
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Pivot"]
-transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0 )
+transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, -0.105738, 0, -1.05766 )
 axis = 1
 frames = ExtResource( 1 )
-animation = "surf"
+animation = "surf_straight"
+frame = 2
+playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 2 )
+
+[connection signal="animation_finished" from="Pivot/AnimatedSprite3D" to="." method="_on_AnimatedSprite3D_animation_finished"]

@@ -83,7 +83,7 @@ func game_win():
 func _on_CarSpawnTimer_timeout():
 	$CarSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer())
 	$CarSpawnTimer.set_one_shot(false)
-	$CarSpawnTimer.start()
+	$CarSpawnTimer.start(PlayerStats.get_enemy_timer())
 	#Get the path node
 	var mob_path_node: Node = get_node("RoadPath/PathFollow")
 	
@@ -107,7 +107,7 @@ func _on_CarSpawnTimer_timeout():
 	else:	#20% to spawn a truck
 		which_scene = truck_scene
 		#trucks are longer, so they spawn further up the road
-		spawn_point.z += 1.0
+		spawn_point.z -= 1.0
 	
 	spawn_enemy(which_scene, spawn_point)
 

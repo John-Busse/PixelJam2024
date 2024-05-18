@@ -10,7 +10,7 @@ func _physics_process(_delta):
 	var target_pos: Vector3 = (end_pos - translation).normalized()
 	var player_pos: Vector3 = player_node.translation
 	player_pos.y = translation.y
-	look_at(player_pos, Vector3.UP)
+	#look_at(player_pos, Vector3.UP)
 	
 	if translation.distance_to(end_pos) > THRESHOLD:
 		velocity = target_pos * speed
@@ -30,6 +30,7 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 	
 	var end_pos: Vector3 = start_pos
 	end_pos.z += 4.8	# face away from the wave
+	look_at(end_pos, Vector3.UP)
 	
 	speed = rand_range(min_speed, max_speed)	#the speed the mob is actually travelling
 	
@@ -75,6 +76,7 @@ func _destroyed():
 	$CollisionShape.set_disabled(true)	#disable collision
 	$Animations/AnimatedSprite3D.set_animation("destroyed")
 	$Animations/explosionSprite.set_visible(true)
+	$Spatial/explosionSprite.play()
 
 
 func _calculate_speed():

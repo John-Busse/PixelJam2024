@@ -1,12 +1,13 @@
 extends Enemy
 
+var animation_index: int
 
 func _physics_process(_delta):
 	move_and_slide(velocity, Vector3.UP)
 
 
 func _initialize(start_pos: Vector3, surf_speed: int):
-	min_speed = 0
+	min_speed = 0.5
 	max_speed = surf_speed / 2.0
 	damage_value = 1
 	health = 5
@@ -18,6 +19,9 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 	speed = rand_range(min_speed, max_speed)	#the speed the mob is actually travelling
 	
 	velocity = Vector3.FORWARD * (speed - surf_speed)
+	
+	animation_index = randi() % 3
+	$Spatial/AnimatedSprite3D.set_animation("human" + str(animation_index))
 
 # Enemy leaves the screen
 func _on_VisibilityNotifier_screen_exited():

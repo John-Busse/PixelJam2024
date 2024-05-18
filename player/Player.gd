@@ -6,6 +6,8 @@ signal game_over
 signal win
 export var bullet_scene: PackedScene
 var can_fire: bool = true
+var is_firing: bool = false
+var offset: Vector3 = Vector3(-0.13, -0.1, -0.75)
 
 
 func _ready():
@@ -16,18 +18,22 @@ func _process(_delta):
 	#When the player presses the fire button
 	if Input.is_action_pressed("fire") and can_fire:
 		PlayerStats.bullet_fired()
+		$Surfer.gunshot()
+		$FireRateTimer.start()
 		can_fire = false
+		is_firing = true
+		
+			## play fire sound
+
+func shoot_bullet():
+	if is_firing:
+		is_firing = false
 		var bullet = bullet_scene.instance()
 		
-		var spawn_loc: Vector3 = $Surfer.translation
+		var spawn_loc: Vector3 = $Surfer.translation + offset
 		
 		bullet.init(spawn_loc, PlayerStats.get_bullet_speed())
 		add_child(bullet)
-		
-			## play fire sound
-		#start fire rate time
-		$FireRateTimer.start()
-
 
 func _on_FireRateTimer_timeout():
 	can_fire = true

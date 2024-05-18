@@ -55,8 +55,9 @@ wait_time = 1.5
 one_shot = true
 
 [node name="PurchasedLabel" type="Label" parent="MaterialContainer"]
+visible = false
 margin_left = 551.0
-margin_right = 839.0
+margin_right = 994.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 1, 1, 1 )
@@ -80,7 +81,7 @@ theme = ExtResource( 1 )
 columns = 3
 
 [node name="SurfFinsLabel" type="Label" parent="UpgradeGrid"]
-margin_right = 231.0
+margin_right = 339.0
 margin_bottom = 109.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -90,8 +91,8 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="SurfBoardLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 235.0
-margin_right = 466.0
+margin_left = 343.0
+margin_right = 682.0
 margin_bottom = 109.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -101,8 +102,8 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="SurfBalanceLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 470.0
-margin_right = 700.0
+margin_left = 686.0
+margin_right = 1024.0
 margin_bottom = 109.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -113,7 +114,7 @@ script = ExtResource( 3 )
 
 [node name="GunDamageLabel" type="Label" parent="UpgradeGrid"]
 margin_top = 113.0
-margin_right = 231.0
+margin_right = 339.0
 margin_bottom = 222.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -123,9 +124,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="GunSpeedLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 235.0
+margin_left = 343.0
 margin_top = 113.0
-margin_right = 466.0
+margin_right = 682.0
 margin_bottom = 222.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -135,9 +136,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="GunRateLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 470.0
+margin_left = 686.0
 margin_top = 113.0
-margin_right = 700.0
+margin_right = 1024.0
 margin_bottom = 222.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -148,7 +149,7 @@ script = ExtResource( 3 )
 
 [node name="MeteorLabel" type="Label" parent="UpgradeGrid"]
 margin_top = 226.0
-margin_right = 231.0
+margin_right = 339.0
 margin_bottom = 335.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -158,9 +159,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="HydrantLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 235.0
+margin_left = 343.0
 margin_top = 226.0
-margin_right = 466.0
+margin_right = 682.0
 margin_bottom = 335.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -170,9 +171,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="HydrantLabel2" type="Label" parent="UpgradeGrid"]
-margin_left = 470.0
+margin_left = 686.0
 margin_top = 226.0
-margin_right = 700.0
+margin_right = 1024.0
 margin_bottom = 335.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -183,7 +184,7 @@ script = ExtResource( 3 )
 
 [node name="EndGameLabel" type="Label" parent="UpgradeGrid"]
 margin_top = 339.0
-margin_right = 231.0
+margin_right = 339.0
 margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -194,9 +195,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="SaveGameLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 235.0
+margin_left = 343.0
 margin_top = 339.0
-margin_right = 466.0
+margin_right = 682.0
 margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -207,9 +208,9 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="NextRunLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 470.0
+margin_left = 686.0
 margin_top = 339.0
-margin_right = 700.0
+margin_right = 1024.0
 margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -228,17 +229,17 @@ margin_top = -172.0
 [node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDescContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 817.0
+margin_right = 1017.0
 margin_bottom = 165.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UpgradeDescContainer/VBoxContainer"]
-margin_right = 810.0
+margin_right = 1010.0
 margin_bottom = 67.0
 
 [node name="ItemNameLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
-margin_right = 678.0
+margin_right = 878.0
 margin_bottom = 67.0
 rect_min_size = Vector2( 0, 67 )
 size_flags_horizontal = 3
@@ -249,9 +250,9 @@ align = 1
 valign = 1
 
 [node name="ItemCostLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
-margin_left = 682.0
+margin_left = 882.0
 margin_top = 4.0
-margin_right = 810.0
+margin_right = 1010.0
 margin_bottom = 63.0
 rect_min_size = Vector2( 128, 32 )
 theme = ExtResource( 1 )
@@ -261,13 +262,13 @@ align = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="UpgradeDescContainer/VBoxContainer"]
 margin_top = 71.0
-margin_right = 810.0
+margin_right = 1010.0
 margin_bottom = 71.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="ItemDescLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer"]
 margin_top = 75.0
-margin_right = 810.0
+margin_right = 1010.0
 margin_bottom = 158.0
 size_flags_horizontal = 3
 size_flags_vertical = 7

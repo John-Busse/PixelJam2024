@@ -100,7 +100,7 @@ func update_price():
 
 
 func buy_item():
-	if PlayerStats.get_currency() >= price:
+	if PlayerStats.get_materials() >= price:
 		PlayerStats.buy_item(index, price)
 		update_material_count()
 		$MaterialContainer/PurchasedLabel.set_visible(true)

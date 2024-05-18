@@ -25,6 +25,7 @@ shape = SubResource( 1 )
 [node name="FireRateTimer" type="Timer" parent="."]
 
 [connection signal="die" from="Surfer" to="." method="game_over"]
+[connection signal="shoot" from="Surfer" to="." method="shoot_bullet"]
 [connection signal="win" from="Surfer" to="." method="win"]
 [connection signal="body_entered" from="Surfer/MobDetector" to="." method="_on_MobDetector_body_entered"]
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]

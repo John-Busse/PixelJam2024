@@ -89,7 +89,7 @@ curve = SubResource( 4 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.562763, 0, -2.49439 )
 
 [node name="CarSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 
@@ -98,7 +98,6 @@ wait_time = 6.4
 autostart = true
 
 [node name="PedSpawnTimer" type="Timer" parent="."]
-wait_time = 2.5
 autostart = true
 
 [node name="GameUI" parent="." instance=ExtResource( 5 )]
