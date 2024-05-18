@@ -19,7 +19,7 @@ var bullets_fired: int = 0
 var bullets_hit: int = 0
 var currency: int = 0
 #upgrade variables
-var hydrant_timer: float = 6.4
+var hydrant_timer: float = 0.0
 var assistant_timer: float = 0.0
 var enemy_timer: float = 6.0
 
@@ -176,6 +176,9 @@ func buy_item(index: int, price: int):
 		6:	#Meteor size (wave height)
 			wave_height += 25
 		7:	#Fire Hydrant
-			hydrant_timer = 5.0
+			if hydrant_timer == 0.0:
+				hydrant_timer = 12.8
+			else:
+				hydrant_timer = 6.4
 		8:	#beach ads (enemy_timer)
 			enemy_timer -= 2.0

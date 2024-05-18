@@ -31,11 +31,9 @@ Global="*res://Global.gd"
 
 [display]
 
-window/size/width=256
-window/size/height=224
+window/size/height=768
 window/size/resizable=false
-window/size/test_width=1024
-window/size/test_height=768
+window/stretch/aspect="keep"
 
 [gui]
 
@@ -140,4 +138,6 @@ vram_compression/import_etc=true
 vram_compression/import_etc2=false
 quality/shadows/filter_mode=0
 quality/filters/anisotropic_filter_level=1
+quality/lightmapping/use_bicubic_sampling=false
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

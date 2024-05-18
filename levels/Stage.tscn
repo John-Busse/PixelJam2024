@@ -86,7 +86,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 curve = SubResource( 4 )
 
 [node name="PathFollow" type="PathFollow" parent="RoadPath"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.562645, 0, -2.99198 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.562763, 0, -2.49439 )
 
 [node name="CarSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0

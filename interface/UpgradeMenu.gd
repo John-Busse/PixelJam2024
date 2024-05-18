@@ -26,7 +26,7 @@ var base_prices: Array = [
 var max_upgrade: Array = [
 	6, 45, 2,
 	10, 8, 0.125,
-	100, 0.5, 1,
+	100, 6.4, 1,
 	0, 0, 0
 ]
 
