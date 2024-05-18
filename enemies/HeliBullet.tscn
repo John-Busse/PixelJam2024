@@ -18,7 +18,7 @@ transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0 )
 axis = 1
 frames = ExtResource( 1 )
 animation = "bullet"
-frame = 7
+frame = 11
 playing = true
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]

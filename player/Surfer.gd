@@ -21,10 +21,10 @@ func _process(_delta):
 func _physics_process(delta):
 	var direction: Vector3 = Vector3.FORWARD
 	
-	if game_lost:
+	if game_lost or game_won:
 		velocity = Vector3.ZERO
-	elif game_won:
-		velocity = Vector3.FORWARD * PlayerStats.get_surf_speed()# * delta
+#	elif game_won:
+#		velocity = Vector3.FORWARD * PlayerStats.get_surf_speed()# * delta
 	else:
 		#check for input, update direction
 		if Input.is_action_pressed("move_right"):
