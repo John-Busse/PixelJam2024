@@ -21,8 +21,8 @@ __meta__ = {
 transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, -0.105738, 0, -1.05766 )
 axis = 1
 frames = ExtResource( 1 )
-animation = "surf_straight"
-frame = 2
+animation = "game_win"
+frame = 17
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
