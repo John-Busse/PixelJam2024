@@ -2,8 +2,10 @@ extends Node
 
 signal game_end
 export var car_scene: PackedScene
+export var truck_scene: PackedScene
 export var ped_scene: PackedScene
 export var hydrant_scene: PackedScene
+export var heli_scene: PackedScene
 var car_side: bool
 var ped_side: bool
 
@@ -37,6 +39,18 @@ func spawn_enemy(this_enemy: PackedScene, spawn_point: Vector3):
 	add_child(mob)
 
 
+func spawn_heli():
+	var spawn_pos: Vector3 = get_node("Sidewalks/PedSpawn0").translation
+	spawn_pos.y = 5.0
+	print("spawn pos is ", spawn_pos)
+	var patrol_pos: Vector3 = get_node("HelicopterPatrol/PatrolPoint1").translation
+	print("patrol_pos is ", patrol_pos)
+	var heli: Node = heli_scene.instance()
+	heli.init(spawn_pos, patrol_pos, get_node("Player"))
+	
+	add_child(heli)
+
+
 func stop_surfer():
 	#Stop the wave
 	PlayerStats.set_surf_speed(0)
@@ -49,7 +63,7 @@ func stop_surfer():
 
 func player_die():
 	stop_surfer()
-	## Wave starts to slide up the screen
+	$Waves.set_game_over()
 
 
 func game_over():
@@ -58,7 +72,7 @@ func game_over():
 
 func height_zero():
 	stop_surfer()
-	##Wave slides down the screen
+	$Waves.set_game_won()
 	$Player.height_zero()
 
 
@@ -67,8 +81,20 @@ func game_win():
 
 #spawn a car when this timer ends
 func _on_CarSpawnTimer_timeout():
+	$CarSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer())
+	$CarSpawnTimer.set_one_shot(false)
+	$CarSpawnTimer.start()
 	#Get the path node
 	var mob_path_node: Node = get_node("RoadPath/PathFollow")
+	var which_scene: PackedScene
+	#decide if we're spawning a car or a truck
+	var rand_chance = randf()
+	#80% chance to spawn a car
+	if rand_chance >= 0.2:
+		which_scene = car_scene
+	else:	#20% to spawn a truck
+		which_scene = truck_scene
+	
 	#Find a random spawn point
 	var offset: float = randf() / 2.0
 	if car_side:	# this makes the cars alternate between the left and right sides
@@ -77,8 +103,7 @@ func _on_CarSpawnTimer_timeout():
 	car_side = !car_side	#flip the bool
 	#set the spawn point
 	mob_path_node.unit_offset = offset
-	spawn_enemy(car_scene, mob_path_node.translation)
-	$CarSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer())
+	spawn_enemy(which_scene, mob_path_node.translation)
 
 #Spawn a pedestrian when this timer ends
 func _on_PedSpawnTimer_timeout():
@@ -100,7 +125,8 @@ func _on_PedSpawnTimer_timeout():
 
 func _on_HydrantSpawnTimer_timeout():
 	var mob_path_node: Node
-	var side: bool = randi() % 2
+	#var side: bool = randi() % 2
+	var side: bool = true
 	if side:
 		mob_path_node = get_node("Sidewalks/PedSpawn0")
 	else:

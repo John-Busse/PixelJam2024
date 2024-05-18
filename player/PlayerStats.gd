@@ -14,11 +14,12 @@ var heal_rate: float = 0.5
 #world variables
 var wave_height: int = 25
 var enemies_defeated: int = 0
+var helis_defeated: int = 0
 var bullets_fired: int = 0
 var bullets_hit: int = 0
 var currency: int = 0
 #upgrade variables
-var hydrant_timer: float = 0.0
+var hydrant_timer: float = 3.0
 var assistant_timer: float = 0.0
 var enemy_timer: float = 6.0
 
@@ -43,6 +44,7 @@ func new_stage():
 	bullets_fired = 0
 	bullets_hit = 0
 	enemies_defeated = 0
+	helis_defeated = 0
 	surf_speed = 4
 
 
@@ -80,6 +82,9 @@ func get_wave_height() -> int:
 
 func get_enemies() -> int:
 	return enemies_defeated
+
+func get_helis() -> int:
+	return helis_defeated
 
 func get_bullets_fired() -> int:
 	return bullets_fired
@@ -119,12 +124,17 @@ func enemy_destroyed():
 	enemies_defeated += 1
 
 
+func add_heli_destroyed():
+	helis_defeated += 1
+
+
 func set_surf_speed(new_speed: int):
 	surf_speed = new_speed
 
 
 func add_currency(extra: int):
 	currency += extra
+
 
 func get_upgrade(index: int) -> float:
 	match index:

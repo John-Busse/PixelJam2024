@@ -1,10 +1,12 @@
 extends Control
 
 signal height_zero
+signal spawn_heli
 var distance_value: float = 0.0
 var height_value: float
 var height_drop_rate: float = 0.5
 var speed: int
+var heli_spawn_dist: float = 1500
 
 
 func _ready():
@@ -15,10 +17,15 @@ func _ready():
 	$EndgameStats/EndRun.set_visible(false)
 
 
-func _process(delta):	
-	if height_value > 0.0:
+func _process(delta):
+	#if the wave is above the ground and the game isn't over
+	if height_value > 0.0 and !$EndgameStats.is_visible():
 		var change: float = height_drop_rate * delta * -1.0
 		set_height(change)
+	
+	if distance_value > heli_spawn_dist:
+		heli_spawn_dist += 100000.0
+		emit_signal("spawn_heli")
 
 
 func init(height: int, health: int):
@@ -77,21 +84,31 @@ func end_game():
 	$EndgameStats/EndgameTimer.start()
 	#Display the various stats
 	var text: String
-	text = "Shots fired: " + str(PlayerStats.get_bullets_fired())
-	$EndgameStats/EndgamePanel/VBoxContainer/ShotsFiredLabel.set_text(text)
-	text = "Shots hit: " + str(PlayerStats.get_bullets_hit())
-	$EndgameStats/EndgamePanel/VBoxContainer/ShotsHitLabel.set_text(text)
-	text = "Accuracy: " + str(PlayerStats.get_accuracy()) + " %"
-	$EndgameStats/EndgamePanel/VBoxContainer/AccuracyLabel.set_text(text)
+#	text = "Shots fired: " + str(PlayerStats.get_bullets_fired())
+#	$EndgameStats/EndgamePanel/VBoxContainer/ShotsFiredLabel.set_text(text)
+#	text = "Shots hit: " + str(PlayerStats.get_bullets_hit())
+#	$EndgameStats/EndgamePanel/VBoxContainer/ShotsHitLabel.set_text(text)
+#	text = "Accuracy: " + str(PlayerStats.get_accuracy()) + " %"
+#	$EndgameStats/EndgamePanel/VBoxContainer/AccuracyLabel.set_text(text)
 	text = "Enemies Defeated " + str(PlayerStats.get_enemies())
 	$EndgameStats/EndgamePanel/VBoxContainer/EnemiesLabel.set_text(text)
 	text = "Reward: " + str(PlayerStats.get_enemies() * 5) + " materials"
 	$EndgameStats/EndgamePanel/VBoxContainer/EnemyReward.set_text(text)
+	var new_currency: int = PlayerStats.get_enemies() * 5
 	text = "Distance Traveled " + str(distance_value as int) + " m"
 	$EndgameStats/EndgamePanel/VBoxContainer/DistanceLabel.set_text(text)
 	text = "Reward: " + str((distance_value / 100) as int) + " materials"
 	$EndgameStats/EndgamePanel/VBoxContainer/RewardLabel.set_text(text)
-	var new_currency: int = distance_value / 100 + PlayerStats.get_enemies() * 5
+	new_currency += distance_value / 100
+	
+	if PlayerStats.get_helis() > 0:
+		$EndgameStats/EndgamePanel/VBoxContainer/HeliLabel.set_visible(true)
+		$EndgameStats/EndgamePanel/VBoxContainer/HeliReward.set_visible(true)
+		text = "Choppers Defeated " + str(PlayerStats.get_helis())
+		$EndgameStats/EndgamePanel/VBoxContainer/HeliLabel.set_text(text)
+		text = "Reward: " + str(PlayerStats.get_helis() * 500) + " materials"
+		new_currency += PlayerStats.get_helis() * 500
+	
 	if $GameOver.visible:
 		#If this is a game over
 		$EndgameStats/EndgamePanel/VBoxContainer/PenaltyLabel.set_visible(true)

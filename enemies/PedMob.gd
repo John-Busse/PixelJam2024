@@ -52,5 +52,5 @@ func _destroyed():
 
 func _calculate_speed():
 	#Speed relative to the wave
-	if health != 0:	#only if the enemy hasn't been destroyed
+	if health > 0:	#only if the enemy hasn't been destroyed
 		velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://enemies/HeliMob.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://enemies/HeliMob.gd" type="Script" id=2]
+[ext_resource path="res://enemies/Explosion.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://enemies/HeliGun.gd" type="Script" id=4]
+[ext_resource path="res://art/HeliWIPCannon.png" type="Texture" id=5]
+[ext_resource path="res://enemies/HeliBullet.tscn" type="PackedScene" id=6]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.25, 1.1, 0.4 )
+
+[node name="HeliGun" type="Spatial"]
+script = ExtResource( 4 )
+heli_bullet = ExtResource( 6 )
+
+[node name="HeliMob" type="KinematicBody" parent="."]
+script = ExtResource( 2 )
+
+[node name="Animations" type="Spatial" parent="HeliMob"]
+
+[node name="explosionSprite" type="AnimatedSprite3D" parent="HeliMob/Animations"]
+transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0.1, 0 )
+visible = false
+axis = 1
+frames = ExtResource( 3 )
+animation = "explosion"
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="HeliMob/Animations"]
+transform = Transform( -2.5, 0, -2.18557e-07, 0, 1, 0, 2.18557e-07, 0, -2.5, 0, 0, 0 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "heli"
+frame = 1
+playing = true
+
+[node name="CollisionShape" type="CollisionShape" parent="HeliMob"]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="HeliMob"]
+aabb = AABB( -0.25, -1, -0.4, 0.5, 2, 0.798 )
+
+[node name="HeliCannon" type="Spatial" parent="HeliMob"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+
+[node name="Sprite3D" type="Sprite3D" parent="HeliMob/HeliCannon"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.120524 )
+axis = 1
+texture = ExtResource( 5 )
+
+[node name="HeliWeaponTimer" type="Timer" parent="."]
+
+[connection signal="can_fire" from="HeliMob" to="." method="_on_Helicopter_can_fire"]
+[connection signal="camera_exited" from="HeliMob/VisibilityNotifier" to="." method="_on_VisibilityNotifier_camera_exited"]
+[connection signal="screen_exited" from="HeliMob/VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
+[connection signal="timeout" from="HeliWeaponTimer" to="." method="_on_HeliWeaponTimer_timeout"]

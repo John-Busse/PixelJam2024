@@ -19,7 +19,7 @@ func _ready():
 		$Tile0Buildings.translation.y = 3.0
 
 
-func _process(delta):
+func _process(_delta):
 	if surf_sign_on:
 		$SurfSign/SignParticles.global_translation.z = 1.25
 	if building_one_on:
@@ -33,31 +33,31 @@ func _on_VisibilityNotifier_screen_exited():
 	queue_free()
 
 
-func _on_SurfSign_area_entered(area):
+func _on_SurfSign_area_entered(_area):
 	$SurfSign/SignParticles.set_emitting(true)
 	surf_sign_on = true
 
 
-func _on_SurfSign_area_exited(area):
+func _on_SurfSign_area_exited(_area):
 	$SurfSign/SignParticles.set_emitting(false)
 	surf_sign_on = false
 
 
-func _on_Building1_area_entered(area):
+func _on_Building1_area_entered(_area):
 	$Tile0Buildings/Building1/Building1Particles.set_emitting(true)
 	building_one_on = true
 
 
-func _on_Building1_area_exited(area):
+func _on_Building1_area_exited(_area):
 	$Tile0Buildings/Building1/Building1Particles.set_emitting(false)
 	building_one_on = false
 
 
-func _on_Building2_area_entered(area):
+func _on_Building2_area_entered(_area):
 	$Tile0Buildings/Building2/Building2Particles.set_emitting(true)
 	building_two_on = true
 
 
-func _on_Building2_area_exited(area):
+func _on_Building2_area_exited(_area):
 	$Tile0Buildings/Building2/Building2Particles.set_emitting(false)
 	building_two_on = false

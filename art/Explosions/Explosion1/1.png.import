@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/bulletWIP1.png-1deb66cdc77a7120b3af9adf472d1b2c.s3tc.stex"
-path.etc="res://.import/bulletWIP1.png-1deb66cdc77a7120b3af9adf472d1b2c.etc.stex"
+path.s3tc="res://.import/1.png-ef3d15a455f61fdee5d02b3735caa894.s3tc.stex"
+path.etc="res://.import/1.png-ef3d15a455f61fdee5d02b3735caa894.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,19 +11,19 @@ metadata={
 
 [deps]
 
-source_file="res://art/bulletWIP1.png"
-dest_files=[ "res://.import/bulletWIP1.png-1deb66cdc77a7120b3af9adf472d1b2c.s3tc.stex", "res://.import/bulletWIP1.png-1deb66cdc77a7120b3af9adf472d1b2c.etc.stex" ]
+source_file="res://art/Explosions/Explosion1/1.png"
+dest_files=[ "res://.import/1.png-ef3d15a455f61fdee5d02b3735caa894.s3tc.stex", "res://.import/1.png-ef3d15a455f61fdee5d02b3735caa894.etc.stex" ]
 
 [params]
 
 compress/mode=2
-compress/lossy_quality=0.7
+compress/lossy_quality=1.0
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=true
-flags/filter=true
-flags/mipmaps=true
+flags/filter=false
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=false

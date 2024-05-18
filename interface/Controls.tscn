@@ -35,7 +35,7 @@ margin_bottom = -10.0
 
 [node name="ReturnToMenu" type="Label" parent="ReturnContainer"]
 margin_right = 324.0
-margin_bottom = 16.0
+margin_bottom = 20.0
 text = "Return to main menu!"
 align = 1
 valign = 1
@@ -48,18 +48,18 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="ControlsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 43.0
+margin_top = 15.0
 margin_right = 640.0
-margin_bottom = 75.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 text = "Controls"
 align = 1
 autowrap = true
 
 [node name="ControlsText" type="Label" parent="VBoxContainer"]
-margin_top = 79.0
+margin_top = 68.0
 margin_right = 640.0
-margin_bottom = 133.0
+margin_bottom = 134.0
 text = "AD or Left/Right Arrows: Move Surfer
 Spacebar: Fire Weapon
 "
@@ -67,18 +67,18 @@ align = 1
 autowrap = true
 
 [node name="GoalsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 137.0
+margin_top = 138.0
 margin_right = 640.0
-margin_bottom = 169.0
+margin_bottom = 187.0
 custom_fonts/font = ExtResource( 3 )
 text = "Goals"
 align = 1
 autowrap = true
 
 [node name="GoalsText" type="Label" parent="VBoxContainer"]
-margin_top = 173.0
+margin_top = 191.0
 margin_right = 640.0
-margin_bottom = 436.0
+margin_bottom = 464.0
 text = "Surf for as long as possible!
 Getting hit makes you lose balance.
 You regain balance slowly over time
@@ -86,8 +86,7 @@ if your balance depletes, the run ends
 
 The wave loses height over time!
 If the wave gets hit, its height drops.
-When the wave's height reaches zero
-the run ends.
+When the wave's height reaches zero, the run ends.
 
 Gain resources by surviving and destroying obstacles.
 Spend these resources on upgrades.

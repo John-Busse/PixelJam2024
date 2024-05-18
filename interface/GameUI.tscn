@@ -69,7 +69,7 @@ input_pass_on_modal_close_click = false
 size_flags_horizontal = 6
 theme = ExtResource( 1 )
 max_value = 50.0
-value = 50.0
+value = 25.0
 rounded = true
 percent_visible = false
 
@@ -84,6 +84,7 @@ text = "200"
 align = 1
 
 [node name="GameOver" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.3, 0.3, 0.3, 0.5 )
@@ -102,7 +103,6 @@ text = "GAME OVER"
 align = 1
 
 [node name="GameWon" type="ColorRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.3, 0.3, 0.3, 0.5 )
@@ -137,67 +137,81 @@ anchor_bottom = 0.5
 margin_left = -207.0
 margin_top = -85.0
 margin_right = 207.0
-margin_bottom = 85.0
-rect_min_size = Vector2( 0, 170 )
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 100 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EndgameStats/EndgamePanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 407.0
-margin_bottom = 183.0
+margin_bottom = 163.0
 
 [node name="ShotsFiredLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+visible = false
 margin_right = 400.0
 margin_bottom = 16.0
 text = "Shots Fired: "
 
 [node name="ShotsHitLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 20.0
+visible = false
 margin_right = 400.0
-margin_bottom = 36.0
+margin_bottom = 16.0
 text = "Shots Hit: "
 
 [node name="AccuracyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 40.0
+visible = false
 margin_right = 400.0
-margin_bottom = 56.0
+margin_bottom = 16.0
 text = "Accuracy: "
 
 [node name="EnemiesLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 60.0
 margin_right = 400.0
-margin_bottom = 76.0
+margin_bottom = 16.0
 text = "Obstacles Removed:"
 
 [node name="EnemyReward" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 80.0
+margin_top = 20.0
 margin_right = 400.0
-margin_bottom = 96.0
+margin_bottom = 36.0
 text = "Reward:"
 
 [node name="DistanceLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 100.0
+margin_top = 40.0
 margin_right = 400.0
-margin_bottom = 116.0
+margin_bottom = 56.0
 text = "Distance Traveled: 3860 m"
 
 [node name="RewardLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 60.0
+margin_right = 400.0
+margin_bottom = 76.0
+text = "Reward:"
+
+[node name="HeliLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 80.0
+margin_right = 400.0
+margin_bottom = 96.0
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "Choppers Destroyed:"
+
+[node name="HeliReward" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
+margin_top = 100.0
+margin_right = 400.0
+margin_bottom = 116.0
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "Reward: 500 Materials"
+
+[node name="PenaltyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
 margin_top = 120.0
 margin_right = 400.0
 margin_bottom = 136.0
-text = "Reward:"
-
-[node name="PenaltyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 140.0
-margin_right = 400.0
-margin_bottom = 156.0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = "Penalty: 1/2 Materials"
 
 [node name="CurrencyLabel" type="Label" parent="EndgameStats/EndgamePanel/VBoxContainer"]
-margin_top = 160.0
+margin_top = 140.0
 margin_right = 400.0
-margin_bottom = 176.0
+margin_bottom = 156.0
 text = "Materials Gained:"
 
 [node name="EndgameTimer" type="Timer" parent="EndgameStats"]

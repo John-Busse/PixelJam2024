@@ -10,7 +10,7 @@ onready var menu_container := get_node(menu_container_path)
 
 var current_item: int = 0
 
-func _process(delta):
+func _process(_delta):
 	var input: Vector2 = Vector2.ZERO
 	
 	if Input.is_action_just_pressed("ui_up"):

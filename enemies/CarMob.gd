@@ -1,5 +1,15 @@
 extends Enemy
 
+var car_frame: int
+export var wheel_scene: PackedScene
+
+func _ready():
+#	var num_frames: int = $AnimatedSprite3D.frames.get_frame_count(tile_name)
+#	$AnimatedSprite3D.set_animation(tile_name)
+#	$AnimatedSprite3D.set_frame(randi() % num_frames)
+	var num_frames: int = $Spatial/AnimatedSprite3D.frames.get_frame_count("car")
+	car_frame = randi() % num_frames
+	$Spatial/AnimatedSprite3D.set_frame(car_frame)
 
 func _physics_process(_delta):
 	move_and_slide(velocity, Vector3.UP)
@@ -46,11 +56,21 @@ func _destroyed():
 	health = 0
 	damage_value = 0	#No longer deal damage
 	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
-	$CollisionShape.set_disabled(true)
+	$CollisionShape.set_disabled(true)	#disable collision
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
+	$Spatial/explosionSprite.set_visible(true)
+	$Spatial/AnimatedSprite3D.set_frame(car_frame)
+	$Spatial/explosionSprite.play()
+	
+	var num_wheels = randi() % 5
+	
+	if num_wheels > 0:
+		for i in range(1, num_wheels):
+			var mob: Node = wheel_scene.instance()
+			add_child(mob)
 
 
 func _calculate_speed():
 	#Speed relative to the wave
-	if health != 0:	#only if the enemy hasn't been destroyed
+	if health > 0:	#only if the enemy hasn't been destroyed
 		velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())

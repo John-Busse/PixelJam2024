@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://levels/TilingBG.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://enemies/PedMob.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemies/HydrantMob.tscn" type="PackedScene" id=8]
 [ext_resource path="res://audio/music/music_gameplay_loop.wav" type="AudioStream" id=9]
+[ext_resource path="res://enemies/TruckMob.tscn" type="PackedScene" id=10]
+[ext_resource path="res://enemies/HeliMob.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.1
@@ -39,8 +41,10 @@ __meta__ = {
 6- Camera"
 }
 car_scene = ExtResource( 4 )
+truck_scene = ExtResource( 10 )
 ped_scene = ExtResource( 7 )
 hydrant_scene = ExtResource( 8 )
+heli_scene = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1.25 )
@@ -82,10 +86,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 curve = SubResource( 4 )
 
 [node name="PathFollow" type="PathFollow" parent="RoadPath"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.900082, 0, -2.49446 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.565516, 0, -2.49471 )
 
 [node name="CarSpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 autostart = true
 
 [node name="HydrantSpawnTimer" type="Timer" parent="."]
@@ -130,8 +135,21 @@ shape = SubResource( 5 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = -5.0
+volume_db = -15.0
 autoplay = true
+
+[node name="HelicopterPatrol" type="Spatial" parent="."]
+visible = false
+
+[node name="PatrolPoint1" type="MeshInstance" parent="HelicopterPatrol"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 5, -0.6 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../../StreetEdges")
+
+[node name="PatrolPoint2" type="MeshInstance" parent="HelicopterPatrol"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 5, -0.6 )
+mesh = SubResource( 1 )
+skeleton = NodePath("../../StreetEdges")
 
 [connection signal="die" from="Player" to="." method="player_die"]
 [connection signal="game_over" from="Player" to="." method="game_over"]
@@ -140,4 +158,5 @@ autoplay = true
 [connection signal="timeout" from="HydrantSpawnTimer" to="." method="_on_HydrantSpawnTimer_timeout"]
 [connection signal="timeout" from="PedSpawnTimer" to="." method="_on_PedSpawnTimer_timeout"]
 [connection signal="height_zero" from="GameUI" to="." method="height_zero"]
+[connection signal="spawn_heli" from="GameUI" to="." method="spawn_heli"]
 [connection signal="body_entered" from="WaveArea" to="." method="_on_WaveArea_body_entered"]

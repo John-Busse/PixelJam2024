@@ -31,8 +31,9 @@ func _take_damage(damage: int):
 	health -= damage
 	#set the hydrant to interact with the wave and not the player
 	set_collision_mask(wave_mask)
+	set_collision_layer(wave_mask)
 	#The water spout heals the wave
-	damage_value = -2
+	damage_value = -5
 	#switch to the destroyed animation
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
 	#$Spatial/AnimatedSprite3D.set_playing(true)
