@@ -45,6 +45,7 @@ truck_scene = ExtResource( 10 )
 ped_scene = ExtResource( 7 )
 hydrant_scene = ExtResource( 8 )
 heli_scene = ExtResource( 11 )
+gameplay_music = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 1.25 )
@@ -131,11 +132,6 @@ collision_mask = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="SurfWalls/RightWall"]
 shape = SubResource( 5 )
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-volume_db = -15.0
-autoplay = true
 
 [node name="HelicopterPatrol" type="Spatial" parent="."]
 visible = false

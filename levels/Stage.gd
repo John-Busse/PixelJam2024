@@ -6,11 +6,13 @@ export var truck_scene: PackedScene
 export var ped_scene: PackedScene
 export var hydrant_scene: PackedScene
 export var heli_scene: PackedScene
+export var gameplay_music: AudioStream
 var car_side: bool
 var ped_side: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.change_song(gameplay_music)
 	PlayerStats.new_stage()
 	randomize() #Seed the random generator
 	$TilingBG.set_speed(PlayerStats.get_surf_speed())

@@ -22,7 +22,7 @@ theme = ExtResource( 1 )
 columns = 3
 
 [node name="DistanceText" type="Label" parent="GameGrid"]
-margin_right = 149.0
+margin_right = 339.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -31,8 +31,8 @@ text = "Distance"
 align = 1
 
 [node name="BalanceText" type="Label" parent="GameGrid"]
-margin_left = 153.0
-margin_right = 290.0
+margin_left = 343.0
+margin_right = 682.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -40,8 +40,8 @@ text = "Balance"
 align = 1
 
 [node name="HeightText" type="Label" parent="GameGrid"]
-margin_left = 294.0
-margin_right = 520.0
+margin_left = 686.0
+margin_right = 1024.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -50,7 +50,7 @@ align = 1
 
 [node name="DistValue" type="Label" parent="GameGrid"]
 margin_top = 44.0
-margin_right = 149.0
+margin_right = 339.0
 margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -58,9 +58,9 @@ text = "3860"
 align = 1
 
 [node name="HealthBar" type="ProgressBar" parent="GameGrid"]
-margin_left = 171.0
+margin_left = 462.0
 margin_top = 44.0
-margin_right = 271.0
+margin_right = 562.0
 margin_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -74,9 +74,9 @@ rounded = true
 percent_visible = false
 
 [node name="HeightValue" type="Label" parent="GameGrid"]
-margin_left = 294.0
+margin_left = 686.0
 margin_top = 44.0
-margin_right = 520.0
+margin_right = 1024.0
 margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 1

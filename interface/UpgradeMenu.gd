@@ -1,5 +1,6 @@
 extends Control
 
+export var upgrade_music: AudioStream
 
 var item_names: Array = [
 	"SURFBOARD FINS",
@@ -50,6 +51,7 @@ var index: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.change_song(upgrade_music)
 	update_material_count()
 
 
