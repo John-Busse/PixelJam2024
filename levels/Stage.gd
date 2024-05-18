@@ -9,6 +9,7 @@ export var heli_scene: PackedScene
 export var gameplay_music: AudioStream
 var car_side: bool
 var ped_side: bool
+var game_end: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +27,8 @@ func _ready():
 func _process(_delta):
 	$GameUI.set_dist($TilingBG.get_pivot_dist())
 	$GameUI.set_health(PlayerStats.get_health())
-	$Waves.move_shadow($GameUI.get_height())
+	if not game_end:
+		$Waves.move_shadow($GameUI.get_height())
 
 
 func spawn_enemy(this_enemy: PackedScene, spawn_point: Vector3):
@@ -50,22 +52,22 @@ func spawn_heli():
 	var heli: Node = heli_scene.instance()
 	heli.init(spawn_pos, patrol_pos, get_node("Player"))
 	
+	connect("game_end", heli, "game_end")
+	
 	add_child(heli)
 
 
 func stop_surfer():
-	#Stop the wave
-	PlayerStats.set_surf_speed(0)
-	$TilingBG.set_speed(PlayerStats.get_surf_speed()) 
+	#the wave stops
 	$CarSpawnTimer.set_paused(true)
 	$PedSpawnTimer.set_paused(true)
 	$HydrantSpawnTimer.set_paused(true)
 	emit_signal("game_end")
+	game_end = true
 
 
 func player_die():
 	stop_surfer()
-	$Waves.set_game_over()
 
 
 func game_over():
@@ -73,6 +75,9 @@ func game_over():
 
 
 func height_zero():
+	#stop the wave
+	PlayerStats.set_surf_speed(0)
+	$TilingBG.set_speed(PlayerStats.get_surf_speed()) 
 	stop_surfer()
 	$Waves.set_game_won()
 	$Player.height_zero()

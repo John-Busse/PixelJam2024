@@ -6,7 +6,7 @@ var fire_rate: float = 0.5
 var bullet_damage: int = 5
 var bullet_speed: int = 2
 #player variables
-var health: float = 15.0
+var health: float = 25.0
 var max_health: float = 25.0
 var move_speed: int = 2
 var surf_speed: int = 3

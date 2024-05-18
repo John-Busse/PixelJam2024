@@ -1,7 +1,5 @@
 extends Spatial
 
-
-var game_over: bool = false
 var game_won: bool = false
 
 func _ready():
@@ -9,12 +7,9 @@ func _ready():
 	$Shadow/WaveShadow.set_frame($WaveTop.get_frame())
 
 func _process(delta):
-	if game_over:
-		$WaveTop.translation.z += PlayerStats.get_surf_speed() * delta
-		$Shadow.translation.z += PlayerStats.get_surf_speed() * delta
-	elif game_won:
-		$WaveTop.translation.z -= PlayerStats.get_surf_speed() * delta
-		$Shadow.translation.z -= PlayerStats.get_surf_speed() * delta
+	if game_won:
+		$WaveTop.translation.z += 1.0 * delta
+		$Shadow.translation.z += 1.0 * delta
 
 
 func move_shadow(height: float):
@@ -22,9 +17,9 @@ func move_shadow(height: float):
 	$Shadow.translation.z = 0.5 - scaled_height
 
 
-func set_game_over():
-	game_over = true
-
-
 func set_game_won():
 	game_won = true
+
+
+func _on_VisibilityNotifier_screen_exited():
+	queue_free()

@@ -52,9 +52,11 @@ func _destroyed():
 	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
 	$CollisionShape.set_disabled(true)
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
+	print("destroyed")
 
 
 func _calculate_speed():
 	#Speed relative to the wave
-	if health > 0:	#only if the enemy hasn't been destroyed
+	if health > 0.0:	#only if the enemy hasn't been destroyed
+		print("recalculating")
 		velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())

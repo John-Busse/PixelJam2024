@@ -6,7 +6,7 @@ var distance_value: float = 0.0
 var height_value: float
 var height_drop_rate: float = 0.5
 var speed: int
-var heli_spawn_dist: float = 5000
+var heli_spawn_dist: float = 1500
 
 
 func _ready():

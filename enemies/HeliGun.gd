@@ -34,3 +34,6 @@ func _on_HeliWeaponTimer_timeout():
 # Enemy leaves the screen
 func _on_VisibilityNotifier_screen_exited():
 	queue_free()
+
+func game_end():
+	$HeliWeaponTimer.set_paused(true)

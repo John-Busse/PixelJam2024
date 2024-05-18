@@ -6,6 +6,9 @@ var end_pos: Vector3
 var player_node: Node
 const THRESHOLD: float = 0.1
 
+func _ready():
+	pass
+
 func _physics_process(_delta):
 	var target_pos: Vector3 = (end_pos - translation).normalized()
 	var player_pos: Vector3 = player_node.translation
@@ -72,17 +75,20 @@ func _destroyed():
 	
 	health = 0
 	damage_value = 0	#No longer deal damage
-	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
+	speed = 0.0			#No longer move
+	end_pos = translation + Vector3(0.0, 0.0, 4.8)
 	$CollisionShape.set_disabled(true)	#disable collision
 	$Animations/AnimatedSprite3D.set_animation("destroyed")
 	$Animations/explosionSprite.set_visible(true)
 	$Spatial/explosionSprite.play()
 
-
+#we recalculate speed when the game ends
 func _calculate_speed():
 	#Speed relative to the wave
 	if health > 0:	#only if the enemy hasn't been destroyed
-		velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())
+		#move the helicopter up and out
+		end_pos = translation + Vector3(0.0, 0.0, -4.8)
+		#velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())
 
 func flip_direction():
 	end_pos.x *= -1
