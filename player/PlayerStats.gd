@@ -9,7 +9,7 @@ var bullet_speed: int = 2
 var health: float = 15.0
 var max_health: float = 25.0
 var move_speed: int = 2
-var surf_speed: int = 4
+var surf_speed: int = 3
 var heal_rate: float = 0.5
 #world variables
 var wave_height: int = 25
@@ -19,7 +19,7 @@ var bullets_fired: int = 0
 var bullets_hit: int = 0
 var currency: int = 0
 #upgrade variables
-var hydrant_timer: float = 3.0
+var hydrant_timer: float = 6.4
 var assistant_timer: float = 0.0
 var enemy_timer: float = 6.0
 
@@ -45,7 +45,7 @@ func new_stage():
 	bullets_hit = 0
 	enemies_defeated = 0
 	helis_defeated = 0
-	surf_speed = 4
+	surf_speed = 3
 
 
 func take_damage(damage: int):
@@ -138,48 +138,44 @@ func add_currency(extra: int):
 
 func get_upgrade(index: int) -> float:
 	match index:
-		0:	#Meteor size (wave height)
-			return wave_height as float
-		1:	#Fire Hydrant
-			return hydrant_timer
-		2:	#Assistant
-			return assistant_timer
+		0:	#Surfboard Fins (move_speed)
+			return move_speed as float
+		1:	#Surfboard Deck (max_health)
+			return max_health
+		2:	#Surfboard Rails (heal_rate)
+			return heal_rate
 		3:	#Blaster Width (bullet_damage)
 			return bullet_damage as float
 		4:	#Blaster Length (bullet_speed)
 			return bullet_speed as float
 		5:	#Blaster Reciever (fire_rate)
 			return fire_rate
-		6:	#Surfboard Deck (max_health)
-			return max_health
-		7:	#Surfboard Fins (move_speed)
-			return move_speed as float
-		8:	#Surfboard Rails (heal_rate)
-			return heal_rate
-		9:	#Beach Ads (enemy_timer)
+		6:	#Meteor size (wave height)
+			return wave_height as float
+		7:	#Fire Hydrant
+			return hydrant_timer
+		8:	#Beach Ads (enemy_timer)
 			return enemy_timer
 	return -1.0
 
 func buy_item(index: int, price: int):
 	currency -= price
 	match index:
-		0:	#Meteor size (wave height)
-			wave_height += 25
-		1:	#Fire Hydrant
-			hydrant_timer = 5.0
-		2:	#Assistant
-			assistant_timer = 5.0
+		0:	#Surfboard Fins (move_speed)
+			move_speed += 2
+		1:	#Surfboard Deck (max_health)
+			max_health += 15
+		2:	#Surfboard Rails (heal_rate)
+			heal_rate += 0.5
 		3:	#Blaster Width (bullet_damage)
 			bullet_damage += 5
 		4:	#Blaster Length (bullet_speed)
 			bullet_speed += 2
 		5:	#Blaster Reciever (fire_rate)
 			fire_rate *= 0.5
-		6:	#Surfboard Deck (max_health)
-			max_health += 15
-		7:	#Surfboard Fins (move_speed)
-			move_speed += 2
-		8:	#Surfboard Rails (heal_rate)
-			heal_rate += 0.5
-		9:	#beach ads (enemy_timer)
+		6:	#Meteor size (wave height)
+			wave_height += 25
+		7:	#Fire Hydrant
+			hydrant_timer = 5.0
+		8:	#beach ads (enemy_timer)
 			enemy_timer -= 2.0

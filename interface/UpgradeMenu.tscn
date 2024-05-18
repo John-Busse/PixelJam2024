@@ -13,6 +13,7 @@ theme = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -21,28 +22,31 @@ anchor_right = 1.0
 margin_left = 15.0
 margin_top = 20.0
 margin_right = -15.0
-margin_bottom = 16.0
+margin_bottom = 79.0
 
 [node name="MatLabel" type="Label" parent="MaterialContainer"]
-margin_right = 150.0
-margin_bottom = 18.0
-text = "MATERIALS:"
+margin_right = 353.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 5 )
+text = "MATERIALS: "
 
 [node name="MatCountLabel" type="Label" parent="MaterialContainer"]
-margin_left = 154.0
-margin_right = 254.0
-margin_bottom = 18.0
+margin_left = 357.0
+margin_right = 547.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 100, 0 )
+custom_fonts/font = ExtResource( 5 )
 text = "387000"
 align = 2
 
 [node name="CantAffordLabel" type="Label" parent="MaterialContainer"]
 visible = false
-margin_left = 268.0
-margin_right = 610.0
-margin_bottom = 16.0
+margin_left = 535.0
+margin_right = 994.0
+margin_bottom = 59.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
 text = "Cannot afford!"
 align = 2
 
@@ -51,62 +55,101 @@ wait_time = 1.5
 one_shot = true
 
 [node name="PurchasedLabel" type="Label" parent="MaterialContainer"]
-visible = false
-margin_left = 268.0
-margin_right = 610.0
-margin_bottom = 16.0
+margin_left = 551.0
+margin_right = 839.0
+margin_bottom = 59.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 1, 1, 1 )
-text = "Upgrade Purchased!"
+custom_fonts/font = ExtResource( 5 )
+text = "Purchased!"
 align = 2
 
 [node name="PurchasedTimer" type="Timer" parent="MaterialContainer/PurchasedLabel"]
 wait_time = 1.5
 one_shot = true
 
-[node name="AssistLabel" type="Label" parent="."]
-visible = false
-margin_left = 418.5
-margin_top = 90.0
-margin_right = 607.5
-margin_bottom = 147.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "assistant	"
-align = 1
-script = ExtResource( 3 )
-
-[node name="BeachLabel" type="Label" parent="."]
-visible = false
-margin_left = 418.5
-margin_top = 212.0
-margin_right = 607.5
-margin_bottom = 269.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "
-beach
-advert"
-align = 1
-script = ExtResource( 3 )
-
 [node name="UpgradeGrid" type="GridContainer" parent="."]
-anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -287.5
-margin_top = -150.0
-margin_right = 287.5
-margin_bottom = 90.0
-rect_min_size = Vector2( 550, 200 )
+margin_top = -235.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 700, 300 )
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 columns = 3
 
+[node name="SurfFinsLabel" type="Label" parent="UpgradeGrid"]
+margin_right = 231.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard
+fins"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SurfBoardLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 235.0
+margin_right = 466.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard
+deck"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SurfBalanceLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 470.0
+margin_right = 700.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard
+rails"
+align = 1
+script = ExtResource( 3 )
+
+[node name="GunDamageLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 113.0
+margin_right = 231.0
+margin_bottom = 222.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster
+width"
+align = 1
+script = ExtResource( 3 )
+
+[node name="GunSpeedLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 235.0
+margin_top = 113.0
+margin_right = 466.0
+margin_bottom = 222.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster
+length"
+align = 1
+script = ExtResource( 3 )
+
+[node name="GunRateLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 470.0
+margin_top = 113.0
+margin_right = 700.0
+margin_bottom = 222.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster
+reciever"
+align = 1
+script = ExtResource( 3 )
+
 [node name="MeteorLabel" type="Label" parent="UpgradeGrid"]
-margin_right = 189.0
-margin_bottom = 78.0
+margin_top = 226.0
+margin_right = 231.0
+margin_bottom = 335.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "meteor
@@ -115,9 +158,10 @@ align = 1
 script = ExtResource( 3 )
 
 [node name="HydrantLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 193.0
-margin_right = 382.0
-margin_bottom = 78.0
+margin_left = 235.0
+margin_top = 226.0
+margin_right = 466.0
+margin_bottom = 335.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "fire
@@ -125,10 +169,48 @@ hydrant"
 align = 1
 script = ExtResource( 3 )
 
+[node name="HydrantLabel2" type="Label" parent="UpgradeGrid"]
+margin_left = 470.0
+margin_top = 226.0
+margin_right = 700.0
+margin_bottom = 335.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "beach
+advert"
+align = 1
+script = ExtResource( 3 )
+
+[node name="EndGameLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 339.0
+margin_right = 231.0
+margin_bottom = 448.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "
+end game"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SaveGameLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 235.0
+margin_top = 339.0
+margin_right = 466.0
+margin_bottom = 448.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "
+save game"
+align = 1
+script = ExtResource( 3 )
+
 [node name="NextRunLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 386.0
-margin_right = 575.0
-margin_bottom = 78.0
+margin_left = 470.0
+margin_top = 339.0
+margin_right = 700.0
+margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_colors/font_color = Color( 0, 1, 1, 1 )
@@ -137,111 +219,40 @@ next run"
 align = 1
 script = ExtResource( 3 )
 
-[node name="DamageLabel" type="Label" parent="UpgradeGrid"]
-margin_top = 82.0
-margin_right = 189.0
-margin_bottom = 159.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "blaster
-width"
-align = 1
-script = ExtResource( 3 )
-
-[node name="SpeedLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 193.0
-margin_top = 82.0
-margin_right = 382.0
-margin_bottom = 159.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "blaster
-length"
-align = 1
-script = ExtResource( 3 )
-
-[node name="RateLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 386.0
-margin_top = 82.0
-margin_right = 575.0
-margin_bottom = 159.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "blaster
-reciever"
-align = 1
-script = ExtResource( 3 )
-
-[node name="BoardLabel" type="Label" parent="UpgradeGrid"]
-margin_top = 163.0
-margin_right = 189.0
-margin_bottom = 240.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "surfboard
-deck"
-align = 1
-script = ExtResource( 3 )
-
-[node name="FinsLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 193.0
-margin_top = 163.0
-margin_right = 382.0
-margin_bottom = 240.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "surfboard
-fins"
-align = 1
-script = ExtResource( 3 )
-
-[node name="BalanceLabel" type="Label" parent="UpgradeGrid"]
-margin_left = 386.0
-margin_top = 163.0
-margin_right = 575.0
-margin_bottom = 240.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "surfboard
-rails"
-align = 1
-script = ExtResource( 3 )
-
 [node name="UpgradeDescContainer" type="PanelContainer" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -150.0
+margin_top = -172.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDescContainer"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 633.0
-margin_bottom = 143.0
+margin_right = 817.0
+margin_bottom = 165.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UpgradeDescContainer/VBoxContainer"]
-margin_right = 626.0
-margin_bottom = 75.0
+margin_right = 810.0
+margin_bottom = 67.0
 
 [node name="ItemNameLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
-margin_right = 494.0
-margin_bottom = 75.0
+margin_right = 678.0
+margin_bottom = 67.0
 rect_min_size = Vector2( 0, 67 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 5 )
-text = "SURFBOARD
-DURABILITY"
+text = "SURFBOARD DURABILITY"
 align = 1
 valign = 1
 
 [node name="ItemCostLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
-margin_left = 498.0
-margin_top = 19.0
-margin_right = 626.0
-margin_bottom = 55.0
+margin_left = 682.0
+margin_top = 4.0
+margin_right = 810.0
+margin_bottom = 63.0
 rect_min_size = Vector2( 128, 32 )
 theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 5 )
@@ -249,15 +260,15 @@ text = "0"
 align = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="UpgradeDescContainer/VBoxContainer"]
-margin_top = 79.0
-margin_right = 626.0
-margin_bottom = 79.0
+margin_top = 71.0
+margin_right = 810.0
+margin_bottom = 71.0
 rect_min_size = Vector2( 10, 0 )
 
 [node name="ItemDescLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer"]
-margin_top = 83.0
-margin_right = 626.0
-margin_bottom = 136.0
+margin_top = 75.0
+margin_right = 810.0
+margin_bottom = 158.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 theme = ExtResource( 1 )
@@ -273,17 +284,19 @@ margin_top = 133.0
 margin_right = 41.0
 margin_bottom = 165.0
 menu_container_path = NodePath("../UpgradeGrid")
-cursor_offset = Vector2( 10, 15 )
+cursor_offset = Vector2( -50, 15 )
 
 [connection signal="timeout" from="MaterialContainer/CantAffordLabel/CantAffordTimer" to="." method="broke_timer"]
 [connection signal="timeout" from="MaterialContainer/PurchasedLabel/PurchasedTimer" to="." method="purchase_timer"]
+[connection signal="cursor_selected" from="UpgradeGrid/SurfFinsLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/SurfBoardLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/SurfBalanceLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/GunDamageLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/GunSpeedLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/GunRateLabel" to="." method="buy_item"]
 [connection signal="cursor_selected" from="UpgradeGrid/MeteorLabel" to="." method="buy_item"]
 [connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel2" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/SaveGameLabel" to="." method="start_run"]
 [connection signal="cursor_selected" from="UpgradeGrid/NextRunLabel" to="." method="start_run"]
-[connection signal="cursor_selected" from="UpgradeGrid/DamageLabel" to="." method="buy_item"]
-[connection signal="cursor_selected" from="UpgradeGrid/SpeedLabel" to="." method="buy_item"]
-[connection signal="cursor_selected" from="UpgradeGrid/RateLabel" to="." method="buy_item"]
-[connection signal="cursor_selected" from="UpgradeGrid/BoardLabel" to="." method="buy_item"]
-[connection signal="cursor_selected" from="UpgradeGrid/FinsLabel" to="." method="buy_item"]
-[connection signal="cursor_selected" from="UpgradeGrid/BalanceLabel" to="." method="buy_item"]
 [connection signal="cursor_moved" from="MenuCursor" to="." method="update_desc"]

@@ -86,24 +86,30 @@ func _on_CarSpawnTimer_timeout():
 	$CarSpawnTimer.start()
 	#Get the path node
 	var mob_path_node: Node = get_node("RoadPath/PathFollow")
-	var which_scene: PackedScene
-	#decide if we're spawning a car or a truck
-	var rand_chance = randf()
-	#80% chance to spawn a car
-	if rand_chance >= 0.2:
-		which_scene = car_scene
-	else:	#20% to spawn a truck
-		which_scene = truck_scene
 	
 	#Find a random spawn point
 	var offset: float = randf() / 2.0
-	if car_side:	# this makes the cars alternate between the left and right sides
+	if car_side:	
+		# this makes the cars alternate between the left and right sides
 		offset += 0.5
-	
 	car_side = !car_side	#flip the bool
+	
 	#set the spawn point
 	mob_path_node.unit_offset = offset
-	spawn_enemy(which_scene, mob_path_node.translation)
+	var spawn_point: Vector3 = mob_path_node.translation
+	
+	var which_scene: PackedScene
+	#decide if we're spawning a car or a truck
+
+	#80% chance to spawn a car
+	if randf() >= 0.2:
+		which_scene = car_scene
+	else:	#20% to spawn a truck
+		which_scene = truck_scene
+		#trucks are longer, so they spawn further up the road
+		spawn_point.z += 1.0
+	
+	spawn_enemy(which_scene, spawn_point)
 
 #Spawn a pedestrian when this timer ends
 func _on_PedSpawnTimer_timeout():
@@ -125,8 +131,7 @@ func _on_PedSpawnTimer_timeout():
 
 func _on_HydrantSpawnTimer_timeout():
 	var mob_path_node: Node
-	#var side: bool = randi() % 2
-	var side: bool = true
+	var side: bool = randi() % 2
 	if side:
 		mob_path_node = get_node("Sidewalks/PedSpawn0")
 	else:

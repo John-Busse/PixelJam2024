@@ -6,7 +6,7 @@ var distance_value: float = 0.0
 var height_value: float
 var height_drop_rate: float = 0.5
 var speed: int
-var heli_spawn_dist: float = 1500
+var heli_spawn_dist: float = 5000
 
 
 func _ready():
@@ -33,7 +33,7 @@ func init(height: int, health: int):
 	distance_value = 0.0
 	$GameGrid/HealthBar.set_max(health)
 	$GameGrid/HealthBar.set_value(health)
-	$GameGrid/HealthBar.set_custom_minimum_size(Vector2(health * 2, 10))
+	$GameGrid/HealthBar.set_custom_minimum_size(Vector2(health * 4, 20))
 
 
 func set_speed(new_speed: int):
@@ -107,6 +107,7 @@ func end_game():
 		text = "Choppers Defeated " + str(PlayerStats.get_helis())
 		$EndgameStats/EndgamePanel/VBoxContainer/HeliLabel.set_text(text)
 		text = "Reward: " + str(PlayerStats.get_helis() * 500) + " materials"
+		$EndgameStats/EndgamePanel/VBoxContainer/HeliReward.set_text(text)
 		new_currency += PlayerStats.get_helis() * 500
 	
 	if $GameOver.visible:

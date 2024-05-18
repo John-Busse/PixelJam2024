@@ -2,46 +2,47 @@ extends Control
 
 
 var item_names: Array = [
-	"METEOR\nSIZE",
-	"FIRE\nHYDRANT",
-	#"ASSISTANT",
-	"NEXT\nRUN",
-	"BLASTER\nWIDTH",
-	"BLASTER\nLENGTH",
-	"BLASTER\nRECIEVER",
-	"SURFBOARD\nDECK",
-	"SURFBOARD\nFINS",
-	"SURFBOARD\nRAILS"
-	#"BEACH\nADVERTISEMENT",
+	"SURFBOARD FINS",
+	"SURFBOARD DECK",
+	"SURFBOARD RAILS",
+	"BLASTER WIDTH",
+	"BLASTER LENGTH",
+	"BLASTER RECIEVER",
+	"METEOR SIZE",
+	"FIRE HYDRANT",
+	"BEACH ADVERTISEMENT",
+	"END GAME",
+	"SAVE GAME",
+	"NEXT RUN"
 ]
 
 var base_prices: Array = [
-	200, 200, 1000,
-	500, 50, 200,
-	100, 250, 500,
-	500, 0
+	50, 100, 200,
+	200, 100, 1000,
+	100, 150, 200,
+	0, 0, 0
 ]
 
 var max_upgrade: Array = [
-	100, 0.5, 1,
+	6, 45, 2,
 	10, 8, 0.125,
-	45, 6, 2,
-	2, 0
+	100, 0.5, 1,
+	0, 0, 0
 ]
 
 var item_description: Array = [
-	"Drop a larger meteor into the ocean. Makes the initial wave larger!",
-	"Manipulate the city's water supply.\nDestroying a fire hydrant gives your wave a slight height boost!",
-	#"Some friends will occasionally fly in to help your run!",
-	"Enough shopping, it's time for surfing!",
+	"Better fins increase your horizontal movement speed in water!",
+	"A better deck increases your maximum balance!",
+	"Better rails help you regain your balance quicker!",
 	"Increase your blaster's barrel width.\nIncrease blaster damage!",
 	"Increase your blaster's barrel width.\nIncrease projectile speed!",
 	"Upgrade your blaster's reciever.\nIncrease rate of fire!",
-	"A better deck increases your maximum balance!",
-	"Better fins increase your horizontal movement speed in water!",
-	"Better rails help you regain your balance quicker!"
-	#"Convince some locals to visit the beach!\nIncreases population",
-	
+	"Drop a larger meteor into the ocean. Makes the initial wave larger!",
+	"Manipulate the city's water supply.\nDestroying a fire hydrant gives your wave a slight height boost!",
+	"Convince some locals to visit the beach!\nIncreases population",
+	"Return to orbit\nDon't forget to save beforehand!",
+	"Save your game",
+	"Enough shopping, it's time for surfing!"
 ]
 
 var price: int
@@ -69,29 +70,30 @@ func update_price():
 	var count: int = 0
 	price = 0
 	
-	if index == 11:
+	if index >= 9:
 		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text("Priceless")
 	elif is_equal_approx(upgrade, max_upgrade[index]):
 		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text("Sold\nOut")
 	else:
 		match index:
-			0:	#Meteor size
-				count = upgrade * 4 / 100 - 1
-			1, 2:	#Fire Hydrant,Blaster Width
-			#1, 2, 3 #Fire Hydrant, Assistant, Blaster Width
+			0:	#Surfboard Fins (move_speed)
+				count = upgrade / 2 - 1
+			1:	#Surfboard Deck (max_health)
+				count = upgrade / 15 - 1
+			2:	#Surfboard Rails (heal_rate)
+				count = upgrade * 2 - 1
+			3:	#Blaster Width
 				count = 0
 			4:	#Blaster Length (bullet_speed)
 				count = upgrade / 2 - 1
 			5:	#Blaster Reciever (fire_rate)
 				count = pow(upgrade * 2.0, -1) - 1
-			6:	#Surfboard Deck (max_health)
-				count = upgrade / 15 - 1
-			7:	#Surfboard Fins (move_speed)
-				count = upgrade / 2 - 1
-			8:	#Surfboard Rails (heal_rate)
-				count = upgrade * 2 - 1
-			9:	#beach ads (enemy_timer)
-				count = 3 - upgrade / 2
+			6:	#Meteor size
+				count = upgrade * 4 / 100 - 1
+			7:	#Fire Hydrant
+				count = 0
+			8:	#Beach advert
+				count = 3 - upgrade / 2		##?
 		
 		price = base_prices[index] * pow(1.5 , count)
 		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text(str(price))
@@ -102,14 +104,12 @@ func buy_item():
 		PlayerStats.buy_item(index, price)
 		update_material_count()
 		$MaterialContainer/PurchasedLabel.set_visible(true)
-		$MaterialContainer/PurchasedLabel/PurchasedTimer.set_wait_time(0.75)
 		$MaterialContainer/PurchasedLabel/PurchasedTimer.set_paused(false)
-		$MaterialContainer/PurchasedLabel/PurchasedTimer.start()
+		$MaterialContainer/PurchasedLabel/PurchasedTimer.start(0.75)
 	else:
 		$MaterialContainer/CantAffordLabel.set_visible(true)
-		$MaterialContainer/CantAffordLabel/CantAffordTimer.set_wait_time(0.75)
 		$MaterialContainer/CantAffordLabel/CantAffordTimer.set_paused(false)
-		$MaterialContainer/CantAffordLabel/CantAffordTimer.start()
+		$MaterialContainer/CantAffordLabel/CantAffordTimer.start(0.75)
 
 
 func purchase_timer():
@@ -121,6 +121,10 @@ func broke_timer():
 	$MaterialContainer/CantAffordLabel.set_visible(false)
 	$MaterialContainer/CantAffordLabel/CantAffordTimer.set_paused(true)
 	$MaterialContainer/CantAffordLabel/CantAffordTimer.set_wait_time(0.75)
+
+
+func end_game():
+	Global.goto_scene("res://interface/MenuUI.tscn")
 
 
 func start_run():
