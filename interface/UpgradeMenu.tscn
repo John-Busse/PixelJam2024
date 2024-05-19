@@ -72,6 +72,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="SaveLabel" type="Label" parent="MaterialContainer"]
+visible = false
 margin_left = 551.0
 margin_right = 994.0
 margin_bottom = 59.0

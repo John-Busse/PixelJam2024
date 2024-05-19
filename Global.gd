@@ -35,8 +35,10 @@ func _deferred_goto_scene(path: String):
 
 
 func change_song(song: AudioStream):
-	$MusicPlayer.set_stream(song)
-	$MusicPlayer.play()
+	# if this song is a new song
+	if $MusicPlayer.get_stream() != song:
+		$MusicPlayer.set_stream(song)
+		$MusicPlayer.play()
 
 
 func save_game():
