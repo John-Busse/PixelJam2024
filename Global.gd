@@ -3,6 +3,7 @@ extends Node
 export var menu_loop: AudioStream
 export var gameplay_loop: AudioStream
 var current_scene = null
+var save_file: String = "res://save/savegame.save"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,3 +37,24 @@ func _deferred_goto_scene(path: String):
 func change_song(song: AudioStream):
 	$MusicPlayer.set_stream(song)
 	$MusicPlayer.play()
+
+
+func save_game():
+	var save_game = File.new()
+	save_game.open(save_file, File.WRITE)
+	var save_data = PlayerStats.save_game()
+	save_game.store_line(to_json(save_data))
+	save_game.close()
+
+
+func load_game() -> bool:
+	var save_game = File.new()
+	if not save_game.file_exists(save_file):
+		return false
+	
+	save_game.open(save_file, File.READ)
+	#while save_game.get_position() < save_game.get_len():
+	var save_data = parse_json(save_game.get_line())
+	PlayerStats.load_game(save_data)
+	
+	return true

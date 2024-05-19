@@ -20,7 +20,6 @@ var bullets_hit: int = 0
 var currency: int = 0
 #upgrade variables
 var hydrant_timer: float = 0.0
-var assistant_timer: float = 0.0
 var enemy_timer: float = 6.0
 
 # Called when the node enters the scene tree for the first time.
@@ -182,3 +181,45 @@ func buy_item(index: int, price: int):
 				hydrant_timer = 6.4
 		8:	#beach ads (enemy_timer)
 			enemy_timer -= 2.0
+
+
+func save_game() -> Dictionary:
+	var save_dict: Dictionary = {
+		"fire_rate" : fire_rate,
+		"bullet_damage" : bullet_damage,
+		"bullet_speed" : bullet_speed,
+		"max_health" : max_health,
+		"move_speed" : move_speed,
+		"heal_rate" : heal_rate,
+		"wave_height" : wave_height,
+		"materials" : currency,
+		"hydrant_timer" : hydrant_timer,
+		"enemy_timer" : enemy_timer
+	}
+	return save_dict
+
+
+func load_game(save_data: Dictionary):
+		fire_rate = save_data["fire_rate"]
+		bullet_damage = save_data["bullet_damage"]
+		bullet_speed = save_data["bullet_speed"]
+		max_health = save_data["max_health"]
+		move_speed = save_data["move_speed"]
+		heal_rate = save_data["heal_rate"]
+		wave_height = save_data["wave_height"]
+		currency = save_data["materials"]
+		hydrant_timer = save_data["hydrant_timer"]
+		enemy_timer = save_data["enemy_timer"]
+
+#Reset all the standard player variables
+func reset_game():
+	fire_rate = 0.5
+	bullet_damage = 5
+	bullet_speed = 2
+	max_health = 25.0
+	move_speed = 2
+	heal_rate = 0.5
+	wave_height = 25
+	currency = 0
+	hydrant_timer = 0.0
+	enemy_timer = 6.0

@@ -17,6 +17,7 @@ script = ExtResource( 6 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 4 )
+expand = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -28,14 +29,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -162.0
-margin_top = -30.0
-margin_right = 162.0
-margin_bottom = -10.0
+margin_left = -191.0
+margin_top = -40.0
+margin_right = 191.0
 
 [node name="ReturnToMenu" type="Label" parent="ReturnContainer"]
-margin_right = 324.0
-margin_bottom = 16.0
+margin_right = 382.0
+margin_bottom = 40.0
 text = "Return to main menu!"
 align = 1
 valign = 1
@@ -48,18 +48,18 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="CreditsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 110.0
-margin_right = 640.0
-margin_bottom = 142.0
+margin_top = 128.0
+margin_right = 1024.0
+margin_bottom = 187.0
 custom_fonts/font = ExtResource( 3 )
 text = "Credits"
 align = 1
 autowrap = true
 
 [node name="CreditsText" type="Label" parent="VBoxContainer"]
-margin_top = 146.0
-margin_right = 640.0
-margin_bottom = 238.0
+margin_top = 191.0
+margin_right = 1024.0
+margin_bottom = 403.0
 text = "
 John Busse: Programming & Design
 Matheus: Music & Sound Design
@@ -69,21 +69,21 @@ align = 1
 autowrap = true
 
 [node name="AssetsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 242.0
-margin_right = 640.0
-margin_bottom = 274.0
+margin_top = 407.0
+margin_right = 1024.0
+margin_bottom = 466.0
 custom_fonts/font = ExtResource( 3 )
 text = "External Assets"
 align = 1
 autowrap = true
 
 [node name="AssetsText" type="Label" parent="VBoxContainer"]
-margin_top = 278.0
-margin_right = 640.0
-margin_bottom = 370.0
+margin_top = 470.0
+margin_right = 1024.0
+margin_bottom = 639.0
 text = "
-Font: PublicPixel by GGBotNet
-Licensed under Creative Commons Zero v1.0 Universal
+Font: Quadriana by Echo Heo
+Licensed under SIL Open Font License
 "
 align = 1
 autowrap = true

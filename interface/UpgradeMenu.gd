@@ -117,12 +117,14 @@ func buy_item():
 func purchase_timer():
 	$MaterialContainer/PurchasedLabel.set_visible(false)
 	$MaterialContainer/PurchasedLabel/PurchasedTimer.set_paused(true)
-	$MaterialContainer/PurchasedLabel/PurchasedTimer.set_wait_time(0.75)
 
 func broke_timer():
 	$MaterialContainer/CantAffordLabel.set_visible(false)
 	$MaterialContainer/CantAffordLabel/CantAffordTimer.set_paused(true)
-	$MaterialContainer/CantAffordLabel/CantAffordTimer.set_wait_time(0.75)
+
+func save_timer():
+	$MaterialContainer/SaveLabel.set_visible(false)
+	$MaterialContainer/SaveLabel/SaveTimer.set_paused(true)
 
 
 func end_game():
@@ -131,3 +133,10 @@ func end_game():
 
 func start_run():
 	Global.goto_scene("res://levels/Stage.tscn")
+
+
+func save_game():
+	Global.save_game()
+	$MaterialContainer/SaveLabel.set_visible(true)
+	$MaterialContainer/SaveLabel/SaveTimer.set_paused(false)
+	$MaterialContainer/SaveLabel/SaveTimer.start(0.75)

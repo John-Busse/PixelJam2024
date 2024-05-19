@@ -71,6 +71,20 @@ align = 2
 wait_time = 1.5
 one_shot = true
 
+[node name="SaveLabel" type="Label" parent="MaterialContainer"]
+margin_left = 551.0
+margin_right = 994.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Game Saved!"
+align = 2
+
+[node name="SaveTimer" type="Timer" parent="MaterialContainer/SaveLabel"]
+wait_time = 1.5
+one_shot = true
+
 [node name="UpgradeGrid" type="GridContainer" parent="."]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -291,6 +305,7 @@ cursor_offset = Vector2( -50, 15 )
 
 [connection signal="timeout" from="MaterialContainer/CantAffordLabel/CantAffordTimer" to="." method="broke_timer"]
 [connection signal="timeout" from="MaterialContainer/PurchasedLabel/PurchasedTimer" to="." method="purchase_timer"]
+[connection signal="timeout" from="MaterialContainer/SaveLabel/SaveTimer" to="." method="purchase_timer"]
 [connection signal="cursor_selected" from="UpgradeGrid/SurfFinsLabel" to="." method="buy_item"]
 [connection signal="cursor_selected" from="UpgradeGrid/SurfBoardLabel" to="." method="buy_item"]
 [connection signal="cursor_selected" from="UpgradeGrid/SurfBalanceLabel" to="." method="buy_item"]
@@ -300,6 +315,7 @@ cursor_offset = Vector2( -50, 15 )
 [connection signal="cursor_selected" from="UpgradeGrid/MeteorLabel" to="." method="buy_item"]
 [connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel" to="." method="buy_item"]
 [connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel2" to="." method="buy_item"]
-[connection signal="cursor_selected" from="UpgradeGrid/SaveGameLabel" to="." method="start_run"]
+[connection signal="cursor_selected" from="UpgradeGrid/EndGameLabel" to="." method="end_game"]
+[connection signal="cursor_selected" from="UpgradeGrid/SaveGameLabel" to="." method="save_game"]
 [connection signal="cursor_selected" from="UpgradeGrid/NextRunLabel" to="." method="start_run"]
 [connection signal="cursor_moved" from="MenuCursor" to="." method="update_desc"]

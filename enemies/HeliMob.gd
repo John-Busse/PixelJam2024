@@ -80,7 +80,7 @@ func _destroyed():
 	$CollisionShape.set_disabled(true)	#disable collision
 	$Animations/AnimatedSprite3D.set_animation("destroyed")
 	$Animations/explosionSprite.set_visible(true)
-	$Spatial/explosionSprite.play()
+	$Animations/explosionSprite.play()
 
 #we recalculate speed when the game ends
 func _calculate_speed():

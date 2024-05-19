@@ -51,6 +51,5 @@ texture = ExtResource( 5 )
 [node name="HeliWeaponTimer" type="Timer" parent="."]
 
 [connection signal="can_fire" from="HeliMob" to="." method="_on_Helicopter_can_fire"]
-[connection signal="camera_exited" from="HeliMob/VisibilityNotifier" to="." method="_on_VisibilityNotifier_camera_exited"]
 [connection signal="screen_exited" from="HeliMob/VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
 [connection signal="timeout" from="HeliWeaponTimer" to="." method="_on_HeliWeaponTimer_timeout"]

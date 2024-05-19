@@ -11,3 +11,16 @@ func credits_menu():
 
 func controls_menu():
 	Global.goto_scene("res://interface/Controls.tscn")
+
+
+func load_game():
+	if Global.load_game():
+		Global.goto_scene("res://interface/UpgradeMenu.tscn")
+	else:
+		print("File not found")
+		$MessageContainer.set_visible(true)
+		$MessageTimer.start()
+
+#hide the message container
+func _on_MessageTimer_timeout():
+	$MessageContainer.set_visible(false)
