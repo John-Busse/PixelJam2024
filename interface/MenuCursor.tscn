@@ -21,7 +21,6 @@ animations = [ {
 
 [node name="MenuCursor" type="AnimatedSprite"]
 frames = SubResource( 1 )
-frame = 2
 playing = true
 script = ExtResource( 2 )
 

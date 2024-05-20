@@ -20,7 +20,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="PixelJam"
+config/name="Super Tsunami Surfer"
+config/description="Submission for 2024 Pixel Game Jam.
+A vertical scrolling endless shooter about an alien surfer dropping meteors into Earth's oceans to ride the gnarliest waves."
 run/main_scene="res://interface/Intro.tscn"
 config/icon="res://icon.png"
 

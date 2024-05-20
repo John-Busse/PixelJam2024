@@ -251,7 +251,7 @@ valign = 1
 script = ExtResource( 5 )
 
 [node name="MenuCursor" parent="EndgameStats/EndRun" instance=ExtResource( 4 )]
-frame = 0
+frame = 3
 menu_container_path = NodePath("../EndRunContainer")
 cursor_offset = Vector2( 10, 0 )
 
