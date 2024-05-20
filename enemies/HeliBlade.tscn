@@ -1,0 +1,33 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://HeliBlade.gd" type="Script" id=1]
+[ext_resource path="res://art/Heli/PropFliesOff/0004.png" type="Texture" id=2]
+[ext_resource path="res://art/Heli/PropFliesOff/0005.png" type="Texture" id=3]
+[ext_resource path="res://art/Heli/PropFliesOff/0007.png" type="Texture" id=4]
+[ext_resource path="res://art/Heli/PropFliesOff/0011.png" type="Texture" id=5]
+[ext_resource path="res://art/Heli/PropFliesOff/0010.png" type="Texture" id=6]
+[ext_resource path="res://art/Heli/PropFliesOff/0008.png" type="Texture" id=7]
+[ext_resource path="res://art/Heli/PropFliesOff/0006.png" type="Texture" id=8]
+[ext_resource path="res://art/Heli/PropFliesOff/0009.png" type="Texture" id=9]
+[ext_resource path="res://art/Heli/PropFliesOff/0012.png" type="Texture" id=10]
+[ext_resource path="res://art/Heli/PropFliesOff/0002.png" type="Texture" id=11]
+[ext_resource path="res://art/Heli/PropFliesOff/0001.png" type="Texture" id=12]
+[ext_resource path="res://art/Heli/PropFliesOff/0003.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[node name="HeliBlade" type="KinematicBody"]
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform( -2.5, 0, 2.18557e-07, 0, 1, 0, -2.18557e-07, 0, -2.5, 0, 0, 0 )
+axis = 1
+frames = SubResource( 1 )
+frame = 7
+playing = true

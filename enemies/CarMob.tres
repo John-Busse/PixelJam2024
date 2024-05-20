@@ -1,11 +1,11 @@
 [gd_resource type="SpriteFrames" load_steps=7 format=2]
 
-[ext_resource path="res://art/Cars/Car3_Side.png" type="Texture" id=1]
+[ext_resource path="res://art/Cars/Car1_Destroyed.png" type="Texture" id=1]
 [ext_resource path="res://art/Cars/Car1_Forward.png" type="Texture" id=2]
 [ext_resource path="res://art/Cars/Car2_Forward.png" type="Texture" id=3]
 [ext_resource path="res://art/Cars/Car3_Forward.png" type="Texture" id=4]
-[ext_resource path="res://art/Cars/Car1_Side.png" type="Texture" id=5]
-[ext_resource path="res://art/Cars/Car2_Side.png" type="Texture" id=6]
+[ext_resource path="res://art/Cars/Car3_Destroyed.png" type="Texture" id=5]
+[ext_resource path="res://art/Cars/Car2_Destroyed.png" type="Texture" id=6]
 
 [resource]
 animations = [ {
@@ -14,7 +14,7 @@ animations = [ {
 "name": "car",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 6 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "destroyed",
 "speed": 0.0

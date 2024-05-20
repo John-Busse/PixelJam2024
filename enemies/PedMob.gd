@@ -55,7 +55,7 @@ func _destroyed():
 	damage_value = 0	#No longer deal damage
 	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
 	$CollisionShape.set_disabled(true)
-	$Spatial/AnimatedSprite3D.set_animation("destroyed")
+	$Spatial/AnimatedSprite3D.set_animation("dead" + str(animation_index))
 
 
 func _calculate_speed():

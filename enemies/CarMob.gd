@@ -62,9 +62,11 @@ func _destroyed():
 	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
 	$CollisionShape.set_disabled(true)	#disable collision
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
-	$Spatial/explosionSprite.set_visible(true)
 	$Spatial/AnimatedSprite3D.set_frame(car_frame)
+	
+	$Spatial/explosionSprite.set_visible(true)
 	$Spatial/explosionSprite.play()
+	
 	$AudioStreamPlayer.set_pitch_scale(1.0)
 	$AudioStreamPlayer.set_stream(explosion_sound)
 	$AudioStreamPlayer.play()

@@ -21,8 +21,8 @@ ped_death_1 = ExtResource( 4 )
 transform = Transform( 3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0 )
 axis = 1
 frames = ExtResource( 1 )
-animation = "human1"
-frame = 5
+animation = "human0"
+frame = 23
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]

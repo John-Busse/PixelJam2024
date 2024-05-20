@@ -3,6 +3,7 @@ extends Enemy
 signal can_fire
 signal cant_fire
 export var heli_explosion: AudioStream
+export var heli_blades: PackedScene
 var can_fire: bool = false
 var end_pos: Vector3
 var player_node: Node
@@ -73,6 +74,9 @@ func _destroyed():
 	$AudioStreamPlayer.set_stream(heli_explosion)
 	$AudioStreamPlayer.play()
 	emit_signal("cant_fire")
+	
+	var blades: Node = heli_blades.instance()
+	add_child(blades)
 	
 
 #we recalculate speed when the game ends
