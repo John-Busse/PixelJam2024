@@ -1,8 +1,15 @@
 extends Control
 
 export var upgrade_music: AudioStream
+export var upgrade_sound_0: AudioStream
+export var upgrade_sound_1: AudioStream
+export var purchase_failed: AudioStream
+export var sold_out: SpriteFrames
 
 var item_names: Array = [
+	"NEXT RUN",
+	"SAVE GAME",
+	"END GAME",
 	"SURFBOARD FINS",
 	"SURFBOARD DECK",
 	"SURFBOARD RAILS",
@@ -11,28 +18,28 @@ var item_names: Array = [
 	"BLASTER RECIEVER",
 	"METEOR SIZE",
 	"FIRE HYDRANT",
-	"BEACH ADVERTISEMENT",
-	"END GAME",
-	"SAVE GAME",
-	"NEXT RUN"
+	"BEACH ADVERTISEMENT"
 ]
 
 var base_prices: Array = [
+	0, 0, 0,
 	50, 100, 200,
-	200, 100, 1000,
-	100, 150, 200,
-	0, 0, 0
+	200, 100, 500,
+	100, 150, 200
 ]
 
 var max_upgrade: Array = [
+	0, 0, 0,
 	6, 45, 2,
 	10, 8, 0.125,
-	100, 6.4, 1,
-	0, 0, 0
+	100, 6.4, 1
 ]
 
 var item_description: Array = [
-	"Better fins increase your horizontal movement speed in water!",
+	"Enough shopping, it's time for surfing!",
+	"Save your game",
+	"Return to orbit\nDon't forget to save beforehand!",
+	"Better fins increase your horizontal movement speed!",
 	"A better deck increases your maximum balance!",
 	"Better rails help you regain your balance quicker!",
 	"Increase your blaster's barrel width.\nIncrease blaster damage!",
@@ -40,10 +47,7 @@ var item_description: Array = [
 	"Upgrade your blaster's reciever.\nIncrease rate of fire!",
 	"Drop a larger meteor into the ocean. Makes the initial wave larger!",
 	"Manipulate the city's water supply.\nDestroying a fire hydrant gives your wave a slight height boost!",
-	"Convince some locals to visit the beach!\nIncreases population",
-	"Return to orbit\nDon't forget to save beforehand!",
-	"Save your game",
-	"Enough shopping, it's time for surfing!"
+	"Convince some locals to visit the beach!\nIncreases population"
 ]
 
 var price: int
@@ -52,6 +56,8 @@ var index: int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.change_song(upgrade_music)
+	for i in range(3,12):
+		update_icon(i)
 	update_material_count()
 
 
@@ -66,52 +72,78 @@ func update_desc():
 	update_price()
 
 
+func update_icon(item: int):
+	#for each index item > 2:
+	#if is_equal_approx(upgrade, max_upgrade[index]):
+	#var sprite = $UpgradeImageGrid.get_child(index).get_child(0) as AnimatedSprite
+	if item < 3:
+		pass
+	else:
+		var upgrade: float = PlayerStats.get_upgrade(item)
+		if is_equal_approx(upgrade, max_upgrade[item]):
+			var sprite: AnimatedSprite = $UpgradeImageGrid.get_child(item - 3).get_child(0) as AnimatedSprite
+			sprite.set_sprite_frames(sold_out)
+
+
 func update_price():
-	var sold_out: bool = false
 	var upgrade: float = PlayerStats.get_upgrade(index)
 	var count: int = 0
 	price = 0
 	
-	if index >= 9:
+	if index <= 2:
 		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text("Priceless")
 	elif is_equal_approx(upgrade, max_upgrade[index]):
-		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text("Sold\nOut")
+		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text("Sold Out")
 	else:
 		match index:
-			0:	#Surfboard Fins (move_speed)
+			3:	#Surfboard Fins (move_speed)
 				count = upgrade / 2 - 1
-			1:	#Surfboard Deck (max_health)
+			4:	#Surfboard Deck (max_health)
 				count = upgrade / 15 - 1
-			2:	#Surfboard Rails (heal_rate)
+			5:	#Surfboard Rails (heal_rate)
 				count = upgrade * 2 - 1
-			3:	#Blaster Width
+			6:	#Blaster Width
 				count = 0
-			4:	#Blaster Length (bullet_speed)
+			7:	#Blaster Length (bullet_speed)
 				count = upgrade / 2 - 1
-			5:	#Blaster Reciever (fire_rate)
+			8:	#Blaster Reciever (fire_rate)
 				count = pow(upgrade * 2.0, -1) - 1
-			6:	#Meteor size
+			9:	#Meteor size
 				count = upgrade * 4 / 100 - 1
-			7:	#Fire Hydrant
+			10:	#Fire Hydrant
 				count = 0
-			8:	#Beach advert
+			11:	#Beach advert
 				count = 3 - upgrade / 2		##?
-		
 		price = base_prices[index] * pow(1.5 , count)
 		$UpgradeDescContainer/VBoxContainer/HBoxContainer/ItemCostLabel.set_text(str(price))
 
 
 func buy_item():
-	if PlayerStats.get_materials() >= price:
+	if is_equal_approx(PlayerStats.get_upgrade(index), max_upgrade[index]):
+		$MaterialContainer/SoldOutLabel.set_visible(true)
+		$MaterialContainer/SoldOutLabel/SoldOutTimer.set_paused(false)
+		$MaterialContainer/SoldOutLabel/SoldOutTimer.start(0.75)
+		$AudioStreamPlayer.set_stream(purchase_failed)
+		$AudioStreamPlayer.play()
+	elif PlayerStats.get_materials() >= price:
 		PlayerStats.buy_item(index, price)
 		update_material_count()
 		$MaterialContainer/PurchasedLabel.set_visible(true)
 		$MaterialContainer/PurchasedLabel/PurchasedTimer.set_paused(false)
 		$MaterialContainer/PurchasedLabel/PurchasedTimer.start(0.75)
+		match randi() % 2:
+			0:
+				$AudioStreamPlayer.set_stream(upgrade_sound_0)
+			1:
+				$AudioStreamPlayer.set_stream(upgrade_sound_1)
+		$AudioStreamPlayer.play()
+		update_icon(index)
 	else:
 		$MaterialContainer/CantAffordLabel.set_visible(true)
 		$MaterialContainer/CantAffordLabel/CantAffordTimer.set_paused(false)
 		$MaterialContainer/CantAffordLabel/CantAffordTimer.start(0.75)
+		$AudioStreamPlayer.set_stream(purchase_failed)
+		$AudioStreamPlayer.play()
 
 
 func purchase_timer():
@@ -126,6 +158,9 @@ func save_timer():
 	$MaterialContainer/SaveLabel.set_visible(false)
 	$MaterialContainer/SaveLabel/SaveTimer.set_paused(true)
 
+func sold_out_timer():
+	$MaterialContainer/SoldOutLabel.set_visible(false)
+	$MaterialContainer/SoldOutLabel/SoldOutTimer.set_paused(true)
 
 func end_game():
 	Global.goto_scene("res://interface/MenuUI.tscn")
@@ -140,3 +175,9 @@ func save_game():
 	$MaterialContainer/SaveLabel.set_visible(true)
 	$MaterialContainer/SaveLabel/SaveTimer.set_paused(false)
 	$MaterialContainer/SaveLabel/SaveTimer.start(0.75)
+	match randi() % 2:
+		0:
+			$AudioStreamPlayer.set_stream(upgrade_sound_0)
+		1:
+			$AudioStreamPlayer.set_stream(upgrade_sound_1)
+	$AudioStreamPlayer.play()

@@ -13,8 +13,8 @@ dest_files=[ "res://.import/music_gameplay_loop.wav-5e874eab3853f8c79bd2f799ab7a
 
 force/8_bit=false
 force/mono=false
-force/max_rate=false
-force/max_rate_hz=44100
+force/max_rate=true
+force/max_rate_hz=32000.0
 edit/trim=false
 edit/normalize=false
 edit/loop_mode=2

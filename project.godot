@@ -31,9 +31,12 @@ Global="*res://Global.tscn"
 
 [display]
 
-window/size/height=768
+window/size/width=256
+window/size/height=224
 window/size/resizable=false
-window/stretch/aspect="keep"
+window/vsync/use_vsync=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
 
 [gui]
 
@@ -126,6 +129,8 @@ fire={
 3d_physics/layer_3="wave"
 3d_physics/layer_4="playerBlockers"
 3d_physics/layer_5="obstacles"
+3d_physics/layer_6="heliBullet"
+3d_physics/layer_7="playerBullet"
 
 [physics]
 

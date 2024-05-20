@@ -1,5 +1,7 @@
 extends Enemy
 
+export var ped_death_0: AudioStream
+export var ped_death_1: AudioStream
 var animation_index: int
 
 func _physics_process(_delta):
@@ -22,6 +24,7 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 	
 	animation_index = randi() % 3
 	$Spatial/AnimatedSprite3D.set_animation("human" + str(animation_index))
+	$Spatial/AnimatedSprite3D.set_frame(randi() % 24)
 
 # Enemy leaves the screen
 func _on_VisibilityNotifier_screen_exited():
@@ -35,7 +38,8 @@ func _get_damage_value() -> int:
 func _take_damage(damage: int):
 	#reduce health
 	health -= damage
-		###play damage sound effect~~
+	#Play damage audio
+	$AudioStreamPlayer.play()
 	#destroy the enemy if needed
 	if health <= 0:
 		_destroyed()
@@ -46,17 +50,16 @@ func _destroyed():
 	if health <= 0:
 		#mark the enemy as destroyed
 		PlayerStats.enemy_destroyed()
-		health = 0
+	health = 0
 	
 	damage_value = 0	#No longer deal damage
 	velocity = Vector3.BACK * PlayerStats.get_surf_speed()	#stop moving
 	$CollisionShape.set_disabled(true)
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
-	print("destroyed")
 
 
 func _calculate_speed():
 	#Speed relative to the wave
 	if health > 0.0:	#only if the enemy hasn't been destroyed
-		print("recalculating")
 		velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())
+

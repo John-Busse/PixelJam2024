@@ -2,6 +2,8 @@ extends Control
 
 signal height_zero
 signal spawn_heli
+export var game_over_music: AudioStream
+export var game_win_music: AudioStream
 var distance_value: float = 0.0
 var height_value: float
 var height_drop_rate: float = 0.5
@@ -24,7 +26,7 @@ func _process(delta):
 		set_height(change)
 	
 	if distance_value > heli_spawn_dist:
-		heli_spawn_dist += 100000.0
+		heli_spawn_dist += 5000
 		emit_signal("spawn_heli")
 
 
@@ -33,7 +35,7 @@ func init(height: int, health: int):
 	distance_value = 0.0
 	$GameGrid/HealthBar.set_max(health)
 	$GameGrid/HealthBar.set_value(health)
-	$GameGrid/HealthBar.set_custom_minimum_size(Vector2(health * 4, 20))
+	$GameGrid/HealthBar.set_custom_minimum_size(Vector2(health, 5))
 
 
 func set_speed(new_speed: int):
@@ -68,12 +70,14 @@ func get_height() -> float :
 
 
 func game_over():
+	Global.change_song(game_over_music)
 	$GameOver.set_visible(true)	#enable game over
 	end_game()
 	pass
 
 
 func game_win():
+	Global.change_song(game_win_music)
 	$GameWon.set_visible(true)	#enable game won
 	end_game()
 	pass
@@ -104,7 +108,7 @@ func end_game():
 	if PlayerStats.get_helis() > 0:
 		$EndgameStats/EndgamePanel/VBoxContainer/HeliLabel.set_visible(true)
 		$EndgameStats/EndgamePanel/VBoxContainer/HeliReward.set_visible(true)
-		text = "Choppers Defeated " + str(PlayerStats.get_helis())
+		text = "Choppers Destroyed: " + str(PlayerStats.get_helis())
 		$EndgameStats/EndgamePanel/VBoxContainer/HeliLabel.set_text(text)
 		text = "Reward: " + str(PlayerStats.get_helis() * 500) + " materials"
 		$EndgameStats/EndgamePanel/VBoxContainer/HeliReward.set_text(text)

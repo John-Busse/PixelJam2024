@@ -4,11 +4,15 @@ signal die
 signal win
 signal shoot
 export var move_speed: int = 5 #velocity in m/s
+export var turn_left: AudioStream
+export var turn_right: AudioStream
 var velocity: Vector3 = Vector3.ZERO
 var start_pos: Vector3
 var game_lost: bool = false
 var game_won: bool = false
 var is_shooting: bool = false
+var not_playing: bool = true
+
 
 func _ready():
 	start_pos = translation
@@ -17,6 +21,7 @@ func _ready():
 func _process(_delta):
 	if $Pivot/AnimatedSprite3D.get_animation() == "surf_shoot" and $Pivot/AnimatedSprite3D.get_frame() == 2:
 		emit_signal("shoot")
+
 
 func _physics_process(delta):
 	var direction: Vector3 = Vector3.FORWARD
@@ -37,9 +42,18 @@ func _physics_process(delta):
 			$Pivot/AnimatedSprite3D.set_animation("surf_straight")
 		elif direction.x > 0 and not is_shooting:
 			$Pivot/AnimatedSprite3D.set_animation("surf_right")
+			if not_playing:
+				not_playing = false
+				$AudioStreamPlayer.set_stream(turn_right)
+				$AudioStreamPlayer.play()
 		elif direction.x < 0 and not is_shooting:
 			$Pivot/AnimatedSprite3D.set_animation("surf_left")
-		else:
+			if not_playing:
+				not_playing = false
+				$AudioStreamPlayer.set_stream(turn_left)
+				$AudioStreamPlayer.play()
+		else:	#is_shooting
+			direction *= 0.75	#move slower while shooting
 			$Pivot/AnimatedSprite3D.set_animation("surf_shoot")
 		
 		velocity.x = direction.x * PlayerStats.get_move_speed()
@@ -83,6 +97,9 @@ func game_win():
 func gunshot():
 	is_shooting = true
 
+
+func sound_done():
+	not_playing = true
 
 func _on_AnimatedSprite3D_animation_finished():
 	if $Pivot/AnimatedSprite3D.get_animation() == "surf_shoot":

@@ -13,7 +13,6 @@ func _ready():
 	$AnimatedSprite3D.set_frame(randi() % num_frames)
 	
 	if $AnimatedSprite3D.animation == "transition":
-		print("transition tile")
 		$SurfSign.translation.y = 3.0
 	elif $AnimatedSprite3D.animation == "tile" && $AnimatedSprite3D.frame == 0:
 		$Tile0Buildings.translation.y = 3.0

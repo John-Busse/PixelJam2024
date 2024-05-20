@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://player/Bullet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Surfer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/Player.gd" type="Script" id=3]
+[ext_resource path="res://audio/sfx/sfx_alien_shoot_3.wav" type="AudioStream" id=4]
+[ext_resource path="res://audio/sfx/sfx_alien_shoot_2.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/sfx/sfx_alien_shoot_1.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/sfx/sfx_player_hurt_1.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/sfx/sfx_player_hurt_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/sfx/sfx_player_hurt_3.wav" type="AudioStream" id=9]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.237774, 1, 0.379878 )
@@ -13,16 +19,27 @@ __meta__ = {
 "_edit_group_": true
 }
 bullet_scene = ExtResource( 1 )
+gun_sound_0 = ExtResource( 6 )
+gun_sound_1 = ExtResource( 5 )
+gun_sound_2 = ExtResource( 4 )
+player_hurt_0 = ExtResource( 7 )
+player_hurt_1 = ExtResource( 8 )
+player_hurt_2 = ExtResource( 9 )
 
 [node name="Surfer" parent="." instance=ExtResource( 2 )]
 
 [node name="MobDetector" type="Area" parent="Surfer"]
-collision_mask = 2
+collision_mask = 34
 
 [node name="CollisionShape" type="CollisionShape" parent="Surfer/MobDetector"]
 shape = SubResource( 1 )
 
+[node name="PlayerHit" type="AudioStreamPlayer" parent="Surfer"]
+
 [node name="FireRateTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="die" from="Surfer" to="." method="game_over"]
 [connection signal="shoot" from="Surfer" to="." method="shoot_bullet"]

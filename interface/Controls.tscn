@@ -25,17 +25,17 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.25 )
 
 [node name="ReturnContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -191.0
-margin_top = -40.0
-margin_right = 191.0
+margin_top = -20.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 0, 15 )
 
 [node name="ReturnToMenu" type="Label" parent="ReturnContainer"]
-margin_right = 382.0
-margin_bottom = 40.0
+margin_right = 256.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 3 )
 text = "Return to main menu!"
 align = 1
 valign = 1
@@ -48,56 +48,48 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="ControlsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 21.0
-margin_right = 1024.0
-margin_bottom = 80.0
+margin_top = 14.0
+margin_right = 256.0
+margin_bottom = 29.0
 custom_fonts/font = ExtResource( 3 )
 text = "Controls"
 align = 1
 autowrap = true
 
 [node name="ControlsText" type="Label" parent="VBoxContainer"]
-margin_top = 84.0
-margin_right = 1024.0
-margin_bottom = 167.0
+margin_top = 30.0
+margin_right = 256.0
+margin_bottom = 53.0
 text = "AD or Left/Right Arrows: Move Surfer
 Spacebar: Fire Weapon"
 align = 1
 autowrap = true
 
 [node name="GoalsLabel" type="Label" parent="VBoxContainer"]
-margin_top = 171.0
-margin_right = 1024.0
-margin_bottom = 230.0
+margin_top = 54.0
+margin_right = 256.0
+margin_bottom = 69.0
 custom_fonts/font = ExtResource( 3 )
 text = "Goals"
 align = 1
 autowrap = true
 
 [node name="GoalsText" type="Label" parent="VBoxContainer"]
-margin_top = 234.0
-margin_right = 1024.0
-margin_bottom = 747.0
-text = "Surf for as long as possible!
-Getting hit makes you lose balance.
-You regain balance slowly over time
-if your balance depletes, the run ends
+margin_top = 70.0
+margin_right = 256.0
+margin_bottom = 210.0
+text = "Surf for as long as possible! Getting hit makes you lose balance. You regain balance slowly over time. if your balance depletes, the run ends
 
-The wave loses height over time!
-If the wave gets hit, its height drops.
-When the wave's height reaches zero, the run ends.
+The wave loses height over time! If the wave gets hit, its height drops. When the wave's height reaches zero, the run ends.
 
-Gain resources by surviving and destroying obstacles.
-Spend these resources on upgrades.
+Gain resources by surviving and destroying obstacles. Spend these resources on upgrades.
 "
 align = 1
 autowrap = true
 
 [node name="ControlsMenuCursor" parent="." instance=ExtResource( 1 )]
-margin_left = 117.0
-margin_top = 445.0
-margin_right = 149.0
-margin_bottom = 477.0
+frame = 6
 menu_container_path = NodePath("../ReturnContainer")
+cursor_offset = Vector2( -70, 0 )
 
 [connection signal="cursor_selected" from="ReturnContainer/ReturnToMenu" to="." method="main_menu"]

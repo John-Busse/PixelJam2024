@@ -14,7 +14,11 @@ func _process(delta):
 
 func move_shadow(height: float):
 	var scaled_height: float = height * 4.8 / 200
-	$Shadow.translation.z = 0.5 - scaled_height
+	#clamp the height if the animation is off the screen
+	if scaled_height < -2.5:
+		scaled_height = 2.5
+		
+	$Shadow.translation.z = 0.25 - scaled_height
 
 
 func set_game_won():

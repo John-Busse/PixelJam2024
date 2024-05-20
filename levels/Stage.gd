@@ -46,9 +46,8 @@ func spawn_enemy(this_enemy: PackedScene, spawn_point: Vector3):
 func spawn_heli():
 	var spawn_pos: Vector3 = get_node("Sidewalks/PedSpawn0").translation
 	spawn_pos.y = 5.0
-	print("spawn pos is ", spawn_pos)
 	var patrol_pos: Vector3 = get_node("HelicopterPatrol/PatrolPoint1").translation
-	print("patrol_pos is ", patrol_pos)
+
 	var heli: Node = heli_scene.instance()
 	heli.init(spawn_pos, patrol_pos, get_node("Player"))
 	
@@ -131,6 +130,7 @@ func _on_PedSpawnTimer_timeout():
 	
 	for i in num_peds:
 		offset.x = rand_range(-0.25, 0.25)
+		offset.z = rand_range(-0.5, 0.5)
 		spawn_enemy(ped_scene, mob_path_node.translation + offset)
 	
 	$PedSpawnTimer.set_wait_time(PlayerStats.get_enemy_timer() / 2.0)
@@ -151,5 +151,7 @@ func _on_HydrantSpawnTimer_timeout():
 #When an active mob enters the wave
 func _on_WaveArea_body_entered(body):
 	#Deal damage to the wave
-	$GameUI.set_height(body._get_damage_value() * -1)
+	$GameUI.set_height(body._get_damage_value() * -0.5)
 	body._destroyed()	#destroy the mob
+	
+	$AudioStreamPlayer.play()

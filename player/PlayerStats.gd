@@ -119,8 +119,8 @@ func bullet_hit():
 	bullets_hit += 1
 
 
-func enemy_destroyed():
-	enemies_defeated += 1
+func enemy_destroyed(enemy: int = 1):
+	enemies_defeated += enemy
 
 
 func add_heli_destroyed():
@@ -136,6 +136,7 @@ func add_currency(extra: int):
 
 
 func get_upgrade(index: int) -> float:
+	index -= 3
 	match index:
 		0:	#Surfboard Fins (move_speed)
 			return move_speed as float
@@ -158,6 +159,7 @@ func get_upgrade(index: int) -> float:
 	return -1.0
 
 func buy_item(index: int, price: int):
+	index -= 3
 	currency -= price
 	match index:
 		0:	#Surfboard Fins (move_speed)

@@ -13,7 +13,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.3 )
 axis = 1
 frames = ExtResource( 2 )
 animation = "wave"
-frame = 19
+frame = 2
 playing = true
 
 [node name="Shadow" type="Spatial" parent="."]
@@ -24,12 +24,20 @@ modulate = Color( 1, 1, 1, 0.75 )
 axis = 1
 frames = ExtResource( 1 )
 animation = "shadow"
-frame = 42
+frame = 40
+playing = true
+
+[node name="WaveShadow2" type="AnimatedSprite3D" parent="Shadow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.54 )
+modulate = Color( 1, 1, 1, 0.75 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "full"
 playing = true
 
 [node name="Sprite3D" type="Sprite3D" parent="Shadow"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0.002, 2.54 )
-opacity = 0.82
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0, 2.54 )
+visible = false
 axis = 1
 texture = ExtResource( 4 )
 

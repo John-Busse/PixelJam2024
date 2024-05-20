@@ -1,5 +1,6 @@
 extends Enemy
 
+export var wave_sound: AudioStream
 var wave_mask: int = 0b100
 
 func _physics_process(_delta):
@@ -29,16 +30,18 @@ func _get_damage_value() -> int:
 func _take_damage(damage: int):
 	#reduce health just in case
 	health -= damage
+	
+	if health < 0:
+		health = 0
 	#set the hydrant to interact with the wave and not the player
 	set_collision_mask(wave_mask)
 	set_collision_layer(wave_mask)
 	#The water spout heals the wave
-	damage_value = -5
+	damage_value = -10
 	#switch to the destroyed animation
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
-	#$Spatial/AnimatedSprite3D.set_playing(true)
-	
-		##play the destroyed sound effect
+	#play the destroyed sound effect
+	$AudioStreamPlayer.play()
 
 
 # When the enemy is destroyed
@@ -47,6 +50,10 @@ func _destroyed():
 	damage_value = 0
 	#don't let the hydrant collide anymore
 	$CollisionShape.set_disabled(true)
+	#only play the noise if the hydrant was already destroyed
+	if health == 0:
+		$AudioStreamPlayer.set_stream(wave_sound)
+		$AudioStreamPlayer.play()
 
 
 func _calculate_speed():

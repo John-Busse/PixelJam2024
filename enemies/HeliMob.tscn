@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://enemies/HeliMob.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://enemies/HeliMob.gd" type="Script" id=2]
@@ -6,16 +6,24 @@
 [ext_resource path="res://enemies/HeliGun.gd" type="Script" id=4]
 [ext_resource path="res://art/HeliWIPCannon.png" type="Texture" id=5]
 [ext_resource path="res://enemies/HeliBullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://audio/sfx/sfx_helicopter_explosion.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/sfx/sfx_helicopter_idle_loop.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/sfx/sfx_helicopter_shoot_1.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/sfx/sfx_helicopter_shoot_2.wav" type="AudioStream" id=10]
 
 [sub_resource type="BoxShape" id=2]
-extents = Vector3( 0.25, 1.1, 0.4 )
+extents = Vector3( 0.25, 0.5, 0.4 )
 
 [node name="HeliGun" type="Spatial"]
 script = ExtResource( 4 )
 heli_bullet = ExtResource( 6 )
+heli_shoot_0 = ExtResource( 9 )
+heli_shoot_1 = ExtResource( 10 )
 
 [node name="HeliMob" type="KinematicBody" parent="."]
+collision_layer = 2
 script = ExtResource( 2 )
+heli_explosion = ExtResource( 7 )
 
 [node name="Animations" type="Spatial" parent="HeliMob"]
 
@@ -38,18 +46,23 @@ playing = true
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="HeliMob"]
-aabb = AABB( -0.25, -1, -0.4, 0.5, 2, 0.798 )
+aabb = AABB( -0.25, -0.5, -0.4, 0.5, 1, 0.798 )
 
 [node name="HeliCannon" type="Spatial" parent="HeliMob"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -0.0804802 )
 
 [node name="Sprite3D" type="Sprite3D" parent="HeliMob/HeliCannon"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.120524 )
 axis = 1
 texture = ExtResource( 5 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HeliMob"]
+stream = ExtResource( 8 )
+
 [node name="HeliWeaponTimer" type="Timer" parent="."]
 
+[node name="HeliBulletAudioPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="can_fire" from="HeliMob" to="." method="_on_Helicopter_can_fire"]
+[connection signal="cant_fire" from="HeliMob" to="." method="game_end"]
 [connection signal="screen_exited" from="HeliMob/VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]
 [connection signal="timeout" from="HeliWeaponTimer" to="." method="_on_HeliWeaponTimer_timeout"]

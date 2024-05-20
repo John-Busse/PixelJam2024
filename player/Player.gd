@@ -1,10 +1,15 @@
 extends Spatial
 
-#signal hit
 signal die
 signal game_over
 signal win
 export var bullet_scene: PackedScene
+export var gun_sound_0: AudioStream
+export var gun_sound_1: AudioStream
+export var gun_sound_2: AudioStream
+export var player_hurt_0: AudioStream
+export var player_hurt_1: AudioStream
+export var player_hurt_2: AudioStream
 var can_fire: bool = true
 var is_firing: bool = false
 var offset: Vector3 = Vector3(-0.13, -0.1, -0.75)
@@ -22,8 +27,6 @@ func _process(_delta):
 		$FireRateTimer.start()
 		can_fire = false
 		is_firing = true
-		
-			## play fire sound
 
 func shoot_bullet():
 	if is_firing:
@@ -31,6 +34,17 @@ func shoot_bullet():
 		var bullet = bullet_scene.instance()
 		
 		var spawn_loc: Vector3 = $Surfer.translation + offset
+		
+		var i: int = randi() % 3
+		match i:
+			0:
+				$AudioStreamPlayer.set_stream(gun_sound_0)
+			1:
+				$AudioStreamPlayer.set_stream(gun_sound_1)
+			2:
+				$AudioStreamPlayer.set_stream(gun_sound_2)
+		
+		$AudioStreamPlayer.play()
 		
 		bullet.init(spawn_loc, PlayerStats.get_bullet_speed())
 		add_child(bullet)
@@ -64,8 +78,18 @@ func win():
 
 #When the player is hit by a mob
 func _on_MobDetector_body_entered(body: Node):
-	PlayerStats.take_damage(body._get_damage_value())
-	body._destroyed()
-	#emit_signal("hit")
-	if PlayerStats.health == 0:
-		die()
+	if body._get_damage_value() > 0:
+		PlayerStats.take_damage(body._get_damage_value())
+		body._destroyed()
+		
+		match randi() % 3:
+			0:
+				$Surfer/PlayerHit.set_stream(player_hurt_0)
+			1:
+				$Surfer/PlayerHit.set_stream(player_hurt_1)
+			2:
+				$Surfer/PlayerHit.set_stream(player_hurt_2)
+		$Surfer/PlayerHit.play()
+		#emit_signal("hit")
+		if PlayerStats.get_health() == 0:
+			die()

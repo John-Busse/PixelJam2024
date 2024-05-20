@@ -2,6 +2,7 @@ extends Enemy
 
 var car_frame: int
 export var wheel_scene: PackedScene
+export var explosion_sound: AudioStream
 
 func _ready():
 #	var num_frames: int = $AnimatedSprite3D.frames.get_frame_count(tile_name)
@@ -16,9 +17,9 @@ func _physics_process(_delta):
 
 
 func _initialize(start_pos: Vector3, surf_speed: int):
-	min_speed = 0
+	min_speed = surf_speed - 2.5
 	max_speed = surf_speed - 0.5 #max speed needs to be less than the surf_speed
-	damage_value = 5
+	damage_value = 10
 	health = 10
 	
 	var end_pos: Vector3 = start_pos
@@ -26,6 +27,8 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 	
 	look_at_from_position(start_pos, end_pos, Vector3.UP)
 	speed = rand_range(min_speed, max_speed)	#the speed the mob is actually travelling
+	var pitch: float = 0.5 / surf_speed * speed + 0.7
+	$AudioStreamPlayer.set_pitch_scale(pitch)
 	
 	velocity = Vector3.FORWARD * (speed - surf_speed)
 
@@ -41,9 +44,10 @@ func _get_damage_value() -> int:
 func _take_damage(damage: int):
 	#reduce health
 	health -= damage
-		###play damage sound effect~~
+	if health > 0:
+		$Spatial/CarDamage.play()
 	#destroy the enemy if needed
-	if health <= 0:
+	else:
 		_destroyed()
 
 # When the enemy is destroyed (either by a bullet or the wave
@@ -51,7 +55,7 @@ func _destroyed():
 	# health can only be <= 0 if shot by the player
 	if health <= 0:
 		#mark the enemy as destroyed
-		PlayerStats.enemy_destroyed()
+		PlayerStats.enemy_destroyed(2)
 	
 	health = 0
 	damage_value = 0	#No longer deal damage
@@ -61,6 +65,9 @@ func _destroyed():
 	$Spatial/explosionSprite.set_visible(true)
 	$Spatial/AnimatedSprite3D.set_frame(car_frame)
 	$Spatial/explosionSprite.play()
+	$AudioStreamPlayer.set_pitch_scale(1.0)
+	$AudioStreamPlayer.set_stream(explosion_sound)
+	$AudioStreamPlayer.play()
 	
 	var num_wheels = randi() % 5
 	

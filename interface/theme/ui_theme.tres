@@ -3,8 +3,8 @@
 [ext_resource path="res://interface/theme/quadriana.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=3]
-size = 32
-outline_size = 2
+size = 8
+outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
@@ -32,3 +32,4 @@ ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
 ProgressBar/fonts/font = SubResource( 3 )
 ProgressBar/styles/bg = SubResource( 4 )
 ProgressBar/styles/fg = SubResource( 2 )
+VBoxContainer/constants/separation = 1
