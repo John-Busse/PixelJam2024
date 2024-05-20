@@ -4,6 +4,7 @@ export var wave_sound: AudioStream
 var wave_mask: int = 0b100
 
 func _physics_process(_delta):
+# warning-ignore:return_value_discarded
 	move_and_slide(velocity, Vector3.UP)
 
 
@@ -33,9 +34,8 @@ func _take_damage(damage: int):
 	
 	if health < 0:
 		health = 0
-	#set the hydrant to interact with the wave and not the player
+	#set the hydrant to interact with the wave
 	set_collision_mask(wave_mask)
-	set_collision_layer(wave_mask)
 	#The water spout heals the wave
 	damage_value = -10
 	#switch to the destroyed animation
