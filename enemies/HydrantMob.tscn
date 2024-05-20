@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemies/HydrantMob.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://enemies/HydrantMob.gd" type="Script" id=2]
+[ext_resource path="res://audio/sfx/sfx_fire_hydrant.wav" type="AudioStream" id=3]
+[ext_resource path="res://audio/sfx/sfx_powerup_collection.wav" type="AudioStream" id=4]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.200336, 2.1, 0.422163 )
+
+[node name="HydrantMob" type="KinematicBody"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 2 )
+wave_sound = ExtResource( 4 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Spatial"]
+transform = Transform( 2.5, 0, 0, 0, 1, 0, 0, 0, 2.5, 0, 0, 0 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "hydrant"
+playing = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0256197, 0, 0.199832 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0358672 )
+aabb = AABB( -0.743324, -1, -0.898686, 1.48665, 2, 1.79737 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

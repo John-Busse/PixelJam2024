@@ -1,24 +1,46 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://art/WaveShadow.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://art/WaveWater.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://levels/Waves.gd" type="Script" id=3]
+[ext_resource path="res://art/Wave/fullShadowFrame.png" type="Texture" id=4]
 
 [node name="Waves" type="Spatial"]
 script = ExtResource( 3 )
 
-[node name="WaveShadow" type="AnimatedSprite3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3 )
-axis = 1
-frames = ExtResource( 1 )
-animation = "shadow"
-frame = 46
-playing = true
-
-[node name="WaveBottom" type="AnimatedSprite3D" parent="."]
+[node name="WaveTop" type="AnimatedSprite3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.3 )
 axis = 1
 frames = ExtResource( 2 )
 animation = "wave"
-frame = 5
+frame = 2
 playing = true
+
+[node name="Shadow" type="Spatial" parent="."]
+
+[node name="WaveShadow" type="AnimatedSprite3D" parent="Shadow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3 )
+modulate = Color( 1, 1, 1, 0.75 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "shadow"
+frame = 40
+playing = true
+
+[node name="WaveShadow2" type="AnimatedSprite3D" parent="Shadow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.54 )
+modulate = Color( 1, 1, 1, 0.75 )
+axis = 1
+frames = ExtResource( 1 )
+animation = "full"
+playing = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Shadow"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.001, 0, 2.54 )
+visible = false
+axis = 1
+texture = ExtResource( 4 )
+
+[node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
+
+[connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_VisibilityNotifier_screen_exited"]

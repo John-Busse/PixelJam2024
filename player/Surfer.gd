@@ -2,40 +2,62 @@ extends KinematicBody
 
 signal die
 signal win
+signal shoot
 export var move_speed: int = 5 #velocity in m/s
+export var turn_left: AudioStream
+export var turn_right: AudioStream
 var velocity: Vector3 = Vector3.ZERO
 var start_pos: Vector3
-var game_lost: bool
-var game_won: bool
-onready var player_stats = get_node("/root/PlayerStats")
+var game_lost: bool = false
+var game_won: bool = false
+var is_shooting: bool = false
+var not_playing: bool = true
+
 
 func _ready():
-	game_lost = false
-	game_won = false
 	start_pos = translation
-	pass
+
+
+func _process(_delta):
+	if $Pivot/AnimatedSprite3D.get_animation() == "surf_shoot" and $Pivot/AnimatedSprite3D.get_frame() == 2:
+		emit_signal("shoot")
 
 
 func _physics_process(delta):
 	var direction: Vector3 = Vector3.FORWARD
 	
-	if game_lost:
+	if game_lost or game_won:
 		velocity = Vector3.ZERO
-	elif game_won:
-		velocity = Vector3.FORWARD * delta
+#	elif game_won:
+#		velocity = Vector3.FORWARD * PlayerStats.get_surf_speed()# * delta
 	else:
 		#check for input, update direction
 		if Input.is_action_pressed("move_right"):
-				direction.x += 1
+			direction.x += 1
 		if Input.is_action_pressed("move_left"):
 			direction.x -= 1
 		
-		#rotate the player in the direction we're moving
-		$Pivot.look_at(global_translation + direction, Vector3.UP)
+		# change animation to match movement
+		if direction.x == 0 and not is_shooting:
+			$Pivot/AnimatedSprite3D.set_animation("surf_straight")
+		elif direction.x > 0 and not is_shooting:
+			$Pivot/AnimatedSprite3D.set_animation("surf_right")
+			if not_playing:
+				not_playing = false
+				$AudioStreamPlayer.set_stream(turn_right)
+				$AudioStreamPlayer.play()
+		elif direction.x < 0 and not is_shooting:
+			$Pivot/AnimatedSprite3D.set_animation("surf_left")
+			if not_playing:
+				not_playing = false
+				$AudioStreamPlayer.set_stream(turn_left)
+				$AudioStreamPlayer.play()
+		else:	#is_shooting
+			direction *= 0.75	#move slower while shooting
+			$Pivot/AnimatedSprite3D.set_animation("surf_shoot")
 		
-		velocity.x = direction.x * player_stats.get_move_speed()
-		#making sure we don't move vertically or upward in case of collisions
-		translation.y = start_pos.y
+		velocity.x = direction.x * PlayerStats.get_move_speed()
+		#making sure we don't move vertically in case of collisions
 		translation.z = start_pos.z
 	
 	velocity = move_and_slide(velocity, Vector3.UP)
@@ -49,6 +71,7 @@ func die():
 
 func game_over():
 	emit_signal("die")
+	$Pivot/AnimatedSprite3D.disconnect("animation_finished", self, "game_over")
 
 
 func height_zero():
@@ -64,6 +87,19 @@ func start_animation(anim_name: String):
 
 
 func game_win():
-	print("game won")
+	$Pivot/AnimatedSprite3D.set_animation("game_win_loop")
+	$Pivot/AnimatedSprite3D.disconnect("animation_finished", self, "game_win")
 	game_lost = true	#to stop the player
 	emit_signal("win")
+
+
+func gunshot():
+	is_shooting = true
+
+
+func sound_done():
+	not_playing = true
+
+func _on_AnimatedSprite3D_animation_finished():
+	if $Pivot/AnimatedSprite3D.get_animation() == "surf_shoot":
+		is_shooting = false

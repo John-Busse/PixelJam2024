@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://interface/theme/LogoFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://interface/TitleScreen.png" type="Texture" id=4]
+[ext_resource path="res://interface/MenuItem.gd" type="Script" id=5]
+[ext_resource path="res://interface/GoToMainMenu.gd" type="Script" id=6]
+[ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=7]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 7 )
+script = ExtResource( 6 )
+
+[node name="MenuBG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.25 )
+
+[node name="ReturnContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_bottom = -5.0
+
+[node name="ReturnToMenu" type="Label" parent="ReturnContainer"]
+margin_right = 256.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 3 )
+text = "Return to main menu!"
+align = 1
+valign = 1
+script = ExtResource( 5 )
+scene_path = "res://interface/MenuUI.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="CreditsLabel" type="Label" parent="VBoxContainer"]
+margin_top = 33.0
+margin_right = 256.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 3 )
+text = "Credits"
+align = 1
+autowrap = true
+
+[node name="CreditsText" type="Label" parent="VBoxContainer"]
+margin_top = 49.0
+margin_right = 256.0
+margin_bottom = 111.0
+text = "
+John Busse: Programming & Design
+Matheus: Music & SFX
+Sheepy: Art & Animation
+"
+align = 1
+autowrap = true
+
+[node name="AssetsLabel" type="Label" parent="VBoxContainer"]
+margin_top = 112.0
+margin_right = 256.0
+margin_bottom = 127.0
+custom_fonts/font = ExtResource( 3 )
+text = "External Assets"
+align = 1
+autowrap = true
+
+[node name="AssetsText" type="Label" parent="VBoxContainer"]
+margin_top = 128.0
+margin_right = 256.0
+margin_bottom = 190.0
+text = "Font: Quadriana by Echo Heo
+3D Models: \"Surfer Girl\" by GRaphail, \"Mi-24 Helicopter\" by DerpDude, \"Human Basemesh\" by Niclas, \"Truck\" by ROY, CC0 vehicles
+"
+align = 1
+autowrap = true
+
+[node name="CreditsMenuCursor" parent="." instance=ExtResource( 1 )]
+frame = 6
+menu_container_path = NodePath("../ReturnContainer")
+cursor_offset = Vector2( -70, 0 )
+
+[connection signal="cursor_selected" from="ReturnContainer/ReturnToMenu" to="." method="main_menu"]

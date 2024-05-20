@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://interface/theme/LogoFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://interface/MenuItem.gd" type="Script" id=4]
+[ext_resource path="res://interface/TitleScreen.png" type="Texture" id=5]
+[ext_resource path="res://interface/GoToMainMenu.gd" type="Script" id=6]
+[ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=7]
+
+[node name="Controls" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 7 )
+script = ExtResource( 6 )
+
+[node name="MenuBG" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.25 )
+
+[node name="ReturnContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="ReturnToMenu" type="Label" parent="ReturnContainer"]
+margin_right = 256.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 3 )
+text = "Return to main menu!"
+align = 1
+valign = 1
+script = ExtResource( 4 )
+scene_path = "res://interface/MenuUI.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="VBoxContainer"]
+margin_top = 14.0
+margin_right = 256.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 3 )
+text = "Controls"
+align = 1
+autowrap = true
+
+[node name="ControlsText" type="Label" parent="VBoxContainer"]
+margin_top = 30.0
+margin_right = 256.0
+margin_bottom = 53.0
+text = "AD or Left/Right Arrows: Move Surfer
+Spacebar: Fire Weapon"
+align = 1
+autowrap = true
+
+[node name="GoalsLabel" type="Label" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 256.0
+margin_bottom = 69.0
+custom_fonts/font = ExtResource( 3 )
+text = "Goals"
+align = 1
+autowrap = true
+
+[node name="GoalsText" type="Label" parent="VBoxContainer"]
+margin_top = 70.0
+margin_right = 256.0
+margin_bottom = 210.0
+text = "Surf for as long as possible! Getting hit makes you lose balance. You regain balance slowly over time. if your balance depletes, the run ends
+
+The wave loses height over time! If the wave gets hit, its height drops. When the wave's height reaches zero, the run ends.
+
+Gain resources by surviving and destroying obstacles. Spend these resources on upgrades.
+"
+align = 1
+autowrap = true
+
+[node name="ControlsMenuCursor" parent="." instance=ExtResource( 1 )]
+frame = 6
+menu_container_path = NodePath("../ReturnContainer")
+cursor_offset = Vector2( -70, 0 )
+
+[connection signal="cursor_selected" from="ReturnContainer/ReturnToMenu" to="." method="main_menu"]

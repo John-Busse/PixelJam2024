@@ -1,0 +1,660 @@
+[gd_scene load_steps=132 format=2]
+
+[ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://interface/MenuItem.gd" type="Script" id=3]
+[ext_resource path="res://interface/UpgradeMenu.gd" type="Script" id=4]
+[ext_resource path="res://interface/theme/LogoFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://audio/music/music_menu_loop.wav" type="AudioStream" id=6]
+[ext_resource path="res://art/UI/Upgrades/fin/0003.png" type="Texture" id=7]
+[ext_resource path="res://art/UI/Upgrades/fin/0005.png" type="Texture" id=8]
+[ext_resource path="res://art/UI/Upgrades/fin/0006.png" type="Texture" id=9]
+[ext_resource path="res://art/UI/Upgrades/fin/0010.png" type="Texture" id=10]
+[ext_resource path="res://art/UI/Upgrades/fin/0004.png" type="Texture" id=11]
+[ext_resource path="res://art/UI/Upgrades/fin/0012.png" type="Texture" id=12]
+[ext_resource path="res://art/UI/Upgrades/board/0001.png" type="Texture" id=13]
+[ext_resource path="res://art/UI/Upgrades/board/0002.png" type="Texture" id=14]
+[ext_resource path="res://art/UI/Upgrades/board/0006.png" type="Texture" id=15]
+[ext_resource path="res://art/UI/Upgrades/board/0007.png" type="Texture" id=16]
+[ext_resource path="res://art/UI/Upgrades/board/0008.png" type="Texture" id=17]
+[ext_resource path="res://art/UI/Upgrades/board/0009.png" type="Texture" id=18]
+[ext_resource path="res://art/UI/Upgrades/board/0010.png" type="Texture" id=19]
+[ext_resource path="res://art/UI/Upgrades/board/0004.png" type="Texture" id=20]
+[ext_resource path="res://art/UI/Upgrades/fin/0009.png" type="Texture" id=21]
+[ext_resource path="res://art/UI/Upgrades/fin/0007.png" type="Texture" id=22]
+[ext_resource path="res://art/UI/Upgrades/fin/0001.png" type="Texture" id=23]
+[ext_resource path="res://art/UI/Upgrades/board/0005.png" type="Texture" id=24]
+[ext_resource path="res://art/UI/Upgrades/fin/0008.png" type="Texture" id=25]
+[ext_resource path="res://art/UI/Upgrades/board/0003.png" type="Texture" id=26]
+[ext_resource path="res://art/UI/Upgrades/fin/0011.png" type="Texture" id=27]
+[ext_resource path="res://art/UI/Upgrades/fin/0002.png" type="Texture" id=28]
+[ext_resource path="res://art/UI/Upgrades/board/0011.png" type="Texture" id=29]
+[ext_resource path="res://art/UI/Upgrades/width/0005.png" type="Texture" id=30]
+[ext_resource path="res://art/UI/Upgrades/width/0007.png" type="Texture" id=31]
+[ext_resource path="res://art/UI/Upgrades/width/0008.png" type="Texture" id=32]
+[ext_resource path="res://art/UI/Upgrades/width/0011.png" type="Texture" id=33]
+[ext_resource path="res://art/UI/Upgrades/width/0012.png" type="Texture" id=34]
+[ext_resource path="res://art/UI/Upgrades/width/0009.png" type="Texture" id=35]
+[ext_resource path="res://art/UI/Upgrades/width/0006.png" type="Texture" id=36]
+[ext_resource path="res://art/UI/Upgrades/width/0010.png" type="Texture" id=37]
+[ext_resource path="res://art/UI/Upgrades/Rails/0005.png" type="Texture" id=38]
+[ext_resource path="res://art/UI/Upgrades/Rails/0003.png" type="Texture" id=39]
+[ext_resource path="res://art/UI/Upgrades/Rails/0006.png" type="Texture" id=40]
+[ext_resource path="res://art/UI/Upgrades/Rails/0002.png" type="Texture" id=41]
+[ext_resource path="res://art/UI/Upgrades/Rails/0007.png" type="Texture" id=42]
+[ext_resource path="res://art/UI/Upgrades/Rails/0008.png" type="Texture" id=43]
+[ext_resource path="res://art/UI/Upgrades/Rails/0009.png" type="Texture" id=44]
+[ext_resource path="res://art/UI/Upgrades/Rails/0011.png" type="Texture" id=45]
+[ext_resource path="res://art/UI/Upgrades/board/0012.png" type="Texture" id=46]
+[ext_resource path="res://art/UI/Upgrades/Rails/0010.png" type="Texture" id=47]
+[ext_resource path="res://art/UI/Upgrades/Rails/0012.png" type="Texture" id=48]
+[ext_resource path="res://art/UI/Upgrades/width/0001.png" type="Texture" id=49]
+[ext_resource path="res://art/UI/Upgrades/width/0002.png" type="Texture" id=50]
+[ext_resource path="res://art/UI/Upgrades/width/0003.png" type="Texture" id=51]
+[ext_resource path="res://art/UI/Upgrades/width/0004.png" type="Texture" id=52]
+[ext_resource path="res://art/UI/Upgrades/Rails/0004.png" type="Texture" id=53]
+[ext_resource path="res://art/UI/Upgrades/Rails/0001.png" type="Texture" id=54]
+[ext_resource path="res://art/UI/Upgrades/length/0011.png" type="Texture" id=55]
+[ext_resource path="res://art/UI/Upgrades/reciever/0011.png" type="Texture" id=56]
+[ext_resource path="res://art/UI/Upgrades/length/0009.png" type="Texture" id=57]
+[ext_resource path="res://art/UI/Upgrades/reciever/0002.png" type="Texture" id=58]
+[ext_resource path="res://art/UI/Upgrades/length/0010.png" type="Texture" id=59]
+[ext_resource path="res://art/UI/Upgrades/reciever/0006.png" type="Texture" id=60]
+[ext_resource path="res://art/UI/Upgrades/reciever/0005.png" type="Texture" id=61]
+[ext_resource path="res://art/UI/Upgrades/reciever/0007.png" type="Texture" id=62]
+[ext_resource path="res://art/UI/Upgrades/reciever/0009.png" type="Texture" id=63]
+[ext_resource path="res://art/UI/Upgrades/reciever/0008.png" type="Texture" id=64]
+[ext_resource path="res://art/UI/Upgrades/reciever/0004.png" type="Texture" id=65]
+[ext_resource path="res://art/UI/Upgrades/reciever/0010.png" type="Texture" id=66]
+[ext_resource path="res://art/UI/Upgrades/length/0012.png" type="Texture" id=67]
+[ext_resource path="res://art/UI/Upgrades/reciever/0001.png" type="Texture" id=68]
+[ext_resource path="res://art/UI/Upgrades/reciever/0003.png" type="Texture" id=69]
+[ext_resource path="res://art/UI/Upgrades/length/0004.png" type="Texture" id=70]
+[ext_resource path="res://art/UI/Upgrades/length/0007.png" type="Texture" id=71]
+[ext_resource path="res://art/UI/Upgrades/length/0008.png" type="Texture" id=72]
+[ext_resource path="res://art/UI/Upgrades/length/0001.png" type="Texture" id=73]
+[ext_resource path="res://art/UI/Upgrades/length/0002.png" type="Texture" id=74]
+[ext_resource path="res://art/UI/Upgrades/length/0003.png" type="Texture" id=75]
+[ext_resource path="res://art/UI/Upgrades/length/0006.png" type="Texture" id=76]
+[ext_resource path="res://art/UI/Upgrades/length/0005.png" type="Texture" id=77]
+[ext_resource path="res://art/UI/Upgrades/reciever/0012.png" type="Texture" id=78]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0003.png" type="Texture" id=79]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0001.png" type="Texture" id=80]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0004.png" type="Texture" id=81]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0005.png" type="Texture" id=82]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0006.png" type="Texture" id=83]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0007.png" type="Texture" id=84]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0008.png" type="Texture" id=85]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0002.png" type="Texture" id=86]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0011.png" type="Texture" id=87]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0009.png" type="Texture" id=88]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0010.png" type="Texture" id=89]
+[ext_resource path="res://art/UI/Upgrades/Meteor/0012.png" type="Texture" id=90]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0004.png" type="Texture" id=91]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0010.png" type="Texture" id=92]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0003.png" type="Texture" id=93]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0007.png" type="Texture" id=94]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0002.png" type="Texture" id=95]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0011.png" type="Texture" id=96]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0008.png" type="Texture" id=97]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0005.png" type="Texture" id=98]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0009.png" type="Texture" id=99]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0012.png" type="Texture" id=100]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0006.png" type="Texture" id=101]
+[ext_resource path="res://art/UI/Upgrades/hydrant/0001.png" type="Texture" id=102]
+[ext_resource path="res://art/UI/Upgrades/advert/0002.png" type="Texture" id=103]
+[ext_resource path="res://art/UI/Upgrades/advert/0008.png" type="Texture" id=104]
+[ext_resource path="res://art/UI/Upgrades/advert/0005.png" type="Texture" id=105]
+[ext_resource path="res://art/UI/Upgrades/advert/0011.png" type="Texture" id=106]
+[ext_resource path="res://art/UI/Upgrades/advert/0003.png" type="Texture" id=107]
+[ext_resource path="res://art/UI/Upgrades/advert/0012.png" type="Texture" id=108]
+[ext_resource path="res://art/UI/Upgrades/advert/0006.png" type="Texture" id=109]
+[ext_resource path="res://art/UI/Upgrades/advert/0010.png" type="Texture" id=110]
+[ext_resource path="res://art/UI/Upgrades/advert/0009.png" type="Texture" id=111]
+[ext_resource path="res://art/UI/Upgrades/advert/0001.png" type="Texture" id=112]
+[ext_resource path="res://art/UI/Upgrades/advert/0007.png" type="Texture" id=113]
+[ext_resource path="res://art/UI/Upgrades/advert/0004.png" type="Texture" id=114]
+[ext_resource path="res://art/UI/Bg.png" type="Texture" id=115]
+[ext_resource path="res://art/UI/SoldOut.tres" type="SpriteFrames" id=116]
+[ext_resource path="res://audio/sfx/sfx_menu_upgrade_2.wav" type="AudioStream" id=117]
+[ext_resource path="res://audio/sfx/sfx_menu_upgrade_1.wav" type="AudioStream" id=118]
+[ext_resource path="res://audio/sfx/sfx_ui_option_selected.wav" type="AudioStream" id=119]
+[ext_resource path="res://art/UI/UpgradeScreen.png" type="Texture" id=120]
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 120 )
+region_rect = Rect2( 1, 0, 253.824, 56.1787 )
+margin_right = 13.8435
+margin_top = 8.11458
+margin_bottom = 6.6019
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 23 ), ExtResource( 28 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 22 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 10 ), ExtResource( 27 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 29 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 54 ), ExtResource( 41 ), ExtResource( 39 ), ExtResource( 53 ), ExtResource( 38 ), ExtResource( 40 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 47 ), ExtResource( 45 ), ExtResource( 48 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 30 ), ExtResource( 36 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 35 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 70 ), ExtResource( 77 ), ExtResource( 76 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 57 ), ExtResource( 59 ), ExtResource( 55 ), ExtResource( 67 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 68 ), ExtResource( 58 ), ExtResource( 69 ), ExtResource( 65 ), ExtResource( 61 ), ExtResource( 60 ), ExtResource( 62 ), ExtResource( 64 ), ExtResource( 63 ), ExtResource( 66 ), ExtResource( 56 ), ExtResource( 78 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 80 ), ExtResource( 86 ), ExtResource( 79 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 87 ), ExtResource( 90 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 102 ), ExtResource( 95 ), ExtResource( 93 ), ExtResource( 91 ), ExtResource( 98 ), ExtResource( 101 ), ExtResource( 94 ), ExtResource( 97 ), ExtResource( 99 ), ExtResource( 92 ), ExtResource( 96 ), ExtResource( 100 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 112 ), ExtResource( 103 ), ExtResource( 107 ), ExtResource( 114 ), ExtResource( 105 ), ExtResource( 109 ), ExtResource( 113 ), ExtResource( 104 ), ExtResource( 111 ), ExtResource( 110 ), ExtResource( 106 ), ExtResource( 108 ) ],
+"loop": true,
+"name": "default",
+"speed": 24.0
+} ]
+
+[node name="UpgradeMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+upgrade_music = ExtResource( 6 )
+upgrade_sound_0 = ExtResource( 118 )
+upgrade_sound_1 = ExtResource( 117 )
+purchase_failed = ExtResource( 119 )
+sold_out = ExtResource( 116 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 115 )
+expand = true
+stretch_mode = 7
+
+[node name="UpgradeDescContainer" type="PanelContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -55.7165
+custom_styles/panel = SubResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDescContainer"]
+margin_top = 8.11458
+margin_right = 242.157
+margin_bottom = 49.1146
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeDescContainer/VBoxContainer"]
+margin_right = 242.0
+margin_bottom = 16.0
+
+[node name="ItemNameLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
+margin_right = 206.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "SURFBOARD DURABILITY"
+align = 1
+valign = 1
+
+[node name="ItemCostLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
+margin_left = 210.0
+margin_right = 242.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 16 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "1000"
+align = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UpgradeDescContainer/VBoxContainer"]
+margin_top = 17.0
+margin_right = 242.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="ItemDescLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 242.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+text = "throw a bigger rock into the ocean.
+increases initial wave height"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MaterialContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 15.0
+
+[node name="MatLabel" type="Label" parent="MaterialContainer"]
+margin_right = 91.0
+margin_bottom = 15.0
+custom_fonts/font = ExtResource( 5 )
+text = "MATERIALS: "
+
+[node name="MatCountLabel" type="Label" parent="MaterialContainer"]
+margin_left = 95.0
+margin_right = 142.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 25, 0 )
+custom_fonts/font = ExtResource( 5 )
+text = "387000"
+align = 2
+
+[node name="CantAffordLabel" type="Label" parent="MaterialContainer"]
+visible = false
+margin_left = 146.0
+margin_right = 242.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Cannot afford!"
+align = 2
+
+[node name="CantAffordTimer" type="Timer" parent="MaterialContainer/CantAffordLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="PurchasedLabel" type="Label" parent="MaterialContainer"]
+visible = false
+margin_left = 146.0
+margin_right = 226.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Purchased!"
+align = 2
+
+[node name="PurchasedTimer" type="Timer" parent="MaterialContainer/PurchasedLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="SaveLabel" type="Label" parent="MaterialContainer"]
+visible = false
+margin_left = 146.0
+margin_right = 256.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Game Saved!"
+align = 2
+
+[node name="SaveTimer" type="Timer" parent="MaterialContainer/SaveLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="SoldOutLabel" type="Label" parent="MaterialContainer"]
+visible = false
+margin_left = 146.0
+margin_right = 256.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Sold Out!"
+align = 2
+
+[node name="SoldOutTimer" type="Timer" parent="MaterialContainer/SoldOutLabel"]
+wait_time = 1.5
+one_shot = true
+
+[node name="UpgradeImageGrid" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 44.0
+margin_bottom = -47.0
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+columns = 3
+
+[node name="SurfFinsPanel" type="Panel" parent="UpgradeImageGrid"]
+margin_right = 81.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="SurfFinsSprite" type="AnimatedSprite" parent="UpgradeImageGrid/SurfFinsPanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 2 )
+frame = 3
+playing = true
+
+[node name="SurfBoardPanel" type="Panel" parent="UpgradeImageGrid"]
+margin_left = 85.0
+margin_right = 165.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="SurfBoardSprite" type="AnimatedSprite" parent="UpgradeImageGrid/SurfBoardPanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 3 )
+frame = 9
+playing = true
+
+[node name="SurfBalancePanel" type="Panel" parent="UpgradeImageGrid"]
+margin_left = 169.0
+margin_right = 249.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="SurfBalanceSprite" type="AnimatedSprite" parent="UpgradeImageGrid/SurfBalancePanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 4 )
+frame = 2
+playing = true
+
+[node name="GunDamagePanel" type="Panel" parent="UpgradeImageGrid"]
+margin_top = 46.0
+margin_right = 81.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="GunDamageSprite" type="AnimatedSprite" parent="UpgradeImageGrid/GunDamagePanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 5 )
+frame = 6
+playing = true
+
+[node name="GunSpeedPanel" type="Panel" parent="UpgradeImageGrid"]
+margin_left = 85.0
+margin_top = 46.0
+margin_right = 165.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="GunSpeedSprite" type="AnimatedSprite" parent="UpgradeImageGrid/GunSpeedPanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 6 )
+frame = 2
+playing = true
+
+[node name="GunRatePanel" type="Panel" parent="UpgradeImageGrid"]
+margin_left = 169.0
+margin_top = 46.0
+margin_right = 249.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="GunRateSprite" type="AnimatedSprite" parent="UpgradeImageGrid/GunRatePanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 7 )
+frame = 2
+playing = true
+
+[node name="MeteorPanel" type="Panel" parent="UpgradeImageGrid"]
+margin_top = 92.0
+margin_right = 81.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="MeteorSprite" type="AnimatedSprite" parent="UpgradeImageGrid/MeteorPanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 8 )
+frame = 2
+playing = true
+
+[node name="HydrantPanel" type="Panel" parent="UpgradeImageGrid"]
+margin_left = 85.0
+margin_top = 92.0
+margin_right = 165.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="HydrantSprite" type="AnimatedSprite" parent="UpgradeImageGrid/HydrantPanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 9 )
+frame = 7
+playing = true
+
+[node name="AdvertPanel" type="Panel" parent="UpgradeImageGrid"]
+margin_left = 169.0
+margin_top = 92.0
+margin_right = 249.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 1 )
+
+[node name="AdvertSprite" type="AnimatedSprite" parent="UpgradeImageGrid/AdvertPanel"]
+position = Vector2( 40, 0 )
+frames = SubResource( 10 )
+frame = 6
+playing = true
+
+[node name="UpgradeGrid" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 17.0
+margin_right = -9.0
+margin_bottom = -28.0
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+columns = 3
+
+[node name="NextRunLabel" type="Label" parent="UpgradeGrid"]
+margin_right = 80.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "next run"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SaveGameLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 0, 1, 1, 1 )
+text = "save game"
+align = 1
+script = ExtResource( 3 )
+
+[node name="EndGameLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 168.0
+margin_right = 247.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "end game"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SurfFinsLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 46.0
+margin_right = 80.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard fins"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SurfBoardLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 84.0
+margin_top = 46.0
+margin_right = 164.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard deck"
+align = 1
+script = ExtResource( 3 )
+
+[node name="SurfBalanceLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 168.0
+margin_top = 46.0
+margin_right = 247.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "surfboard rails"
+align = 1
+script = ExtResource( 3 )
+
+[node name="GunDamageLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 92.0
+margin_right = 80.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster width"
+align = 1
+script = ExtResource( 3 )
+
+[node name="GunSpeedLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 84.0
+margin_top = 92.0
+margin_right = 164.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster length"
+align = 1
+script = ExtResource( 3 )
+
+[node name="GunRateLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 168.0
+margin_top = 92.0
+margin_right = 247.0
+margin_bottom = 134.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "blaster reciever"
+align = 1
+script = ExtResource( 3 )
+
+[node name="MeteorLabel" type="Label" parent="UpgradeGrid"]
+margin_top = 138.0
+margin_right = 80.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "meteor size"
+align = 1
+script = ExtResource( 3 )
+
+[node name="HydrantLabel" type="Label" parent="UpgradeGrid"]
+margin_left = 84.0
+margin_top = 138.0
+margin_right = 164.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "fire hydrant"
+align = 1
+script = ExtResource( 3 )
+
+[node name="HydrantLabel2" type="Label" parent="UpgradeGrid"]
+margin_left = 168.0
+margin_top = 138.0
+margin_right = 247.0
+margin_bottom = 179.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "beach advert"
+align = 1
+script = ExtResource( 3 )
+
+[node name="MenuCursor" parent="." instance=ExtResource( 2 )]
+frame = 6
+menu_container_path = NodePath("../UpgradeGrid")
+cursor_offset = Vector2( -10, 15 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="timeout" from="MaterialContainer/CantAffordLabel/CantAffordTimer" to="." method="broke_timer"]
+[connection signal="timeout" from="MaterialContainer/PurchasedLabel/PurchasedTimer" to="." method="purchase_timer"]
+[connection signal="timeout" from="MaterialContainer/SaveLabel/SaveTimer" to="." method="save_timer"]
+[connection signal="timeout" from="MaterialContainer/SoldOutLabel/SoldOutTimer" to="." method="sold_out_timer"]
+[connection signal="cursor_selected" from="UpgradeGrid/NextRunLabel" to="." method="start_run"]
+[connection signal="cursor_selected" from="UpgradeGrid/SaveGameLabel" to="." method="save_game"]
+[connection signal="cursor_selected" from="UpgradeGrid/EndGameLabel" to="." method="end_game"]
+[connection signal="cursor_selected" from="UpgradeGrid/SurfFinsLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/SurfBoardLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/SurfBalanceLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/GunDamageLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/GunSpeedLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/GunRateLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/MeteorLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel" to="." method="buy_item"]
+[connection signal="cursor_selected" from="UpgradeGrid/HydrantLabel2" to="." method="buy_item"]
+[connection signal="cursor_moved" from="MenuCursor" to="." method="update_desc"]
