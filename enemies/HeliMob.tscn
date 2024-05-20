@@ -41,7 +41,7 @@ transform = Transform( -2.5, 0, 2.18557e-07, 0, 1, 0, -2.18557e-07, 0, -2.5, 0, 
 axis = 1
 frames = ExtResource( 1 )
 animation = "heli"
-frame = 1
+frame = 6
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="HeliMob"]

@@ -10,10 +10,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
-	$HeliMob/HeliCannon.look_at(player_node.translation, Vector3.UP)
-
-
 func init(start_pos: Vector3, target_pos: Vector3, player: Node):
 	$HeliMob.init_heli(start_pos, target_pos, player)
 	player_node = player

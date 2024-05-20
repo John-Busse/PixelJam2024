@@ -29,5 +29,4 @@ script = ExtResource( 1 )
 transform = Transform( -2.5, 0, 2.18557e-07, 0, 1, 0, -2.18557e-07, 0, -2.5, 0, 0, 0 )
 axis = 1
 frames = SubResource( 1 )
-frame = 7
 playing = true

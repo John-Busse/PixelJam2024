@@ -16,7 +16,14 @@ func _physics_process(_delta):
 	var target_pos: Vector3 = (end_pos - translation).normalized()
 	var player_pos: Vector3 = player_node.translation
 	player_pos.y = translation.y
-	#look_at(player_pos, Vector3.UP)
+	var direction = translation.x - player_pos.x
+	
+	if direction > 1.0:
+		$Animations/AnimatedSprite3D.set_animation("heli_left")
+	elif direction < -1.0:
+		$Animations/AnimatedSprite3D.set_animation("heli_right")
+	else:
+		$Animations/AnimatedSprite3D.set_animation("heli")
 	
 	if translation.distance_to(end_pos) > THRESHOLD:
 		velocity = target_pos * speed
