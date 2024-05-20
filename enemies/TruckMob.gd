@@ -1,8 +1,8 @@
 extends Enemy
 
-
 export var wheel_scene: PackedScene
 export var explosion_sound: AudioStream
+
 
 func _physics_process(_delta):
 	move_and_slide(velocity, Vector3.UP)
@@ -55,6 +55,7 @@ func _destroyed():
 	$Spatial/AnimatedSprite3D.set_animation("destroyed")
 	$Spatial/explosionSprite.set_visible(true)
 	$Spatial/explosionSprite.play()
+	
 	$AudioStreamPlayer.play()
 	$AudioStreamPlayer.set_pitch_scale(1.0)
 	$AudioStreamPlayer.set_stream(explosion_sound)

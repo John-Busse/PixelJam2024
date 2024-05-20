@@ -123,7 +123,8 @@ func end_game():
 	text = "Total Materials gained: " + str(new_currency)
 	PlayerStats.add_currency(new_currency)
 	$EndgameStats/EndgamePanel/VBoxContainer/CurrencyLabel.set_text(text)
-	$EndgameStats/EndgamePanel.set_anchors_preset(Control.PRESET_CENTER)
+	$EndgameStats/EndgamePanel/VBoxContainer/CurrencyLabel.set_visible(true)
+	$EndgameStats/EndgamePanel.set_anchors_preset(Control.PRESET_CENTER, true)
 
 
 func endgame_timer():

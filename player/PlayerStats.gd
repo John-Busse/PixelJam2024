@@ -2,7 +2,7 @@ extends Node
 
 ## GLOBAL PLAYER VARIABLES
 #weapon variables
-var fire_rate: float = 0.5
+var fire_rate: float = 0.6
 var bullet_damage: int = 5
 var bullet_speed: int = 2
 #player variables
@@ -22,9 +22,6 @@ var currency: int = 0
 var hydrant_timer: float = 0.0
 var enemy_timer: float = 6.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 func _process(delta):
 	#health is balance, this represents the player recovering their balance
@@ -74,7 +71,8 @@ func get_move_speed() -> int:
 func get_surf_speed() -> int:
 	return surf_speed
 
-#func get_heal_rate
+func get_heal_rate() -> float:
+	return heal_rate
 
 func get_wave_height() -> int:
 	return wave_height
@@ -104,8 +102,6 @@ func get_materials() -> int:
 
 func get_hydrant_timer() -> float:
 	return hydrant_timer
-
-# get assistant timer
 
 func get_enemy_timer() -> float:
 	return enemy_timer
@@ -173,7 +169,7 @@ func buy_item(index: int, price: int):
 		4:	#Blaster Length (bullet_speed)
 			bullet_speed += 2
 		5:	#Blaster Reciever (fire_rate)
-			fire_rate *= 0.5
+			fire_rate -= 0.3
 		6:	#Meteor size (wave height)
 			wave_height += 25
 		7:	#Fire Hydrant

@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=132 format=2]
 
 [ext_resource path="res://interface/theme/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://interface/MenuCursor.tscn" type="PackedScene" id=2]
@@ -119,6 +119,14 @@
 [ext_resource path="res://audio/sfx/sfx_menu_upgrade_2.wav" type="AudioStream" id=117]
 [ext_resource path="res://audio/sfx/sfx_menu_upgrade_1.wav" type="AudioStream" id=118]
 [ext_resource path="res://audio/sfx/sfx_ui_option_selected.wav" type="AudioStream" id=119]
+[ext_resource path="res://art/UI/UpgradeScreen.png" type="Texture" id=120]
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 120 )
+region_rect = Rect2( 1, 0, 253.824, 56.1787 )
+margin_right = 13.8435
+margin_top = 8.11458
+margin_bottom = 6.6019
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -211,6 +219,64 @@ anchor_bottom = 1.0
 texture = ExtResource( 115 )
 expand = true
 stretch_mode = 7
+
+[node name="UpgradeDescContainer" type="PanelContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -55.7165
+custom_styles/panel = SubResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDescContainer"]
+margin_top = 8.11458
+margin_right = 242.157
+margin_bottom = 49.1146
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeDescContainer/VBoxContainer"]
+margin_right = 242.0
+margin_bottom = 16.0
+
+[node name="ItemNameLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
+margin_right = 206.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 0, 16 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "SURFBOARD DURABILITY"
+align = 1
+valign = 1
+
+[node name="ItemCostLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
+margin_left = 210.0
+margin_right = 242.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 16 )
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "1000"
+align = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UpgradeDescContainer/VBoxContainer"]
+margin_top = 17.0
+margin_right = 242.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="ItemDescLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 242.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource( 1 )
+text = "throw a bigger rock into the ocean.
+increases initial wave height"
+align = 1
+valign = 1
+autowrap = true
 
 [node name="MaterialContainer" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -311,7 +377,6 @@ custom_styles/panel = SubResource( 1 )
 [node name="SurfFinsSprite" type="AnimatedSprite" parent="UpgradeImageGrid/SurfFinsPanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 2 )
-frame = 7
 playing = true
 
 [node name="SurfBoardPanel" type="Panel" parent="UpgradeImageGrid"]
@@ -325,7 +390,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="SurfBoardSprite" type="AnimatedSprite" parent="UpgradeImageGrid/SurfBoardPanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 3 )
-frame = 1
+frame = 6
 playing = true
 
 [node name="SurfBalancePanel" type="Panel" parent="UpgradeImageGrid"]
@@ -339,7 +404,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="SurfBalanceSprite" type="AnimatedSprite" parent="UpgradeImageGrid/SurfBalancePanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 4 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="GunDamagePanel" type="Panel" parent="UpgradeImageGrid"]
@@ -353,7 +418,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="GunDamageSprite" type="AnimatedSprite" parent="UpgradeImageGrid/GunDamagePanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 5 )
-frame = 10
+frame = 3
 playing = true
 
 [node name="GunSpeedPanel" type="Panel" parent="UpgradeImageGrid"]
@@ -368,7 +433,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="GunSpeedSprite" type="AnimatedSprite" parent="UpgradeImageGrid/GunSpeedPanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 6 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="GunRatePanel" type="Panel" parent="UpgradeImageGrid"]
@@ -383,7 +448,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="GunRateSprite" type="AnimatedSprite" parent="UpgradeImageGrid/GunRatePanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 7 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="MeteorPanel" type="Panel" parent="UpgradeImageGrid"]
@@ -397,7 +462,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="MeteorSprite" type="AnimatedSprite" parent="UpgradeImageGrid/MeteorPanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 8 )
-frame = 6
+frame = 11
 playing = true
 
 [node name="HydrantPanel" type="Panel" parent="UpgradeImageGrid"]
@@ -412,7 +477,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="HydrantSprite" type="AnimatedSprite" parent="UpgradeImageGrid/HydrantPanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 9 )
-frame = 11
+frame = 4
 playing = true
 
 [node name="AdvertPanel" type="Panel" parent="UpgradeImageGrid"]
@@ -427,7 +492,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="AdvertSprite" type="AnimatedSprite" parent="UpgradeImageGrid/AdvertPanel"]
 position = Vector2( 40, 0 )
 frames = SubResource( 10 )
-frame = 10
+frame = 3
 playing = true
 
 [node name="UpgradeGrid" type="GridContainer" parent="."]
@@ -568,65 +633,8 @@ text = "beach advert"
 align = 1
 script = ExtResource( 3 )
 
-[node name="UpgradeDescContainer" type="PanelContainer" parent="."]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -61.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeDescContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 249.0
-margin_bottom = 54.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeDescContainer/VBoxContainer"]
-margin_right = 242.0
-margin_bottom = 16.0
-
-[node name="ItemNameLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
-margin_right = 206.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 0, 16 )
-size_flags_horizontal = 3
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 5 )
-text = "SURFBOARD DURABILITY"
-align = 1
-valign = 1
-
-[node name="ItemCostLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer/HBoxContainer"]
-margin_left = 210.0
-margin_right = 242.0
-margin_bottom = 16.0
-rect_min_size = Vector2( 32, 16 )
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 5 )
-align = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="UpgradeDescContainer/VBoxContainer"]
-margin_top = 17.0
-margin_right = 242.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="ItemDescLabel" type="Label" parent="UpgradeDescContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 242.0
-margin_bottom = 47.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-theme = ExtResource( 1 )
-text = "throw a bigger rock into the ocean.
-increases initial wave height"
-align = 1
-valign = 1
-autowrap = true
-
 [node name="MenuCursor" parent="." instance=ExtResource( 2 )]
-frame = 6
+frame = 7
 menu_container_path = NodePath("../UpgradeGrid")
 cursor_offset = Vector2( -10, 15 )
 

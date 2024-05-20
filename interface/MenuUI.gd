@@ -1,6 +1,13 @@
 extends Control
 
 
+export var menu_theme: AudioStream
+
+func _ready():
+	Global.change_song(menu_theme)
+	$AnimatedSprite.play()
+
+
 func start_game():
 	Global.goto_scene("res://levels/Stage.tscn")
 

@@ -2,29 +2,32 @@ extends Enemy
 
 signal can_fire
 signal cant_fire
+const THRESHOLD: float = 0.1
 export var heli_explosion: AudioStream
+export var heli_shot: AudioStream
 export var heli_blades: PackedScene
 var can_fire: bool = false
+var alive: bool = true
 var end_pos: Vector3
 var player_node: Node
-const THRESHOLD: float = 0.1
 
 func _ready():
 	pass
 
 func _physics_process(_delta):
 	var target_pos: Vector3 = (end_pos - translation).normalized()
-	var player_pos: Vector3 = player_node.translation
+	var player_pos: Vector3 = player_node.get_player_pos()
 	player_pos.y = translation.y
 	var direction = translation.x - player_pos.x
 	
-	if direction > 1.0:
+	if direction > 1.0 and alive:
 		$Animations/AnimatedSprite3D.set_animation("heli_left")
-	elif direction < -1.0:
+	elif direction < -1.0 and alive:
 		$Animations/AnimatedSprite3D.set_animation("heli_right")
-	else:
+	elif alive:
 		$Animations/AnimatedSprite3D.set_animation("heli")
 	
+	#If we're not too close to our patrol point
 	if translation.distance_to(end_pos) > THRESHOLD:
 		velocity = target_pos * speed
 		move_and_slide(velocity, Vector3.UP)
@@ -55,13 +58,16 @@ func _get_damage_value() -> int:
 func _take_damage(damage: int):
 	#reduce health
 	health -= damage
-		###play damage sound effect~~
-	#destroy the enemy if needed
-	if health <= 0:
+	if health > 0:
+		#play the wounded sound effect
+		$AudioStreamPlayer.set_stream(heli_shot)
+		$AudioStreamPlayer.play()
+	else:
 		_destroyed()
 
 # When the enemy is destroyed (either by a bullet or the wave
 func _destroyed():
+	alive = false
 	#Drop the helicopter under the wave
 	global_translation.y -= 4.0
 	
@@ -75,9 +81,11 @@ func _destroyed():
 	speed = PlayerStats.get_surf_speed()			#No longer move
 	end_pos = translation + Vector3(0.0, 0.0, 4.8)
 	$CollisionShape.set_disabled(true)	#disable collision
+	
 	$Animations/AnimatedSprite3D.set_animation("destroyed")
 	$Animations/explosionSprite.set_visible(true)
 	$Animations/explosionSprite.play()
+	
 	$AudioStreamPlayer.set_stream(heli_explosion)
 	$AudioStreamPlayer.play()
 	emit_signal("cant_fire")
@@ -92,7 +100,6 @@ func _calculate_speed():
 	if health > 0:	#only if the enemy hasn't been destroyed
 		#move the helicopter up and out
 		end_pos = translation + Vector3(0.0, 0.0, -4.8)
-		#velocity = Vector3.FORWARD * (speed - PlayerStats.get_surf_speed())
 
 func flip_direction():
 	end_pos.x *= -1

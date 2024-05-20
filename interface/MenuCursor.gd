@@ -1,9 +1,9 @@
 extends AnimatedSprite
 
 signal cursor_moved
-## The path to the node with the container
+# The path to the node with the container
 export var menu_container_path : NodePath
-## Location of the cursor
+# Location of the cursor
 export var cursor_offset: Vector2 = Vector2(20.0, 0.0)
 export var cursor_move_sound: AudioStream
 #The node with the container

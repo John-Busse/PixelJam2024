@@ -1,11 +1,11 @@
 extends Spatial
 
-
 signal offscreen #Emit when this tile is offscreen
 export var tile_name: String
 var surf_sign_on: bool = false
 var building_one_on: bool = false
 var building_two_on: bool = false
+
 
 func _ready():
 	var num_frames: int = $AnimatedSprite3D.frames.get_frame_count(tile_name)

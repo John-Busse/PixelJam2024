@@ -89,7 +89,6 @@ func start_animation(anim_name: String):
 func game_win():
 	$Pivot/AnimatedSprite3D.set_animation("game_win_loop")
 	$Pivot/AnimatedSprite3D.disconnect("animation_finished", self, "game_win")
-	print("game won")
 	game_lost = true	#to stop the player
 	emit_signal("win")
 

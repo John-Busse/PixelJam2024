@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://enemies/HeliMob.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://enemies/HeliMob.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://audio/sfx/sfx_helicopter_shoot_1.wav" type="AudioStream" id=9]
 [ext_resource path="res://audio/sfx/sfx_helicopter_shoot_2.wav" type="AudioStream" id=10]
 [ext_resource path="res://enemies/HeliBlade.tscn" type="PackedScene" id=11]
+[ext_resource path="res://audio/sfx/sfx_player_hurt_3.wav" type="AudioStream" id=12]
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 0.25, 0.5, 0.4 )
@@ -25,6 +26,7 @@ heli_shoot_1 = ExtResource( 10 )
 collision_layer = 2
 script = ExtResource( 2 )
 heli_explosion = ExtResource( 7 )
+heli_shot = ExtResource( 12 )
 heli_blades = ExtResource( 11 )
 
 [node name="Animations" type="Spatial" parent="HeliMob"]
@@ -41,7 +43,7 @@ transform = Transform( -2.5, 0, 2.18557e-07, 0, 1, 0, -2.18557e-07, 0, -2.5, 0, 
 axis = 1
 frames = ExtResource( 1 )
 animation = "heli"
-frame = 6
+frame = 4
 playing = true
 
 [node name="CollisionShape" type="CollisionShape" parent="HeliMob"]

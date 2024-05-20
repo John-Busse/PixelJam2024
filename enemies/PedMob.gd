@@ -4,6 +4,7 @@ export var ped_death_0: AudioStream
 export var ped_death_1: AudioStream
 var animation_index: int
 
+
 func _physics_process(_delta):
 	move_and_slide(velocity, Vector3.UP)
 

@@ -13,9 +13,11 @@ func init(spawn_loc: Vector3, player_loc: Vector3):
 func _physics_process(_delta):
 	move_and_slide(velocity, Vector3.UP)
 
+
 func _on_VisibilityNotifier_screen_exited():
 	#despawn the bullet when it leaves the screen
 	queue_free()
+
 
 func _destroyed():
 	queue_free()

@@ -1,16 +1,14 @@
 extends Enemy
 
-var car_frame: int
 export var wheel_scene: PackedScene
 export var explosion_sound: AudioStream
+var car_frame: int	#which car sprite are we using?
 
 func _ready():
-#	var num_frames: int = $AnimatedSprite3D.frames.get_frame_count(tile_name)
-#	$AnimatedSprite3D.set_animation(tile_name)
-#	$AnimatedSprite3D.set_frame(randi() % num_frames)
 	var num_frames: int = $Spatial/AnimatedSprite3D.frames.get_frame_count("car")
 	car_frame = randi() % num_frames
 	$Spatial/AnimatedSprite3D.set_frame(car_frame)
+
 
 func _physics_process(_delta):
 	move_and_slide(velocity, Vector3.UP)
@@ -27,7 +25,7 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 	
 	look_at_from_position(start_pos, end_pos, Vector3.UP)
 	speed = rand_range(min_speed, max_speed)	#the speed the mob is actually travelling
-	var pitch: float = 0.5 / surf_speed * speed + 0.7
+	var pitch: float = 0.5 / surf_speed * speed + 0.5
 	$AudioStreamPlayer.set_pitch_scale(pitch)
 	
 	velocity = Vector3.FORWARD * (speed - surf_speed)

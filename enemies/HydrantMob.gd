@@ -3,6 +3,7 @@ extends Enemy
 export var wave_sound: AudioStream
 var wave_mask: int = 0b100
 
+
 func _physics_process(_delta):
 # warning-ignore:return_value_discarded
 	move_and_slide(velocity, Vector3.UP)
@@ -23,6 +24,7 @@ func _initialize(start_pos: Vector3, surf_speed: int):
 # Enemy leaves the screen
 func _on_VisibilityNotifier_screen_exited():
 	queue_free()
+
 
 func _get_damage_value() -> int:
 	return damage_value
@@ -51,6 +53,7 @@ func _destroyed():
 	#don't let the hydrant collide anymore
 	$CollisionShape.set_disabled(true)
 	#only play the noise if the hydrant was already destroyed
+	# so this audio won't play if it was destroyed by the wave
 	if health == 0:
 		$AudioStreamPlayer.set_stream(wave_sound)
 		$AudioStreamPlayer.play()

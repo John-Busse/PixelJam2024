@@ -1,5 +1,6 @@
 extends Spatial
-
+# This script mainly handles the bullets
+#and it has a lot of passthrough to the surfer object
 signal die
 signal game_over
 signal win
@@ -12,6 +13,7 @@ export var player_hurt_1: AudioStream
 export var player_hurt_2: AudioStream
 var can_fire: bool = true
 var is_firing: bool = false
+var is_dead: bool = false
 var offset: Vector3 = Vector3(-0.13, -0.1, -0.75)
 
 
@@ -27,6 +29,7 @@ func _process(_delta):
 		$FireRateTimer.start()
 		can_fire = false
 		is_firing = true
+
 
 func shoot_bullet():
 	if is_firing:
@@ -49,6 +52,7 @@ func shoot_bullet():
 		bullet.init(spawn_loc, PlayerStats.get_bullet_speed())
 		add_child(bullet)
 
+
 func _on_FireRateTimer_timeout():
 	can_fire = true
 
@@ -59,9 +63,11 @@ func stop_weapon():
 
 
 func die():
-	stop_weapon()
-	emit_signal("die")
-	$Surfer.die()
+	if not is_dead:
+		is_dead = true
+		stop_weapon()
+		emit_signal("die")
+		$Surfer.die()
 
 #This is a passthrough function to propogate the game_over signal to the level
 func game_over():
@@ -93,3 +99,7 @@ func _on_MobDetector_body_entered(body: Node):
 		#emit_signal("hit")
 		if PlayerStats.get_health() == 0:
 			die()
+
+
+func get_player_pos() -> Vector3:
+	return $Surfer.global_translation

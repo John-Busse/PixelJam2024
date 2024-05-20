@@ -2,9 +2,11 @@ extends Spatial
 
 var game_won: bool = false
 
+
 func _ready():
 	#Make sure the shadow and wave are on the same animation frame
 	$Shadow/WaveShadow.set_frame($WaveTop.get_frame())
+
 
 func _process(delta):
 	if game_won:

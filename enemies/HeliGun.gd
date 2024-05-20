@@ -5,10 +5,6 @@ export var heli_shoot_0: AudioStream
 export var heli_shoot_1: AudioStream
 var player_node: Node
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 
 func init(start_pos: Vector3, target_pos: Vector3, player: Node):
 	$HeliMob.init_heli(start_pos, target_pos, player)
@@ -24,7 +20,7 @@ func _on_HeliWeaponTimer_timeout():
 	var bullet = heli_bullet.instance()
 	var spawn_loc: Vector3 = $HeliMob.translation + Vector3(0.0, -1.0, 0.0)
 	
-	bullet.init(spawn_loc, player_node.translation)
+	bullet.init(spawn_loc, player_node.get_player_pos())
 	add_child(bullet)
 	
 	#play the bullet sound
@@ -44,4 +40,5 @@ func _on_VisibilityNotifier_screen_exited():
 
 
 func game_end():
+	$HeliMob._calculate_speed()
 	$HeliWeaponTimer.set_paused(true)
